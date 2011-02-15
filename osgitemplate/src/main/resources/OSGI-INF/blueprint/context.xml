@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+<!--	<command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">-->
+<!--		<command name="test/hello">-->
+<!--			<action class="net.lr.tut.karaf.command.HelloShellCommand" />-->
+<!--		</command>-->
+<!---->
+<!--	</command-bundle>-->
+	
+<!--	<reference id="httpService" availability="mandatory" interface="org.osgi.service.http.HttpContext">-->
+<!--	</reference>-->
+	
+<!--	<bean id="myClass" class="net.lr.tut.karaf.hello.MyClass">-->
+<!--		<property name="httpService" ref="httpService" />-->
+<!--	</bean>-->
+
+<!--	<service ref="myClass">-->
+<!--		<interfaces>-->
+<!--			<value>org.osgi.service.command.Function</value>-->
+<!--		</interfaces>-->
+<!--		<service-properties>-->
+<!--			<entry key="osgi.command.scope" value="servlet" />-->
+<!--			<entry key="osgi.command.function" value="register" />-->
+<!--		</service-properties>-->
+<!--	</service>-->
+
+	<service>
+		<interfaces>
+			<value>javax.servlet.http.HttpServlet</value>
+		</interfaces>
+		<service-properties>
+			<entry key="alias" value="/test2" />
+		</service-properties>
+		<bean class="net.lr.tut.karaf.command.SimpleServlet">
+		</bean>
+	</service>
+</blueprint>

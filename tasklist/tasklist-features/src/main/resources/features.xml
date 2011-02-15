@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+
+    <feature name="tasklist" version="${pom.version}">
+    	<config name="org.ops4j.pax.web">
+    		org.osgi.service.http.port=8080
+    	</config>
+    	<feature version="2.1.3">http</feature>
+        <bundle>mvn:org.ops4j.pax.web/pax-web-extender-whiteboard/0.7.4</bundle>
+        <bundle>mvn:net.lr.tasklist/tasklist-persistence/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tasklist/tasklist-ui/${pom.version}</bundle>
+    </feature>
+   
+</features>
