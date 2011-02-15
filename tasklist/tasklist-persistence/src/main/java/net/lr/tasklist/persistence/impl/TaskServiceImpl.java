@@ -16,12 +16,12 @@ public class TaskServiceImpl implements TaskService {
 		Task task = new Task();
 		task.setId("1");
 		task.setTitle("Buy coffee");
-		task.setDescription("100% Arabican");
+		task.setDescription("Take the extra strong");
 		addTask(task);
 		task = new Task();
 		task.setId("2");
 		task.setTitle("Finish karaf tutorial");
-		task.setDescription("Some more examples");
+		task.setDescription("Last check and wiki upload");
 		addTask(task);
 	}
 	
