@@ -17,18 +17,9 @@ public class Activator implements BundleActivator {
 
 	@Override
 	public void start(BundleContext context) throws Exception {
-		serviceReg = context.registerService(ManagedService.class.getName(), new ConfigUpdater() , getProperties());
-	}
-
-	/**
-	 * Provide the properties for the managed service registration. In this case we only need to submit the config SERVICE_PID 
-	 * @return configured properties
-	 */
-	@SuppressWarnings("rawtypes")
-	private Dictionary getProperties() {
 		Hashtable<String, Object> properties = new Hashtable<String, Object>();
 		properties.put(Constants.SERVICE_PID, CONFIG_PID);
-		return properties;
+		serviceReg = context.registerService(ManagedService.class.getName(), new ConfigUpdater() , properties);
 	}
 
 	@Override
