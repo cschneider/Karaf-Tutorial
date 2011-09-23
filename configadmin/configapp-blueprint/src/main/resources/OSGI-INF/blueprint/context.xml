@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	 xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="
+	 	http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+	 	http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://svn.apache.org/repos/asf/aries/trunk/blueprint/blueprint-cm/src/main/resources/org/apache/aries/blueprint/compendium/cm/blueprint-cm-1.1.0.xsd
+	 ">
+	<cm:property-placeholder persistent-id="ConfigApp" update-strategy="reload" >
+		<cm:default-properties>
+			<cm:property name="title" value="Default Title"/>
+		</cm:default-properties>
+	</cm:property-placeholder>
+
+	<bean id="myApp" class="net.lr.tutorial.configadmin.MyApp" init-method="refresh">
+		<property name="title" value="${title}"></property>
+	</bean>
+</blueprint>
