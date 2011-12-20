@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MetaData xmlns="http://www.osgi.org/xmlns/metadata/v1.0.0"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="
+		 http://www.osgi.org/xmlns/metadata/v1.0.0 http://www.osgi.org/xmlns/metatype/v1.1.0/metatype.xsd
+	 ">
+	 <OCD description="Configured Example Application" name="ConfigApp" id="ConfigApp">
+	 	<AD name="Title" id="title" required="true" type="String" default="Default Title" description="Title for the Application"/>
+	 </OCD>
+	 <Designate pid="ConfigApp">
+	 	<Object ocdref="ConfigApp"/>
+	 </Designate>
+</MetaData>
