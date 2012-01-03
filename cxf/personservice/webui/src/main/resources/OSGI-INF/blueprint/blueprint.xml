@@ -10,7 +10,7 @@
     xmlns:wicket="http://www.ops4j.org/schema/wicket">
 
     <bean id="personServlet"
-        class="org.ops4j.pax.wicket.samples.plain.simple.internal.PersonServlet">
+        class="net.lr.tutorial.karaf.cxf.personservice.webui.PersonServlet">
         <property name="personService" ref="personService" />
     </bean>
 
