@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<order>
+	<customer>Christian Schneider</customer>
+	<item name="Book Lord of the Rings" vendor="direct" count="1"/>
+	<item name="Flatscreen TV" vendor="vendor1" count="1"/> 
+</order>

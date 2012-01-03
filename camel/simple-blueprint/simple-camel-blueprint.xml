@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint" id="simple">
+        <route>
+            <from uri="timer:simple?period=5000"/>
+            <setBody>
+                <simple>Hello World</simple>
+            </setBody>
+            <to uri="stream:out"/>
+        </route>
+    </camelContext>
+
+</blueprint>
