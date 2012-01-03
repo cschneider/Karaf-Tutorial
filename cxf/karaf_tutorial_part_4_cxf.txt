@@ -132,9 +132,7 @@ The [PersonServlet|https://github.com/cschneider/Karaf-Tutorial/blob/master/cxf/
 
 The wiring is done using a [blueprint context|https://github.com/cschneider/Karaf-Tutorial/blob/master/cxf/personservice/webui/src/main/resources/OSGI-INF/blueprint/blueprint.xml].
 
-h2. Some remarks
-
-
+h2. Some further remarks
 
 The example uses blueprint instead of spring dm as it works much better in an OSGi environment. The bundles are created using the maven bundle plugin. A fact that shows how well blueprint works
 is that the maven bundle plugin is just used with default settings. In spring dm the imports have to be configured as spring needs access to many implementation classes of cxf. For spring dm examples 
@@ -142,4 +140,3 @@ take a look at the Talend Service Factory examples (https://github.com/Talend/ts
 
 The example shows that writing OSGi applications is quite simple with aries and blueprint. It needs only 153 lines of java code (without comments) for a complete little application. 
 The blueprint xml is also quite small and readable.    
-

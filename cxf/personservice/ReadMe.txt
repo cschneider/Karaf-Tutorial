@@ -37,7 +37,6 @@ Build and Test
 --------------
 
 > mvn clean install
-> mvn java:run
 
 Override the exports of the system bundle
 -----------------------------------------
@@ -48,11 +47,10 @@ to etc/jre.properties
 Run the service in Karaf
 ------------------------
 
-> features:addurl mvn:org.apache.cxf.karaf/apache-cxf/2.5.0/xml/features
-> features:install http
-> features:install cxf
-> install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
-> install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
+features:addurl mvn:org.apache.cxf.karaf/apache-cxf/2.5.0/xml/features
+features:install http cxf
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
 
 Test the service
 ----------------
