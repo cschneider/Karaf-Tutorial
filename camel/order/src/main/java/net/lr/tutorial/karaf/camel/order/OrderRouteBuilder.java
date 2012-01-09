@@ -32,8 +32,8 @@ public class OrderRouteBuilder extends RouteBuilder {
        .split(xpath("/order/item"))
        .setHeader("count", xpath("/item/@count").stringResult())
        .setHeader("name", xpath("/item/@name").stringResult())
-       .choice().when(xpath("/item/@vendor != 'direct'"))
-            .to("direct:vendor")
+       .choice()
+            .when(xpath("/item/@vendor != 'direct'")).to("direct:vendor")
             .otherwise().recipientList(simple("file:ordersout/${header.customer}"));
 
         from("direct:vendor").id("mailtovendor")
