@@ -1,0 +1,12 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+
+    <bean id="dbAccess" class="net.lr.tutorial.karaf.db.example.DbExample" init-method="test">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+   <reference id="dataSource" interface="javax.sql.DataSource"/>
+   
+    <!-- Use this if you want a specific DataSource 
+        <reference id="dataSource" interface="javax.sql.DataSource" filter="(osgi.jndi.service.name=jdbc/mysqlds)"/>
+    -->
+</blueprint>

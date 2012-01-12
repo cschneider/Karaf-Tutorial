@@ -1,0 +1,42 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" default-activation="eager">
+
+    <bean id="dbAccess" class="net.lr.tutorial.karaf.db.service.DbAccess">
+    </bean>
+
+    <bean id="dbSelect" class="net.lr.tutorial.karaf.db.service.DbSelect">
+        <property name="context" ref="blueprintBundleContext" />
+        <property name="dbAccess" ref="dbAccess" />
+    </bean>
+
+    <bean id="dbNameCompleter" class="net.lr.tutorial.karaf.db.command.DbNameCompleter">
+        <property name="dbSelect" ref="dbSelect" />
+    </bean>
+
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+        <command name="db/query">
+            <action class="net.lr.tutorial.karaf.db.command.QueryCommand">
+                <property name="dbAccess" ref="dbAccess" />
+            </action>
+        </command>
+        <command name="db/exec">
+            <action class="net.lr.tutorial.karaf.db.command.ExecuteCommand">
+                <property name="dbAccess" ref="dbAccess" />
+            </action>
+        </command>
+        <command name="db/tables">
+            <action class="net.lr.tutorial.karaf.db.command.ShowTablesCommand">
+                <property name="dbAccess" ref="dbAccess" />
+            </action>
+        </command>
+        <command name="db/select">
+            <action class="net.lr.tutorial.karaf.db.command.SelectCommand">
+                <property name="dbSelect" ref="dbSelect" />
+            </action>
+            <completers>
+                <ref component-id="dbNameCompleter" />
+            </completers>
+        </command>
+    </command-bundle>
+
+    <!-- Use this if you want a specific DataSource <reference id="dataSource" interface="javax.sql.DataSource" filter="(osgi.jndi.service.name=jdbc/mysqlds)"/> -->
+</blueprint>

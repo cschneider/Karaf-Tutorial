@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+As Oracle does not publish the driver in the maven repo we will first have to install the driver in our local maven repo.
+You will have eventually have to adjust the path and version. The command below is for windows and Oracle 11 Express.
+
+> mvn install:install-file -DgroupId=com.ibm.db2.jdbc -DartifactId=db2jcc -Dversion=9.7 -Dpackaging=jar -Dfile="C:\Program Files (x86)\IBM\SQLLIB\java\db2jcc.jar"
+
+Then we can install the driver in Karaf. As it is no bundle we use the wrap protocol to create a suitable Manifest on the fly:
+> install -s wrap:mvn:com.ibm.db2.jdbc/db2jcc/9.7
+
+As a last step copy this file to the deploy folder
+-->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+  
+  <bean id="dataSource" class="com.ibm.db2.jcc.DB2DataSource">
+      <property name="url" value="jdbc:db2://localhost:5021/sample"/>
+      <property name="user" value="db2admin"/>
+      <property name="password" value="db2admin"/>
+  </bean>
+  
+  <service interface="javax.sql.DataSource" ref="dataSource">
+    <service-properties>
+            <entry key="osgi.jndi.service.name" value="jdbc/db2ds"/>
+    </service-properties>
+  </service>
+</blueprint>

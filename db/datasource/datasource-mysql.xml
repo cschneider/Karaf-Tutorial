@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+First install the MySQL driver using:
+> install -s mvn:mysql/mysql-connector-java/5.1.18
+
+Then copy this file to the deploy folder
+-->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+  
+  <bean id="dataSource" class="com.mysql.jdbc.jdbc2.optional.MysqlDataSource">
+      <property name="url" value="jdbc:mysql://localhost:3306/world"/>
+      <property name="user" value="test"/>
+      <property name="password" value="test"/>
+  </bean>
+  
+  <service interface="javax.sql.DataSource" ref="dataSource">
+    <service-properties>
+            <entry key="osgi.jndi.service.name" value="jdbc/mysqlds"/>
+    </service-properties>
+  </service>
+</blueprint>
