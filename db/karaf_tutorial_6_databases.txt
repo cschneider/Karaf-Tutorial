@@ -1,0 +1,98 @@
+h1. Apache Karaf Tutorial Part 6 - Database Access
+
+{excerpt}
+Shows how to access databases from OSGi applications running in Karaf and how to abstract from the DB product by installing DataSources as OSGi services. A small jdbc example show how to use such a DataSource.
+{excerpt}
+
+Almost every application needs to access a database at some point. The most common ways to access a database are JDBC and JPA. Both abstract from the database product to some degree.
+
+h2. Installing the driver
+
+The first step is to install the driver jar(s) for your database system into Karaf. Most drivers are already valid bundles and available in the maven repo. So this is tpyically only
+one Karaf command. Where the driver is available in maven but no bundle we can most times use the wrap: protocol of Karaf. If the driver is not even
+in the maven repo we have to install the file into the maven repo first.
+
+For derby the following command will work
+> install -s  mvn:org.apache.derby/derby/10.8.2.2
+
+See the [db/datasource|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/datasource] folder on github for installation instructions for (db2, derby, h2, mysql and oracle).
+
+h2. Installing the datasource
+
+In Java EE servers and servlet containters you typically use JNDI to install a DataSource on the server level so the application can just refer to it and so does not have to know the specific driver or database url.
+In OSGi JNDI is replaced by OSGi services. So the best way to decouple your application from the database is to offer a DataSource as an OSGi service.
+
+As we can deploy simple blueprint xml files in Karaf this is really easy. We define a bean with the class of the specific datasource impl and configure it. Then we define an OSGi service to publish that
+bean as a javax.sql.DataSource. This works because Karaf uses dynamic imports when it deploys blueprint context files so all classes are available. 
+
+For you convenience I have prepared one blueprint file for each database flavour. It also explains how to install the specific driver. See [db/datasource|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/datasource].
+
+h2. Browsing the database using the Karaf db:* commands
+
+As part of this tutorial I created some simple Karaf commands to work with databases from the Karaf shell. These commands proved to be quite handy so I will try to move them to the Karaf project.
+
+h3. db:select [name]
+
+When called without parameters the command shows all available DataSources.
+Example:
+{code}
+karaf@root> db:select
+Sel | Name         | Product      | Version              | URL
+------------------------------------------------------------------------------------
+    | jdbc/derbyds | Apache Derby | 10.8.2.2 - (1181258) | jdbc:derby:test
+    | jdbc/mysqlds | MySQL        | 5.5.17               | jdbc:mysql://localhost:3
+{code}
+
+When called with the name of a DataSource it will select the DataSource:
+
+Example:
+{code}
+db:select jdbc/derbyds
+{code}
+
+h3. db:exec "<sql>"
+
+Executes a SQL command.
+Example:
+{code}
+karaf@root> db:exec "create table person (name varchar(100), twittername varchar(100))"
+karaf@root> db:exec "insert into person (name, twittername) values ('Christian Schneider', '@schneider_chris')"
+{code}
+
+This creates a table person and adds a row to it.
+
+h3. db:tables
+
+Shows the current tables in the database.
+
+Example:
+{code}
+db:tables
+TABLE_CAT | TABLE_SCHEM | TABLE_NAME       | TABLE_TYPE   | REMARKS | TYPE_CAT | TYPE_SCHEM | TYPE_NAME | SELF_REFERENCING_COL_NAME | REF_GENERATION
+----------------------------------------------------------------------------------------------------------------------------------------------------
+          | SYS         | SYSALIASES       | SYSTEM TABLE |         |          |            |           |                           |
+          | SYS         | SYSVIEWS         | SYSTEM TABLE |         |          |            |           |                           |
+          | SYSIBM      | SYSDUMMY1        | SYSTEM TABLE |         |          |            |           |                           |
+          | APP         | PERSON           | TABLE        |         |          |            |           |                           |
+{code}
+
+h3. db:query
+
+Executes a query and shows the results.
+
+Example:
+{code}
+karaf@root> db:query "select * from person"
+NAME                | TWITTERNAME
+--------------------------------------
+Christian Schneider | @schneider_chris
+{code}
+
+h2. Using the DataSource in your bundle with JDBC
+
+The project [db/examplejdbc|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/examplejdbc] shows how to use the datasource we installed and execute jdbc commands on it.
+The example uses a [blueprint.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejdbc/src/main/resources/OSGI-INF/blueprint/blueprint.xml] to refer to the OSGi service for the DataSource and injects it into the class [DbExample|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejdbc/src/main/java/net/lr/tutorial/karaf/db/example/DbExample.java]. 
+The test method is then called as init method and shows some jdbc statements on the DataSource. 
+
+The DbExample class is completely independent of OSGi and can be easily tested standalone using the DbExampleTest. This test shows how to manually set up the DataSource outside of OSGi.
+
