@@ -23,15 +23,11 @@
             xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0"
             xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0">
 
-  <bean id="personService" class="net.lr.tutorial.karaf.db.examplejpa.PersonServiceImpl"> 
+  <bean id="personService" class="net.lr.tutorial.karaf.db.examplejpa.impl.PersonServiceImpl"> 
       <jpa:context property="entityManager" unitname="person" />
       <tx:transaction method="*" value="Required"/>
   </bean>
   
-  <service ref="personService" interface="net.lr.tutorial.karaf.db.examplejpa.PersonService">
-      <service-properties>
-          <entry key="mode" value="JPA_CM"/>
-      </service-properties>
-  </service>
+  <service ref="personService" interface="net.lr.tutorial.karaf.db.examplejpa.PersonService" />
 
 </blueprint>

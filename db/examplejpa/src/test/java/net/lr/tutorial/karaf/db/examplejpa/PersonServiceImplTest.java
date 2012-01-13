@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import net.lr.tutorial.karaf.db.examplejpa.impl.PersonServiceImpl;
+
 import org.apache.derby.jdbc.EmbeddedDataSource;
 import org.junit.Assert;
 import org.junit.Test;

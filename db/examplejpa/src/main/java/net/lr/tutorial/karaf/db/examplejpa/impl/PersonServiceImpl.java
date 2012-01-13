@@ -1,9 +1,12 @@
-package net.lr.tutorial.karaf.db.examplejpa;
+package net.lr.tutorial.karaf.db.examplejpa.impl;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaQuery;
+
+import net.lr.tutorial.karaf.db.examplejpa.Person;
+import net.lr.tutorial.karaf.db.examplejpa.PersonService;
 
 public class PersonServiceImpl implements PersonService {
     private EntityManager em;

@@ -19,6 +19,7 @@ install -s mvn:org.apache.openjpa/openjpa/2.1.1
 install -s mvn:org.apache.aries.transaction/org.apache.aries.transaction.blueprint/0.3
 install -s mvn:org.apache.aries.transaction/org.apache.aries.transaction.manager/0.3
 install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.api/0.3
+install -s mvn:org.apache.aries.proxy/org.apache.aries.proxy/0.3
 install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.container/0.3
 install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.blueprint.aries/0.3
 install -s mvn:net.lr.tutorial.karaf.db/db-examplejpa/1.0-SNAPSHOT
