@@ -17,7 +17,7 @@
     limitations under the License.
 
 -->
-<blueprint  default-activation="lazy" 
+<blueprint  default-activation="eager" 
             xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.0.0"
@@ -29,5 +29,17 @@
   </bean>
   
   <service ref="personService" interface="net.lr.tutorial.karaf.db.examplejpa.PersonService" />
-
+  
+  <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+        <command name="person/add">
+            <action class="net.lr.tutorial.karaf.db.examplejpa.command.AddPersonCommand">
+                <property name="personService" ref="personService"/>
+            </action>
+        </command>
+        <command name="person/list">
+            <action class="net.lr.tutorial.karaf.db.examplejpa.command.ListPersonsCommand">
+                <property name="personService" ref="personService"/>
+            </action>
+        </command>
+    </command-bundle>
 </blueprint>

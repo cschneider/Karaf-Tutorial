@@ -3,7 +3,6 @@ package net.lr.tutorial.karaf.db.examplejpa.impl;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaQuery;
 
 import net.lr.tutorial.karaf.db.examplejpa.Person;
 import net.lr.tutorial.karaf.db.examplejpa.PersonService;
@@ -16,14 +15,17 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void addPersion(Person person) {
+    public void add(Person person) {
         em.persist(person);
+    }
+    
+    public void deleteAll() {
+        em.createQuery("delete from Person").executeUpdate();
     }
 
     @Override
-    public List<Person> getAllPersons() {
-        CriteriaQuery<Person> query = em.getCriteriaBuilder().createQuery(Person.class);
-        return em.createQuery(query).getResultList();
+    public List<Person> getAll() {
+        return em.createQuery("select p from Person p", Person.class).getResultList();
     }
 
 }

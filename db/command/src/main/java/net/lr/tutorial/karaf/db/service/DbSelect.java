@@ -42,7 +42,11 @@ public class DbSelect {
 
     public ServiceReference[] getDataSources() {
         try {
-            return context.getServiceReferences(DataSource.class.getName(), null);
+            ServiceReference[] dsRefs = context.getServiceReferences(DataSource.class.getName(), null);
+            if (dsRefs == null) {
+                dsRefs = new ServiceReference[]{};
+            }
+            return dsRefs;
         } catch (InvalidSyntaxException e) {
             throw new RuntimeException(e);
         }

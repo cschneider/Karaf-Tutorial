@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Thu Jan 12 15:52:01 CET 2012:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0134-d267-6e5a-000006faaef8 
+Fri Jan 13 16:55:45 CET 2012:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0134-d7c8-265c-000006d75cf8 
 on database directory C:\checkout\Karaf-Tutorial\db\examplejdbc\target\test  with class loader sun.misc.Launcher$AppClassLoader@6d6f0472 
 Loaded from file:/C:/Users/cschneider/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
 java.vendor=Sun Microsystems Inc.

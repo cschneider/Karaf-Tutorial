@@ -60,6 +60,9 @@ public class DbExample {
             if (stmt != null) {
                 stmt.close();
             }
+            if (con != null) {
+                con.close();
+            }
         }
     }
 

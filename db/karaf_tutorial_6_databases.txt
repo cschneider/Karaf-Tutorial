@@ -1,7 +1,5 @@
-h1. Apache Karaf Tutorial Part 6 - Database Access
-
 {excerpt}
-Shows how to access databases from OSGi applications running in Karaf and how to abstract from the DB product by installing DataSources as OSGi services. Some new Karaf shell commands can be used to 
+Shows how to access databases from OSGi applications running in Karaf and how to abstract from the DB product by installing DataSources as OSGi services. Some new Karaf shell commands can be used to
 work with the database from the command line. Finally JDBC and JPA examples show how to use such a DataSource from user code.
 {excerpt}
 
@@ -12,21 +10,21 @@ one Karaf command. If the driver is available in maven but no bundle we can most
 in the repo we have to install the file into the maven repo first.
 
 For derby the following command will work
-> install -s  mvn:org.apache.derby/derby/10.8.2.2
+{code}
+> install -s mvn:org.apache.derby/derby/10.8.2.2
+{code}
 
 See the [db/datasource|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/datasource] folder on github for installation instructions for (db2, derby, h2, mysql and oracle).
 
 h2. Installing the datasource
 
-In Java EE servers and servlet containters you typically use JNDI to install a DataSource on the server level so the application can just refer to it and so does not have to know the specific driver or database url.
-In OSGi JNDI is replaced by OSGi services. So the best way to decouple your application from the database is to offer a DataSource as an OSGi service.
+In Java EE servers and servlet containters you typically use JNDI to install a DataSource on the server level so the application can just refer to it and so does not have to know the specific driver or database url. In OSGi JNDI is replaced by OSGi services. So the best way to decouple your application from the database is to offer a DataSource as an OSGi service.
 
-As we can deploy simple blueprint xml files in Karaf this is really easy. We define a bean with the class of the specific datasource impl and configure it. Then we publish that bean as an OSGi service with the interface a javax.sql.DataSource. 
-This works because Karaf uses dynamic imports when it deploys blueprint context files so all classes are available. 
+As we can deploy simple blueprint xml files in Karaf this is really easy. We define a bean with the class of the specific datasource impl and configure it. Then we publish that bean as an OSGi service with the interface a javax.sql.DataSource. This works because Karaf uses dynamic imports when it deploys blueprint context files so all classes are available.
 
 For each database flalour you can find a suitable blueprint.xml in [db/datasource|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/datasource].
 
-h2. Browsing the database using the Karaf db:* commands
+h2. Browsing the database using the Karaf db:\* commands
 
 As part of this tutorial I created some simple Karaf commands to work with databases from the Karaf shell. These commands proved to be quite handy so I will try to move them to the Karaf project.
 
@@ -89,40 +87,82 @@ Christian Schneider | @schneider_chris
 
 h2. Accessing the database using JDBC
 
-The project [db/examplejdbc|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/examplejdbc] shows how to use the datasource we installed and execute jdbc commands on it.
-The example uses a [blueprint.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejdbc/src/main/resources/OSGI-INF/blueprint/blueprint.xml] to refer to the OSGi service for the DataSource and injects it into the class [DbExample|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejdbc/src/main/java/net/lr/tutorial/karaf/db/example/DbExample.java]. 
-The test method is then called as init method and shows some jdbc statements on the DataSource. 
+The project [db/examplejdbc|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/examplejdbc] shows how to use the datasource we installed and execute jdbc commands on it. The example uses a [blueprint.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejdbc/src/main/resources/OSGI-INF/blueprint/blueprint.xml] to refer to the OSGi service for the DataSource and injects it into the class
+[DbExample|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejdbc/src/main/java/net/lr/tutorial/karaf/db/example/DbExample.java].The test method is then called as init method and shows some jdbc statements on the DataSource.The DbExample class is completely independent of OSGi and can be easily tested standalone using the [DbExampleTest|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejdbc/src/test/java/net/lr/tutorial/karaf/db/example/DbExampleTest.java]. This test shows how to manually set up the DataSource outside of OSGi.
 
-The DbExample class is completely independent of OSGi and can be easily tested standalone using the [DbExampleTest|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejdbc/src/test/java/net/lr/tutorial/karaf/db/example/DbExampleTest.java]. This test shows how to manually set up the DataSource outside of OSGi.
+h3. Build and install
+
+Build works like always using maven
+{code}
+> mvn clean install
+{code}
+
+In Karaf we just need our own bundle as we have no special dependencies
+{code}
+> install -s mvn:net.lr.tutorial.karaf.db/db-examplejdbc/1.0-SNAPSHOT
+Using datasource H2, URL jdbc:h2:~/test
+Christian Schneider, @schneider_chris,
+{code}
+
+After installation the bundle should directly print the db info and the persisted person.
 
 h2. Accessing the database using JPA
 
-For larger projects it is quite tpyical that JPA is used instead of hand crafted SQL. Using JPA has two big advantages over JDBC. You need to maintain less SQL code and JPA provides dialects for the subtle differences in databases that else you would have to code yourself.
-For this example we use OpenJPA as the JPA Implementation. On top of it we add Apache Aries JPA which supplies an implementation of the OSGi JPA Service Specification and blueprint integration for JPA.
+For larger projects it is quite typical that JPA is used instead of hand crafted SQL. Using JPA has two big advantages over JDBC. You need to maintain less SQL code and JPA provides dialects for the subtle differences in databases that else you would have to code yourself. For this example we use OpenJPA as the JPA Implementation. On top of it we add Apache Aries JPA which supplies an implementation of the OSGi JPA Service Specification and blueprint integration for JPA.
 
-The project [examplejpa|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/examplejpa] shows a simple project that implements a PersonService that persists [Person|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/java/net/lr/tutorial/karaf/db/examplejpa/Person.java] objects. 
-Person is just a java bean annotated with JPA @Entitiy. As OpenJPA needs to enhance the bytecode of the classes we need to add the openjpa-maven-plugin to the pom.xml which prepares the classes for JPA.
+The project [examplejpa|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/examplejpa] shows a simple project that implements a PersonService that manages [Person|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/java/net/lr/tutorial/karaf/db/examplejpa/Person.java] objects.
+Person is just a java bean annotated with JPA @Entitiy. As OpenJPA needs to enhance the bytecode of the classes we need to add the openjpa-maven-plugin to the [pom.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/pom.xml] which prepares the classes for JPA.
+
+Additionally the project implements two Karaf shell commands person:add and person:list that allow to easily test the project.
 
 h3. persistence.xml
 
-Like in a typical JPA project the [peristence.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/resources/META-INF/persistence.xml] defines the DataSource lookup, 
-database settings and lists the persistent classes. The datasource is refered to using "osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/derbyds)". This makes a lookup for an OSGi service with the given interface and properties.
+Like in a typical JPA project the [peristence.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/resources/META-INF/persistence.xml] defines the DataSource lookup, database settings and lists the persistent classes. The datasource is refered using "osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/derbyds)". This makes a lookup for an OSGi service with the given interface and properties.
 
-The OSGi JPA Service Specification defines that the Manifest should contain an attribute "Meta-Persistence" that points to the persistence.xml. So this needs to be defined in the config of the maven bundle plugin. The Aries JPA container will scan for these attributes
+The OSGi JPA Service Specification defines that the Manifest should contain an attribute "Meta-Persistence" that points to the persistence.xml. So this needs to be defined in the config of the maven bundle plugin in the prom. The Aries JPA container will scan for these attributes
 and register an initialized EntityMangerFactory as an OSGi service on behalf of the use bundle.
 
 h3. blueprint.xml
 
-We use a [blueprint.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/resources/OSGI-INF/blueprint/blueprint.xml] context to inject an EntityManager into our service implementation and to provide automatic transaction support. 
-The following snippet is the intersting part:
+We use a [blueprint.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/resources/OSGI-INF/blueprint/blueprint.xml] context to inject an EntityManager into our service implementation and to provide automatic transaction support.
+The following snippet is the interesting part:
 {code}
-  <bean id="personService" class="net.lr.tutorial.karaf.db.examplejpa.PersonServiceImpl">
+  <bean id="personService" class="net.lr.tutorial.karaf.db.examplejpa.impl.PersonServiceImpl">
       <jpa:context property="entityManager" unitname="person" />
       <tx:transaction method="*" value="Required"/>
   </bean>
 {code}
 
-This makes a lookup for the EntityManagerFactory OSGi service that is suitable for the persistence unit person and injects an EnityManager into the 
-[PersonServiceImpl|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/java/net/lr/tutorial/karaf/db/examplejpa/PersonServiceImpl.java]. Additionally it wraps each call to a method of PersonServiceImpl with code that opens a transaction 
+This makes a lookup for the EntityManagerFactory OSGi service that is suitable for the persistence unit person and injects an EnityManager into the
+[PersonServiceImpl|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/java/net/lr/tutorial/karaf/db/examplejpa/impl/PersonServiceImpl.java]. Additionally it wraps each call to a method of PersonServiceImpl with code that opens a transaction
 before the method and commits on success or rollbacks on any exception thrown.
 
+h3. Build and Install
+
+The project builds with mvn clean install like usual. A prerequisite is that the derby datasource is installed like described above. Then we have to install the bundles for openjpa, aries (jpa, transaction, proxy and jndi) and of course our db-examplejpa bundle.
+See [ReadMe.txt|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/ReadMe.txt] for the exact commands to use.
+
+h3. Test
+
+{code}
+person:add 'Christian Schneider' @schneider_chris
+{code}
+
+This should create a person object with the above data and persist it to the database. Unfortunately this currently does not work. I guess I still have an error somewhere. So instead we use the db commands to populate the DB by manually:
+{code}
+db:select jdbc/derbyds
+db:exec "insert into person (id, name, twittername) values (1, 'Christian Schneider', '@schneider_chris')"
+{code}
+
+Then we list the persisted persons
+{code}
+karaf@root> person:list
+Christian Schneider, @schneider_chris
+{code}
+
+h2. Summary
+
+In this tutorial we learned how to work with databases in Apache Karaf. We installed drivers for our database and a DataSource. We were able to check and manipulate the DataSource using the db:\* commands. In the examplejdbc we learned how to acquire a datasource
+and work with it using plain jdbc. This is really easy but a bit verbose. You might want to try the spring JdbcTemplate to remove all the cleanup code. Last but not least we also used jpa to access our database.
+
+In theory JPA and OSGi work together really well. Keep in mind though that JPA support for OSGi is still quite fresh. It took me quite a while to get it all running. The documentation is quite sparse and I still have not been able to fix the persist issue. I will update the code and blog entry as soon as I have the jpa persist working.
