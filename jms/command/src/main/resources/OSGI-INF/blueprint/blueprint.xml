@@ -1,0 +1,63 @@
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" default-activation="eager">
+
+    <bean id="jmsSelect" class="net.lr.karaf.jms.service.JmsSelect" init-method="init">
+        <property name="context" ref="blueprintBundleContext" />
+        <property name="jmsService" ref="jmsService"/>
+    </bean>
+    
+    <bean id="jmsService" class="net.lr.karaf.jms.service.JmsService">
+        <property name="extJmsServiceFactory" ref="activeMQService" />
+    </bean>
+    
+    <bean id="activeMQService" class="net.lr.karaf.jms.service.activemq.ActiveMQJmsServiceFactory">
+    </bean>
+
+    <bean id="jmsNameCompleter" class="net.lr.karaf.jms.command.JmsConnectionFactoryNameCompleter">
+        <property name="jmsSelect" ref="jmsSelect" />
+    </bean>
+    
+    <bean id="jmsQueueNameCompleter" class="net.lr.karaf.jms.command.JmsQueueNameCompleter">
+        <property name="jmsService" ref="jmsService" />
+    </bean>
+
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+        <command name="jms/select">
+            <action class="net.lr.karaf.jms.command.SelectCommand">
+                <property name="jmsSelect" ref="jmsSelect" />
+            </action>
+            <completers>
+                <ref component-id="jmsNameCompleter" />
+            </completers>
+        </command>
+        <command name="jms/browse">
+            <action class="net.lr.karaf.jms.command.BrowseCommand">
+            </action>
+            <completers>
+                <ref component-id="jmsQueueNameCompleter" />
+            </completers>
+        </command>
+        <command name="jms/list-queue">
+            <action class="net.lr.karaf.jms.command.ListQueueCommand">
+                <property name="jmsService" ref="jmsService"/>
+            </action>
+            <completers>
+                <ref component-id="jmsNameCompleter" />
+            </completers>
+        </command>
+        <command name="jms/send">
+            <action class="net.lr.karaf.jms.command.SendCommand">
+                <property name="jmsService" ref="jmsService"/>
+            </action>
+        </command>
+        <command name="jms/delete">
+            <action class="net.lr.karaf.jms.command.DeleteCommand">
+                <property name="jmsService" ref="jmsService"/>
+            </action>
+        </command>
+        <command name="jms/move">
+            <action class="net.lr.karaf.jms.command.MoveCommand">
+                <property name="jmsService" ref="jmsService"/>
+            </action>
+        </command>
+    </command-bundle>
+</blueprint>
