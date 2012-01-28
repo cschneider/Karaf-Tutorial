@@ -17,10 +17,12 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void add(Person person) {
         em.persist(person);
+        em.flush();
     }
     
     public void deleteAll() {
         em.createQuery("delete from Person").executeUpdate();
+        em.flush();
     }
 
     @Override
