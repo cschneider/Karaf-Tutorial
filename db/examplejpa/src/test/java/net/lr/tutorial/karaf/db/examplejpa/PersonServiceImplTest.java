@@ -36,7 +36,7 @@ public class PersonServiceImplTest {
         ds.setCreateDatabase("create");
         ic.bind("osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/derbyds)", ds);
         PersonServiceImpl personService = new PersonServiceImpl();
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("person", System.getProperties());
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("personTest", System.getProperties());
         EntityManager em = emf.createEntityManager();
         personService.setEntityManager(em);
         em.getTransaction().begin();
