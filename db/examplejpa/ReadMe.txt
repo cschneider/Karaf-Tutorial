@@ -23,17 +23,18 @@ install -s mvn:org.apache.aries.transaction/org.apache.aries.transaction.manager
 install -s mvn:org.apache.aries.transaction/org.apache.aries.transaction.blueprint/0.3
 install -s mvn:commons-dbcp/commons-dbcp/1.4
 install -s mvn:org.apache.openjpa/openjpa/2.1.1
-install -s mvn:org.apache.aries/org.apache.aries.util/0.4
 install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.api/0.3
 install -s mvn:org.apache.aries.proxy/org.apache.aries.proxy/0.3
 install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.container/0.3
 install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.container.context/0.3
 install -s mvn:org.apache.aries.jpa/org.apache.aries.jpa.blueprint.aries/0.3
-install -s mvn:org.apache.aries.proxy/org.apache.aries.proxy/0.4
+install -s mvn:org.apache.aries.proxy/org.apache.aries.proxy/0.3
 install -s mvn:org.apache.aries.jndi/org.apache.aries.jndi.api/0.3
-install -s mvn:org.apache.aries.jndi/org.apache.aries.jndi.core/0.3.1
-install -s mvn:org.apache.aries.jndi/org.apache.aries.jndi.url/0.3.1
+install -s mvn:org.apache.aries.jndi/org.apache.aries.jndi.core/0.3
+install -s mvn:org.apache.aries.jndi/org.apache.aries.jndi.url/0.3
 install -s mvn:net.lr.tutorial.karaf.db/db-examplejpa/1.0-SNAPSHOT
+
+install -s mvn:org.apache.aries/org.apache.aries.util/0.4
 
 Test
 ----
