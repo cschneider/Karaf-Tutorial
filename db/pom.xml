@@ -36,6 +36,7 @@
       <module>command</module>
       <module>examplejdbc</module>
       <module>examplejpa</module>
+      <module>datasource-mysql</module>
     </modules>
 
 </project>
