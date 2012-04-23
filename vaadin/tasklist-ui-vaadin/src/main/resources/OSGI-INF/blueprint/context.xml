@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+	<bean id="appFactory" class="com.example.vaadin.ExampleAppFactory">
+	</bean>
+	<service ref="appFactory" interface="org.example.utils.vaadinbridge.ApplicationFactory">
+		<service-properties>
+			<entry key="alias" value="/tasklist" />
+		</service-properties>
+	</service>
+</blueprint>
