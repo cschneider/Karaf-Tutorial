@@ -1,6 +1,6 @@
 package net.lr.tasklist.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Task {
 	String id;

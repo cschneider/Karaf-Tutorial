@@ -40,4 +40,14 @@ public class TaskServiceImpl implements TaskService {
 		return taskMap.values();
 	}
 
+    @Override
+    public void updateTask(Task task) {
+        taskMap.put(task.getId(), task);        
+    }
+
+    @Override
+    public void deleteTask(String id) {
+        taskMap.remove(id);
+    }
+
 }

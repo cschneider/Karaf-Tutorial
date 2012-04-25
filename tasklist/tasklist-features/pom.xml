@@ -3,20 +3,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-     <groupId>net.lr.tasklist</groupId>
+    <groupId>net.lr.tasklist</groupId>
     <artifactId>tasklist-features</artifactId>
     <version>1.0</version>
     <packaging>pom</packaging>
-
-    <properties>
-        <activemq.version>5.4.2</activemq.version>
-        <cxf.version>2.3.2</cxf.version>
-        <camel.version>2.6.0</camel.version>
-        <spring.version>3.0.5.RELEASE</spring.version>
-        <spring-security.version>3.0.5.RELEASE</spring-security.version>
-        <jetty.version>7.2.2.v20101205</jetty.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <build>
         <resources>

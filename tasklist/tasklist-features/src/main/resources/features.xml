@@ -3,7 +3,8 @@
 
     <feature name="example-tasklist" version="${pom.version}">
         <feature>http</feature>
-        <bundle>mvn:org.ops4j.pax.web/pax-web-extender-whiteboard/1.0.7</bundle>
+        <feature>http-whiteboard</feature>
+        <bundle>mvn:net.lr.tasklist/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist/tasklist-persistence/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist/tasklist-ui/${pom.version}</bundle>
     </feature>

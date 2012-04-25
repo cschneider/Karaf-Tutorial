@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>tasklist-model</module>
         <module>tasklist-persistence</module>
         <module>tasklist-ui</module>
         <module>tasklist-features</module>
