@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+	<reference id="taskService" availability="mandatory" interface="net.lr.tasklist.model.TaskService" />
+	
 	<bean id="appFactory" class="com.example.vaadin.ExampleAppFactory">
+		<argument ref="taskService"/>
 	</bean>
+
 	<service ref="appFactory" interface="org.example.utils.vaadinbridge.ApplicationFactory">
 		<service-properties>
-			<entry key="alias" value="/tasklist" />
+			<entry key="alias" value="/tasklist-vaadin" />
 		</service-properties>
 	</service>
+	
 </blueprint>
