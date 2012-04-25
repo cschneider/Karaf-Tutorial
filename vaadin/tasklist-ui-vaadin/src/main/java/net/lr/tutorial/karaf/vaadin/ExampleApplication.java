@@ -1,4 +1,4 @@
-package com.example.vaadin;
+package net.lr.tutorial.karaf.vaadin;
 
 import java.util.Locale;
 import java.util.UUID;
@@ -94,6 +94,7 @@ class ExampleApplication extends Application {
                 Task task = new Task();
                 task.setId(UUID.randomUUID().toString());
                 task.setTitle("New Task");
+                task.setDescription("None");
                 taskService.addTask(task);
                 beans.addBean(task);
             }

@@ -1,4 +1,4 @@
-package com.example.vaadin;
+package net.lr.tutorial.karaf.vaadin;
 
 import net.lr.tasklist.model.TaskService;
 

@@ -2,6 +2,7 @@ package net.lr.tasklist.ui;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
@@ -42,9 +43,13 @@ public class TaskListServlet extends HttpServlet {
 	}
 
 	private void showTask(PrintWriter writer, String taskId) {
+	    SimpleDateFormat sdf = new SimpleDateFormat();
 		Task task = taskService.getTask(taskId);
 		if (task != null) {
 			writer.println("<h1>Task " + task.getTitle() + " </h1>");
+			if (task.getDueDate() != null) {
+			    writer.println("Due date: " + sdf.format(task.getDueDate()) + "<br/>");
+			}
 			writer.println(task.getDescription());
 		} else {
 			writer.println("Task with id " + taskId + " not found");

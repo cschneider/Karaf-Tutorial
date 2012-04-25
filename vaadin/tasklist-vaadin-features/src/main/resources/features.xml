@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+	<repository>mvn:net.lr.tasklist/tasklist-features/1.0.0-SNAPSHOT/xml</repository>
+    <feature name="example-tasklist-vaadin" version="${pom.version}">
+        <feature>example-tasklist</feature>
+        <bundle>mvn:com.vaadin/vaadin/6.7.1</bundle>
+        <bundle>mvn:net.lr/vaadinbridge/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tutorial.karaf.vaadin/tasklist-ui-vaadin/${pom.version}</bundle>
+    </feature>
+   
+</features>

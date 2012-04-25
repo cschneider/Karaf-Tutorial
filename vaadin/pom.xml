@@ -11,6 +11,7 @@
     <modules>
         <module>vaadinbridge</module>
         <module>tasklist-ui-vaadin</module>
+        <module>tasklist-vaadin-features</module>
     </modules>
 
 </project>
