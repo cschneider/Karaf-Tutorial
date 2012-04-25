@@ -10,9 +10,11 @@ import com.vaadin.Application.SystemMessages;
 public class ExampleAppFactory implements ApplicationFactory {
     
     private final TaskService taskService;
+    private final String title;
 
-    public ExampleAppFactory(TaskService taskService) {
+    public ExampleAppFactory(TaskService taskService, String title) {
         this.taskService = taskService;
+        this.title = title;
     }
     
     public String getApplicationCSSClassName() {
@@ -24,6 +26,6 @@ public class ExampleAppFactory implements ApplicationFactory {
     }
 
     public Application newInstance() {
-        return new ExampleApplication(taskService);
+        return new ExampleApplication(taskService, title);
     }
 }

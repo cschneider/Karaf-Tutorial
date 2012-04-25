@@ -25,16 +25,18 @@ class ExampleApplication extends Application {
 
     private static final Object[] VISIBLE_COLUMNS = new Object[] {"title", "dueDate", "description"};
     private final TaskService taskService;
+    private final String title;
 
-    ExampleApplication(TaskService taskService) {
+    ExampleApplication(TaskService taskService, String title) {
         this.taskService = taskService;
+        this.title = title;
     }
 
     @Override
     public void init() {
         final GridLayout layout = new GridLayout(1, 3);
         layout.setWidth("100%");
-        setMainWindow(new Window("Example", layout));
+        setMainWindow(new Window(this.title, layout));
         
         final BeanContainer<String, Task> beans = new BeanContainer<String, Task>(Task.class);
         beans.setBeanIdProperty("id");
