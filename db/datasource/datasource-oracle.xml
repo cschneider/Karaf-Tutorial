@@ -14,7 +14,7 @@ As a last step copy this file to the deploy folder
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
   
   <bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
-      <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
+      <property name="URL" value="jdbc:oracle:thin:@localhost:1521:orcl"/>
       <property name="user" value="test"/>
       <property name="password" value="test"/>
   </bean>
