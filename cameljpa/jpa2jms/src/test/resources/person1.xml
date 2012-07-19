@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns1:person xmlns:ns1="http://person.jms2rest.camel.karaf.tutorial.lr.net">
+    <id>1001</id>
+    <name>Christian Schneider</name>
+    <url>http://www.liquid-reality.de</url>
+</ns1:person>

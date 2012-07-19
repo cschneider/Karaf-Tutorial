@@ -1,6 +1,5 @@
 {excerpt}
-Shows how to access databases from OSGi applications running in Karaf and how to abstract from the DB product by installing DataSources as OSGi services. Some new Karaf shell commands can be used to
-work with the database from the command line. Finally JDBC and JPA examples show how to use such a DataSource from user code.
+Shows how to access databases from OSGi applications running in Karaf and how to abstract from the DB product by installing DataSources as OSGi services. Some new Karaf shell commands can be used to work with the database from the command line. Finally JDBC and JPA examples show how to use such a DataSource from user code.
 {excerpt}
 
 h2. Installing the driver
@@ -108,7 +107,7 @@ After installation the bundle should directly print the db info and the persiste
 
 h2. Accessing the database using JPA
 
-For larger projects it is quite typical that JPA is used instead of hand crafted SQL. Using JPA has two big advantages over JDBC. You need to maintain less SQL code and JPA provides dialects for the subtle differences in databases that else you would have to code yourself. For this example we use OpenJPA as the JPA Implementation. On top of it we add Apache Aries JPA which supplies an implementation of the OSGi JPA Service Specification and blueprint integration for JPA.
+For larger projects it is quite typical that JPA is used instead of hand crafted SQL. Using JPA has two big advantages over JDBC. You need to maintain less SQL code and JPA provides dialects for the subtle differences in databases that else you would have to code yourself. For this example we use [OpenJPA|http://openjpa.apache.org/] as the JPA Implementation. On top of it we add [Apache Aries JPA|http://aries.apache.org/modules/jpaproject.html] which supplies an implementation of the OSGi JPA Service Specification and blueprint integration for JPA.
 
 The project [examplejpa|https://github.com/cschneider/Karaf-Tutorial/tree/master/db/examplejpa] shows a simple project that implements a PersonService that manages [Person|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/src/main/java/net/lr/tutorial/karaf/db/examplejpa/Person.java] objects.
 Person is just a java bean annotated with JPA @Entitiy. As OpenJPA needs to enhance the bytecode of the classes we need to add the openjpa-maven-plugin to the [pom.xml|https://github.com/cschneider/Karaf-Tutorial/blob/master/db/examplejpa/pom.xml] which prepares the classes for JPA.

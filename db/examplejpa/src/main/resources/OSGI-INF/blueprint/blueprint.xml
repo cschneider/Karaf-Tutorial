@@ -24,7 +24,7 @@
             xmlns:tx="http://aries.apache.org/xmlns/transactions/v1.0.0">
 
   <bean id="personService" class="net.lr.tutorial.karaf.db.examplejpa.impl.PersonServiceImpl"> 
-      <jpa:context property="entityManager" unitname="person" />
+      <jpa:context unitname="person" property="entityManager"/>
       <tx:transaction method="*" value="Required"/>
   </bean>
   

@@ -10,7 +10,7 @@ import net.lr.tutorial.karaf.db.examplejpa.PersonService;
 public class PersonServiceImpl implements PersonService {
     private EntityManager em;
     
-    public void setEntityManager (EntityManager em) { 
+    public void setEntityManager(EntityManager em) { 
         this.em = em;
     }
 

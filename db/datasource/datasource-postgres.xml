@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Install the driver in Karaf. As it is no bundle we use the wrap protocol to create a suitable Manifest on the fly:
+> install -s wrap:mvn:postgresql/postgresql/9.1-901.jdbc4
+
+As a last step copy this file to the deploy folder
+-->
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+  
+   <bean id="dataSource" class="org.postgresql.ds.PGPoolingDataSource" destroy-method="close">
+      <property name="serverName" value="server:port/dbname"/>
+      <property name="user" value="foo"/>
+      <property name="password" value="bar"/>
+      <property name="dataSourceName" value="myConnectionPool"/>
+      <property name="initialConnections" value="2"/>
+      <property name="maxConnections" value="4" />
+  </bean>
+  
+  <service interface="javax.sql.DataSource" ref="dataSource">
+    <service-properties>
+            <entry key="osgi.jndi.service.name" value="jdbc/postgresds"/>
+    </service-properties>
+  </service>
+</blueprint>
