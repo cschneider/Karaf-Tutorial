@@ -41,5 +41,10 @@
                 <property name="personService" ref="personService"/>
             </action>
         </command>
+        <command name="person/deleteAll">
+            <action class="net.lr.tutorial.karaf.db.examplejpa.command.DeleteAllPersonsCommand">
+                <property name="personService" ref="personService"/>
+            </action>
+        </command>
     </command-bundle>
 </blueprint>

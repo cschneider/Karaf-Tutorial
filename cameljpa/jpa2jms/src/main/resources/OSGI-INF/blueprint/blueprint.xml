@@ -29,6 +29,7 @@
     
     <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
         <argument ref="jmsConfig"/>
+        <property name="transactionManager" ref="transactionManager"/>
     </bean>
     
     <reference id="jtaTransactionManager" interface="javax.transaction.TransactionManager"/>

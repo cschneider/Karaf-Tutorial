@@ -10,16 +10,22 @@ h2. Route and Overview
 
 {code}
 from("jpa://net.lr.tutorial.karaf.camel.jpa2jms.model.Person").id("jpa2jms")
+.onException(Exception.class).maximumRedeliveries(3).backOffMultiplier(2).handled(true).to("file:error")
 .transacted()
 .marshal(df)
+.bean(new ExceptionDecider())
 .to("jms:person");
 {code}
 
-The route starts with a jpa endpoint. It is configured with the fully qualified name of a JPA @Entity. From this entity camel knows the table to poll and how to read and remove the row. The jpa endpoint polls the table and creates a Person object for each row it finds. Then it calls the next step in the route with the Person object as body. The jpa component also needs to be set up separately as it needs an EntityManagerFactory
+The route starts with a jpa endpoint. It is configured with the fully qualified name of a JPA @Entity. From this entity camel knows the table to poll and how to read and remove the row. The jpa endpoint polls the table and creates a Person object for each row it finds. Then it calls the next step in the route with the Person object as body. The jpa component also needs to be set up separately as it needs an EntityManagerFactory.
+
+The onException clause makes the route do up to 3 retries with backoff time increasing by factor 2 each time. If it still fails the message is passed to a file in the error directory.
 
 The next step transacted() marks the route as transactional it requires that a TransactedPolicy is setup in the camel context. It then makes sure all steps in the route have the chance to participate in a transaction. So if an error occurs all actions can be rolled back. In case of success all can be committed together.
 
 The marshal(df) step converts the Person object to xml using JAXB. It references a dataformat df that sets up the JAXBContext. For brevity this setup is not shown here.
+
+The ExceptionDecidet bean allows to trigger an exception if the name of the person is error. So this allows us to test the error handling later.
 
 The last step to("jms:person") sends the xml representation of person to a jms queue. It requires that a JmsComponent named jms is setup in the camel context.
 
@@ -32,12 +38,30 @@ from("jms:person").id("jms2log")
 
 This second route simply listens on the person queue, reads and displays the content. In a production system this part would tpyically be in another module.
 
+h2. Person as JPA Entity JAXB class
+
+The Person class acts as a JPA Entity and as a JAXB annotated class. This allows us to use it in the camel-jpa component as well as during the marshalling. Keep in mind though that this 
+would rather be a bad practice in production as it would tie the DB model and the format of the JMS message together. So for real integrations it would be better to have separate beans for JPA and JAXB and do a manual 
+conversion between them.
+
+{code}
+@Entity
+@XmlType
+@XmlRootElement
+public class Person {
+    private String name;
+    private String twitterName;
+    
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getTwitterName() { return twitterName; }
+    public void setTwitterName(String twitterName) { this.twitterName = twitterName; }
+}
+{code}
+
 h2. DataSource and ConnectionFactory setup
 
-We use an XADataSource for Derby (See https://github.com/cschneider/Karaf-Tutorial/blob/master/db/datasource/datasource-derby.xml).
-As the default ConnectionDactory provided by ActiveMQ in Karaf is not XA ready we define the broker and ConnectionFactory definition by hand (See https://github.com/cschneider/Karaf-Tutorial/blob/master/cameljpa/jpa2jms/localhost-broker.xml).
-
-Together with the Karaf transaction feature these provide the basis to have JTA transactions.
+We use an XADataSource for Derby (See https://github.com/cschneider/Karaf-Tutorial/blob/master/db/datasource/datasource-derby.xml). As the default ConnectionDactory provided by ActiveMQ in Karaf is not XA ready we define the broker and ConnectionFactory definition by hand (See https://github.com/cschneider/Karaf-Tutorial/blob/master/cameljpa/jpa2jms/localhost-broker.xml). Together with the Karaf transaction feature these provide the basis to have JTA transactions.
 
 h2. JPAComponent, JMSComponent and transaction setup
 
@@ -119,22 +143,17 @@ You should then see the following line in the log:
 h2. So what happened
 
 We used the person:add command to add a row to the person table. Our route picks up this record, reads and converts it to a Person object. Then it marshals it into xml and sends to the jms queue person.
-
 Our second route then picks up the jms message and shows the xml in the log.
 
 h2. Error handling
 
-The route in the example also contains a small bean that reacts on the name of the person object and throws an exception if the name is "error".
+The route in the example contains a small bean that reacts on the name of the person object and throws an exception if the name is "error".
 It also contains some error handling so in case of an exception the xml is forwarded to an error directory.
-
-{code}
-onException(Exception.class).maximumRedeliveries(3).backOffMultiplier(2).handled(true).to("file:error");
-{code}
 
 So you can type the following in the Karaf:
 
 {code}
-person:add "Christian Schneider" @schneider_chris
+person:add error error
 log:display
 {code}
 
@@ -142,6 +161,6 @@ This time the log should not show the xml. Instead it should appear as a file in
 
 h2. Summary
 
-
+In this tutorial the main things we learned are how to use the camel-jpa component to write as well as to poll from a database and how to setup and use jta transactions to achieve solid error handling.
 
 Back to [liquid:Karaf Tutorials]

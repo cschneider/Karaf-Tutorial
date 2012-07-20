@@ -25,7 +25,7 @@ Install Prerequisites
 
 features:addUrl mvn:org.apache.activemq/activemq-karaf/5.6.0/xml/features
 features:addurl mvn:org.apache.camel.karaf/apache-camel/2.9.2/xml/features
-features:install camel-blueprint camel-jms camel-jpa camel-jaxb
+features:install camel-blueprint camel-jms camel-jpa camel-jaxb camel-spring
 features:install activemq-spring
 features:install jpa jndi transaction
 install -s  mvn:org.apache.derby/derby/10.8.2.2
