@@ -1,7 +1,8 @@
 Jpa2jms
 ========
 
-Shows how camel-jpa, camel-jms and Karaf can work together to build an event driven integration.
+Shows how camel-jpa, camel-jms, aries jta and Karaf can work together to build an event driven and transactional integration module.
+The example reads from a database table and writes to a jms queue.
 
 Prerequisites
 -------------
@@ -30,8 +31,8 @@ features:install jpa jndi transaction
 install -s  mvn:org.apache.derby/derby/10.8.2.2
 install -s mvn:commons-dbcp/commons-dbcp/1.4
 install -s mvn:org.apache.openjpa/openjpa/2.1.1
-activemq:create-broker --type blueprint
 
+copy localhost-broker.xml to the deploy folder
 copy db/datasource/datasource-derby.xml to the deploy folder
 
 Install our example

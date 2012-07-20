@@ -9,7 +9,7 @@ Then copy this file to the deploy folder
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 default-activation="eager">
   
-    <bean id="dataSource" class="org.apache.derby.jdbc.EmbeddedDataSource">
+    <bean id="dataSource" class="org.apache.derby.jdbc.EmbeddedXADataSource">
        <property name="databaseName" value="test"/>
        <property name="createDatabase" value="create" />
     </bean>
@@ -17,6 +17,12 @@ Then copy this file to the deploy folder
     <service ref="dataSource" interface="javax.sql.DataSource">
         <service-properties>
             <entry key="osgi.jndi.service.name" value="jdbc/derbyds"/>
+        </service-properties>
+    </service>
+
+    <service ref="dataSource" interface="javax.sql.XADataSource">
+        <service-properties>
+            <entry key="osgi.jndi.service.name" value="jdbc/derbydsxa"/>
         </service-properties>
     </service>
   

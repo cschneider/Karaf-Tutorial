@@ -24,17 +24,29 @@
     
     <bean id="jmsConfig" class="org.apache.camel.component.jms.JmsConfiguration">
         <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="transactionManager" ref="transactionManager"/>
     </bean>
     
     <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
         <argument ref="jmsConfig"/>
     </bean>
+    
+    <reference id="jtaTransactionManager" interface="javax.transaction.TransactionManager"/>
+    
+    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+        <argument ref="jtaTransactionManager"/>
+    </bean>
 
     <bean id="jpa" class="org.apache.camel.component.jpa.JpaComponent">
         <jpa:unit unitname="person2" property="entityManagerFactory"/>
+        <property name="transactionManager" ref="transactionManager"/>
     </bean>
     
     <bean id="jpa2jmsRoute" class="net.lr.tutorial.karaf.camel.jpa2jms.Jpa2JmsRoute"/>
+    
+    <bean id="PROPAGATION_REQUIRED" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="transactionManager"/>
+     </bean>
 
     <camelContext id="jpa2jms" xmlns="http://camel.apache.org/schema/blueprint">
         <routeBuilder ref="jpa2jmsRoute" />

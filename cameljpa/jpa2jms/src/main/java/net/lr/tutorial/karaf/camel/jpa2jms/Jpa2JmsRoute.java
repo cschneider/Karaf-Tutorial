@@ -36,12 +36,17 @@ public class Jpa2JmsRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         JaxbDataFormat df = createPersonJaxbDataFormat();
+        
+        onException(Exception.class).maximumRedeliveries(3).backOffMultiplier(2).handled(true).to("file:error");
 
         from("jpa://net.lr.tutorial.karaf.camel.jpa2jms.model.Person").id("jpa2jms")
+        .transacted()
         .marshal(df)
+        .bean(new Mybean())
         .to("jms:person");
         
         from("jms:person").id("jms2log")
+        .transacted()
         .convertBodyTo(String.class)
         .to("log:personreceived");
     }

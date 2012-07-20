@@ -21,7 +21,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     version="1.0">
 
-    <persistence-unit name="person2" transaction-type="RESOURCE_LOCAL">
+    <persistence-unit name="person2" transaction-type="JTA">
         <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/derbyds)</jta-data-source>
         <class>net.lr.tutorial.karaf.camel.jpa2jms.model.Person</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
