@@ -96,6 +96,11 @@
                 <configuration>
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
+						<Import-Package>
+							javax.servlet;version="[2.5,4)",
+							javax.servlet.http;version="[2.5,4)",
+							*
+						</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>

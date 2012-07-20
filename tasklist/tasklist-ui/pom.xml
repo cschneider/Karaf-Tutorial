@@ -58,6 +58,10 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Export-Package></Export-Package>
+						<Import-Package>
+							*,
+							javax.servlet*;version="[2.5,4)"
+						</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>

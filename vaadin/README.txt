@@ -2,7 +2,7 @@ h1. Overview
 
 Example for the Karaf Tutorial Vaadin that implements Vaadin based UI on top of the tasklist example from the first tutorial.
 The Vaadin UI reuses the original Tasklist model and persistence service. Below we deploy it alongside the original Servlet UI. 
-As both use the same persitence service the UIs keep in sync.    
+As both use the same persistence service the UIs keep in sync.    
 
 h1. Build
 

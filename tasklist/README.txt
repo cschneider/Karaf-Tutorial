@@ -21,4 +21,5 @@ mvn clean install
 h1. Installation
 
 features:addurl mvn:net.lr.tasklist/tasklist-features/1.0.0-SNAPSHOT/xml
-features:install example-tasklist-vaadin
+features:install example-tasklist
+

@@ -1,0 +1,147 @@
+Apache Karaf Tutorial Part 7 - Camel JPA, JMS, transactions and error handling
+
+{excerpt}
+Practical Camel example that polls from a database table and sends the contents as XML to a jms queue. The route uses a JTA transaction to synchronize the DB and JMS transactions. An error case shows how you can handle problems.
+{excerpt}
+
+h2. Route and Overview
+
+[[Diagram showing db, route and jms queue]]
+
+{code}
+from("jpa://net.lr.tutorial.karaf.camel.jpa2jms.model.Person").id("jpa2jms")
+.transacted()
+.marshal(df)
+.to("jms:person");
+{code}
+
+The route starts with a jpa endpoint. It is configured with the fully qualified name of a JPA @Entity. From this entity camel knows the table to poll and how to read and remove the row. The jpa endpoint polls the table and creates a Person object for each row it finds. Then it calls the next step in the route with the Person object as body. The jpa component also needs to be set up separately as it needs an EntityManagerFactory
+
+The next step transacted() marks the route as transactional it requires that a TransactedPolicy is setup in the camel context. It then makes sure all steps in the route have the chance to participate in a transaction. So if an error occurs all actions can be rolled back. In case of success all can be committed together.
+
+The marshal(df) step converts the Person object to xml using JAXB. It references a dataformat df that sets up the JAXBContext. For brevity this setup is not shown here.
+
+The last step to("jms:person") sends the xml representation of person to a jms queue. It requires that a JmsComponent named jms is setup in the camel context.
+
+{code}
+from("jms:person").id("jms2log")
+.transacted()
+.convertBodyTo(String.class)
+.to("log:personreceived");
+{code}
+
+This second route simply listens on the person queue, reads and displays the content. In a production system this part would tpyically be in another module.
+
+h2. DataSource and ConnectionFactory setup
+
+We use an XADataSource for Derby (See https://github.com/cschneider/Karaf-Tutorial/blob/master/db/datasource/datasource-derby.xml).
+As the default ConnectionDactory provided by ActiveMQ in Karaf is not XA ready we define the broker and ConnectionFactory definition by hand (See https://github.com/cschneider/Karaf-Tutorial/blob/master/cameljpa/jpa2jms/localhost-broker.xml).
+
+Together with the Karaf transaction feature these provide the basis to have JTA transactions.
+
+h2. JPAComponent, JMSComponent and transaction setup
+
+An important part of this example is to use the jpa and jms components in a JTA transaction. This allows to roll back both in case of an error. 
+Below is the blueprint context we use. We setup the JMS component with a ConnectionFactory referenced as an OSGi service.
+The JPAComponent is setup with an EntityManagerFactory using the jpa:unit config from Aries JPA. See [liquid:/2012/01/13/Apache Karaf Tutorial Part 6 - Database Access] for how this works. 
+The TransactionManager proviced by Aries transaction is referenced as an OSGi service, wrapped as a spring PlattformTransactionManager and injected into the JmsComponent and JPAComponent.
+
+{code}
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+    xmlns:jpa="http://aries.apache.org/xmlns/jpa/v1.1.0"
+	xsi:schemaLocation="
+  http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
+  http://www.osgi.org/xmlns/blueprint-ext/v1.1.0 https://svn.apache.org/repos/asf/aries/tags/blueprint-0.3.1/blueprint-core/src/main/resources/org/apache/aries/blueprint/ext/blueprint-ext.xsd  
+  http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd
+  http://aries.apache.org/xmlns/jpa/v1.1.0 http://aries.apache.org/schemas/jpa/jpa_110.xsd
+  ">
+  
+    <reference id="connectionFactory" interface="javax.jms.ConnectionFactory" />
+    
+    <bean id="jmsConfig" class="org.apache.camel.component.jms.JmsConfiguration">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+    
+    <bean id="jms" class="org.apache.camel.component.jms.JmsComponent">
+        <argument ref="jmsConfig"/>
+    </bean>
+    
+    <reference id="jtaTransactionManager" interface="javax.transaction.TransactionManager"/>
+    
+    <bean id="transactionManager" class="org.springframework.transaction.jta.JtaTransactionManager">
+        <argument ref="jtaTransactionManager"/>
+    </bean>
+
+    <bean id="jpa" class="org.apache.camel.component.jpa.JpaComponent">
+        <jpa:unit unitname="person2" property="entityManagerFactory"/>
+        <property name="transactionManager" ref="transactionManager"/>
+    </bean>
+    
+    <bean id="jpa2jmsRoute" class="net.lr.tutorial.karaf.camel.jpa2jms.Jpa2JmsRoute"/>
+    
+    <bean id="PROPAGATION_REQUIRED" class="org.apache.camel.spring.spi.SpringTransactionPolicy">
+        <property name="transactionManager" ref="transactionManager"/>
+     </bean>
+
+    <camelContext id="jpa2jms" xmlns="http://camel.apache.org/schema/blueprint">
+        <routeBuilder ref="jpa2jmsRoute" />
+    </camelContext>	
+
+</blueprint>
+{code}
+
+h2. Running the Example
+
+Follow the {Readme.txt|https://github.com/cschneider/Karaf-Tutorial/blob/master/cameljpa/jpa2jms/ReadMe.txt] to install the necessary Karaf features, bundles and configs.
+
+Apart from fthis example we also install the dbexamplejpa. This allows us to use the person:add command defined there to populate the database table.
+Open the Karaf console and type:
+
+{code}
+person:add "Christian Schneider" @schneider_chris
+log:display
+{code}
+
+You should then see the following line in the log:
+
+{code}
+2012-07-19 10:27:31,133 | INFO  | Consumer[person] | personreceived ...
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<person>
+    <name>Christian Schneider</name>
+    <twitterName>@schneider_chris2</twitterName>
+</person>
+{code}
+
+h2. So what happened
+
+We used the person:add command to add a row to the person table. Our route picks up this record, reads and converts it to a Person object. Then it marshals it into xml and sends to the jms queue person.
+
+Our second route then picks up the jms message and shows the xml in the log.
+
+h2. Error handling
+
+The route in the example also contains a small bean that reacts on the name of the person object and throws an exception if the name is "error".
+It also contains some error handling so in case of an exception the xml is forwarded to an error directory.
+
+{code}
+onException(Exception.class).maximumRedeliveries(3).backOffMultiplier(2).handled(true).to("file:error");
+{code}
+
+So you can type the following in the Karaf:
+
+{code}
+person:add "Christian Schneider" @schneider_chris
+log:display
+{code}
+
+This time the log should not show the xml. Instead it should appear as a file in the error directory below your karaf installation.
+
+h2. Summary
+
+
+
+Back to [liquid:Karaf Tutorials]

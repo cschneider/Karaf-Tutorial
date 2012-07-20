@@ -36,6 +36,7 @@ class ExampleApplication extends Application {
     public void init() {
         final GridLayout layout = new GridLayout(1, 3);
         layout.setWidth("100%");
+        layout.setMargin(false);
         setMainWindow(new Window(this.title, layout));
         
         final BeanContainer<String, Task> beans = new BeanContainer<String, Task>(Task.class);
@@ -43,7 +44,7 @@ class ExampleApplication extends Application {
 
         final Form form = new Form();
         form.setLocale(Locale.GERMAN);
-        final Table table = new Table("Tasks", beans);
+        final Table table = new Table(this.title, beans);
         MenuBar menu = createMenuBar(beans, table);
         layout.addComponent(menu);
         
@@ -51,8 +52,6 @@ class ExampleApplication extends Application {
         table.setImmediate(true);
         table.setVisibleColumns(VISIBLE_COLUMNS);
         table.addListener(new Property.ValueChangeListener() {
-            
-            @Override
             public void valueChange(ValueChangeEvent event) {
                 Object selectedId = table.getValue();
                 @SuppressWarnings("unchecked")
@@ -72,8 +71,6 @@ class ExampleApplication extends Application {
         form.setVisibleItemProperties(VISIBLE_COLUMNS);
         form.setImmediate(true);
         form.addListener(new Property.ValueChangeListener() {
-            
-            @Override
             public void valueChange(ValueChangeEvent event) {
                 @SuppressWarnings("unchecked")
                 BeanItem<Task> item = (BeanItem<Task>) form.getItemDataSource();
