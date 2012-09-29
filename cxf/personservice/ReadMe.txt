@@ -38,14 +38,10 @@ Build and Test
 
 > mvn clean install
 
-Override the exports of the system bundle
------------------------------------------
-
-Copy https://svn.apache.org/repos/asf/karaf/branches/karaf-2.2.x/assemblies/apache-karaf/src/main/filtered-resources/etc/jre.properties.cxf
-to etc/jre.properties
-
 Run the service in Karaf
 ------------------------
+
+Download Apache Karaf here: http://karaf.apache.org/index/community/download.html
 
 features:addurl mvn:org.apache.cxf.karaf/apache-cxf/2.5.0/xml/features
 features:install http cxf
