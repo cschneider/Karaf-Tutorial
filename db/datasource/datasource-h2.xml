@@ -15,7 +15,7 @@ Then copy this file to the deploy folder
   
   <service interface="javax.sql.DataSource" ref="dataSource">
     <service-properties>
-            <entry key="osgi.jndi.service.name" value="jdbc/mysqlds"/>
+            <entry key="osgi.jndi.service.name" value="jdbc/h2ds"/>
     </service-properties>
   </service>
 </blueprint>
