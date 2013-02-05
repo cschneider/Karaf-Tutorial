@@ -7,15 +7,15 @@ Then copy this file to the deploy folder
 -->
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
   
-  <bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
-      <property name="URL" value="jdbc:h2:~/test"/>
+  <bean id="dataSource" class="org.hsqldb.jdbc.JDBCDataSource">
+      <property name="URL" value="jdbc:hsqldb:file:~/hsqldb"/>
       <property name="user" value="sa"/>
       <property name="password" value=""/>
   </bean>
   
   <service interface="javax.sql.DataSource" ref="dataSource">
     <service-properties>
-            <entry key="osgi.jndi.service.name" value="jdbc/h2ds"/>
+            <entry key="osgi.jndi.service.name" value="jdbc/hsqlds"/>
     </service-properties>
   </service>
 </blueprint>
