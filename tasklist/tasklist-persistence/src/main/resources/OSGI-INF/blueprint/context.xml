@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
 	<bean id="taskService" class="net.lr.tasklist.persistence.impl.TaskServiceImpl" />
-	<service ref="taskService" interface="net.lr.tasklist.model.TaskService" />
+	<service ref="taskService" interface="net.lr.tasklist.model.TaskService">
+		<service-properties>
+			<!-- This property is only important for the DOSGi tutorial -->
+			<entry key="service.exported.interfaces" value="*"/>
+		</service-properties>
+	</service>
 </blueprint>

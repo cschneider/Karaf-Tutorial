@@ -2,10 +2,19 @@
 <features>
 
     <feature name="example-tasklist" version="${pom.version}">
+        <feature>example-tasklist-persistence</feature>
+        <feature>example-tasklist-ui</feature>
+    </feature>
+    
+    <feature name="example-tasklist-persistence" version="${pom.version}">
+        <bundle>mvn:net.lr.tasklist/tasklist-model/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tasklist/tasklist-persistence/${pom.version}</bundle>
+    </feature>
+
+    <feature name="example-tasklist-ui" version="${pom.version}">
         <feature>http</feature>
         <feature>http-whiteboard</feature>
         <bundle>mvn:net.lr.tasklist/tasklist-model/${pom.version}</bundle>
-        <bundle>mvn:net.lr.tasklist/tasklist-persistence/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist/tasklist-ui/${pom.version}</bundle>
     </feature>
    

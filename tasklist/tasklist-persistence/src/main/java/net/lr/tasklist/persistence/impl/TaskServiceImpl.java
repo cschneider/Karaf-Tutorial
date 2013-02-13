@@ -15,7 +15,7 @@ public class TaskServiceImpl implements TaskService {
 		taskMap = new HashMap<String, Task>();
 		Task task = new Task();
 		task.setId("1");
-		task.setTitle("Buy 1kg coffee");
+		task.setTitle("Buy some coffee");
 		task.setDescription("Take the extra strong");
 		addTask(task);
 		task = new Task();
