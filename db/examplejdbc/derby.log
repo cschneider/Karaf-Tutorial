@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Fri Jan 13 16:55:45 CET 2012:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-0134-d7c8-265c-000006d75cf8 
-on database directory C:\checkout\Karaf-Tutorial\db\examplejdbc\target\test  with class loader sun.misc.Launcher$AppClassLoader@6d6f0472 
-Loaded from file:/C:/Users/cschneider/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
-java.vendor=Sun Microsystems Inc.
-java.runtime.version=1.6.0_25-b06
-user.dir=C:\checkout\Karaf-Tutorial\db\examplejdbc
+Mon Feb 25 23:28:22 CET 2013:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.2.2 - (1181258): instance a816c00e-013d-1378-963c-000000b935f0 
+on database directory D:\checkout\Karaf-Tutorial\db\examplejdbc\target\test  with class loader sun.misc.Launcher$AppClassLoader@1eed786 
+Loaded from file:/C:/Users/chris/.m2/repository/org/apache/derby/derby/10.8.2.2/derby-10.8.2.2.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_03-b05
+user.dir=D:\checkout\Karaf-Tutorial\db\examplejdbc
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

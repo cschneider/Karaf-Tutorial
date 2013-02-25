@@ -11,8 +11,9 @@ mvn clean install
 Installation
 ------------
 
-First see datasources project REDAME and install the derby db and datasource into karaf (2.2.5+). 
+First see datasources project REDAME and install the derby db and datasource into karaf (2.2.10). 
 
+install -s mvn:org.apache.derby/derby/10.8.2.2
 features:install jndi jpa transaction
 install -s mvn:commons-collections/commons-collections/3.2.1
 install -s mvn:commons-pool/commons-pool/1.5.4
@@ -21,8 +22,6 @@ install -s mvn:commons-lang/commons-lang/2.6
 install -s wrap:mvn:net.sourceforge.serp/serp/1.13.1
 install -s mvn:org.apache.openjpa/openjpa/2.1.1
 install -s mvn:net.lr.tutorial.karaf.db/db-examplejpa/1.0-SNAPSHOT
-
-install -s mvn:org.apache.aries/org.apache.aries.util/0.4
 
 Test
 ----

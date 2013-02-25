@@ -19,7 +19,7 @@ public class Activator implements BundleActivator {
 
     public final class DataSourceConfig implements ManagedService {
         private final BundleContext context;
-        private ServiceRegistration<DataSource> serviceReg = null;
+        private ServiceRegistration serviceReg = null;
 
         public DataSourceConfig(BundleContext context) {
             this.context = context;
