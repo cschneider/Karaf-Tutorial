@@ -36,7 +36,7 @@ accessTokenSecret=
 
 h1. Installation
 
-features:addurl mvn:net.lr.karaf.tutorial.voting/voting-features/1.0-SNAPSHOT/xml
+features:addurl mvn:net.lr.karaf.tutorial.voting/voting-features/1.0.0-SNAPSHOT/xml
 features:install example-voting
 
 h2. Test
