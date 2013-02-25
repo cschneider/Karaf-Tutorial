@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+	<bean id="taskServlet" class="net.lr.karaf.tutorial.vote.ui.VoteChartServlet">
+	</bean>
+	<service ref="taskServlet" interface="javax.servlet.http.HttpServlet">
+		<service-properties>
+			<entry key="alias" value="/vote-ui" />
+		</service-properties>
+	</service>
+</blueprint>

@@ -1,0 +1,41 @@
+<html>
+  <head>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+ 
+      google.load("visualization", "1", {packages:["corechart"]});
+      var chart;
+      google.setOnLoadCallback(start);
+
+      function start() {
+          chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+          loadChart();
+    	  setInterval(function(){loadChart()}, 500);
+      }
+
+  	  function loadChart() {
+  		  var topic = getParameterByName("topic");
+       	  $.get("http://localhost:8181/cxf/vote/"+ topic + "/stats", function(result){drawChart(result)});
+  	  }
+
+      function drawChart(result) {
+          var data = google.visualization.arrayToDataTable(result);
+          var options = {
+            title: 'Votes on tutorial'
+          };
+          chart.draw(data, options);
+      }
+
+      function AjaxFailed(result){ alert(result.status+''+result.statusText); } 
+      
+      function getParameterByName(name) {
+    	    var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+    	    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    	}
+    </script>
+  </head>
+  <body>
+    <div id="chart_div" style="width: 1100px; height: 600px;"></div>
+  </body>
+</html>
