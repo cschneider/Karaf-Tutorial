@@ -27,7 +27,7 @@
   		  var log = document.getElementById('log'); 
   	      //log.innerHTML = log.innerHTML + "loading chart<br>\n";
   		  var topic = getParameterByName("topic");
-       	  $.get("http://localhost:8181/cxf/vote/"+ topic + "/stats", function(result){drawChart(result)});
+       	  $.get("/cxf/vote/"+ topic + "/stats", function(result){drawChart(result)});
   	  }
 
       function drawChart(result) {
@@ -46,7 +46,7 @@
     	}
       
       function vote(vote) {
-    	  $.get("http://localhost:8181/cxf/vote/"+ topic + "/vote/" + vote, function(){loadChart()});
+    	  $.get("/cxf/vote/"+ topic + "/vote/" + vote, function(){loadChart()});
       }
     </script>
   </head>
