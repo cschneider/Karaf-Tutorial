@@ -135,6 +135,7 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
+						<Import-Package>org.apache.karaf.shell.console, *</Import-Package>
 					</instructions>
 				</configuration>
 			</plugin>
