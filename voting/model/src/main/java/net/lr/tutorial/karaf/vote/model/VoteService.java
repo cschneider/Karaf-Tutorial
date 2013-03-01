@@ -1,7 +1,5 @@
 package net.lr.tutorial.karaf.vote.model;
 
-import java.util.Collection;
-
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
@@ -14,7 +12,7 @@ import javax.ws.rs.core.MediaType;
 public interface VoteService {
 	@Path("")
 	@GET
-	Collection<Voting> getVotings();
+	VotingLinks getVotings();
 
 	@Path("{topic}")
 	@GET

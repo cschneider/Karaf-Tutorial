@@ -24,13 +24,13 @@
     <cm:property-placeholder persistent-id="net.lr.tutorial.karaf.voting.voteService"
         update-strategy="reload">
     </cm:property-placeholder>
+    
+    <bean id="voteService" class="net.lr.tutorial.karaf.vote.service.MemoryVoteService" />
+	<service ref="voteService" interface="net.lr.tutorial.karaf.vote.model.VoteService" />
+
 
     <cxf:bus id="voteServiceBus"/>
 
-    <bean id="voteService" class="net.lr.tutorial.karaf.vote.service.MemoryVoteService" />
-	<service ref="voteService" interface="net.lr.tutorial.karaf.vote.model.VoteService" />
-<!-- <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider"> -->
-	 
 	 <bean id="jsonProvider" class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
 		<property name="serializeAsArray" value="true"/>
 		<property name="dropRootElement" value="true"/>
