@@ -73,6 +73,7 @@
         <module>model</module>
         <module>service</module>
         <module>twitter-adapter</module>
+        <module>ui</module>
         <module>features</module>
     </modules>
 
