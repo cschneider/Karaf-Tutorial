@@ -30,7 +30,7 @@
   
   <service ref="personService" interface="net.lr.tutorial.karaf.db.examplejpa.PersonService" />
   
-  <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+  <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
         <command name="person/add">
             <action class="net.lr.tutorial.karaf.db.examplejpa.command.AddPersonCommand">
                 <property name="personService" ref="personService"/>
