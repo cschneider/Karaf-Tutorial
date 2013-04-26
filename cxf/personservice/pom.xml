@@ -27,7 +27,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <cxf.version>2.5.0</cxf.version>
+        <cxf.version>2.7.4</cxf.version>
         <log4j-version>1.2.16</log4j-version>
         <slf4j-version>1.6.1</slf4j-version>
     </properties>
