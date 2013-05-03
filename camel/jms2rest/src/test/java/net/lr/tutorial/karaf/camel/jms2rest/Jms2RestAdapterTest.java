@@ -31,6 +31,7 @@ import org.apache.camel.component.mock.MockEndpoint;
 import org.apache.camel.component.properties.PropertiesComponent;
 import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class Jms2RestAdapterTest extends CamelTestSupport {
@@ -41,7 +42,7 @@ public class Jms2RestAdapterTest extends CamelTestSupport {
      * We send the person record to the person queue and expect it to be added to the persons the rest service manages
      * @throws Exception
      */
-    @Test
+    @Ignore
     public void testSendPerson() throws Exception {
         received.expectedMessageCount(1);
         InputStream is = this.getClass().getResourceAsStream("/person1.xml");

@@ -28,11 +28,25 @@ Go to the example project directory and type
 
 > mvn clean install
 
-Run in Karaf
-------------
+Download and start ActiveMQ
+---------------------------
 
-features:addUrl mvn:org.apache.activemq/activemq-karaf/5.4.0/xml/features
-features:addurl mvn:org.apache.camel.karaf/apache-camel/2.9.0/xml/features
+Download activemq http://activemq.apache.org/activemq-570-release.html
+Extract and start with bin/activemq start
+
+Install personservice
+---------------------
+
+features:chooseurl cxf 2.7.3
+features:install http cxf
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
+
+Install jms2rest
+----------------
+
+features:chooseurl activemq 5.7.0
+features:chooseurl camel 2.10.4
 features:install  camel-blueprint camel-jms camel-http
 features:install activemq-blueprint
 activemq:create-broker --type blueprint 
@@ -41,7 +55,7 @@ install -s mvn:net.lr.tutorial.karaf.camel/example-jms2rest/1.0-SNAPSHOT
 What did we install
 -------------------
 
-We first added the feature files for cmael and activemq.
+We first added the feature files for camel and activemq.
 Then we installed the necessary features for a local ActiveMQ broker and our example.
 
 The create broker command creates a blueprint xml file in the deploy folder that starts and configures a broker. It also initializes a

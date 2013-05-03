@@ -16,6 +16,8 @@
  */
 package net.lr.tutorial.karaf.camel.jms2rest;
 
+import java.net.ConnectException;
+
 import org.apache.camel.Exchange;
 import org.apache.camel.builder.RouteBuilder;
 
@@ -32,8 +34,9 @@ public class Jms2RestRoute extends RouteBuilder {
         .to("jms:person");
 
         from("jms:person").id("personJms2Rest") //
-        .to("log:test")
+        .onException(ConnectException.class).log("Exception processing message.. does the personservice run?").end()
         .setHeader("person_id", xpath("/ns1:person/id").namespace("ns1", "http://person.jms2rest.camel.karaf.tutorial.lr.net").stringResult())
+        .to("log:test")
         .setHeader(Exchange.HTTP_METHOD, constant("PUT"))
         .setHeader(Exchange.HTTP_URI, simple("${properties:personServiceUri}/${header.person_id}")) //
         .to("http://dummy");
