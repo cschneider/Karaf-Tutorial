@@ -17,7 +17,7 @@ Start bin/karaf
 
 config:propset -p org.apache.cxf.dosgi.discovery.zookeeper zookeeper.port 2181
 config:propset -p org.apache.cxf.dosgi.discovery.zookeeper.server clientPort 2181
-features:chooseurl cxf-dosgi 1.4.0
+features:chooseurl cxf-dosgi 1.5.0
 features:install cxf-dosgi-discovery-distributed cxf-dosgi-zookeeper-server
 features:addurl mvn:net.lr.tasklist/tasklist-features/1.0.0-SNAPSHOT/xml
 features:install example-tasklist-persistence
@@ -36,7 +36,7 @@ Start bin/karaf
 
 config:propset -p org.ops4j.pax.web org.osgi.service.http.port 8182
 config:propset -p org.apache.cxf.dosgi.discovery.zookeeper zookeeper.port 2181
-features:chooseurl cxf-dosgi 1.4.0
+features:chooseurl cxf-dosgi 1.5.0
 features:install cxf-dosgi-discovery-distributed
 features:addurl mvn:net.lr.tasklist/tasklist-features/1.0.0-SNAPSHOT/xml
 features:install example-tasklist-ui
