@@ -4,8 +4,9 @@ import net.lr.tutorial.karaf.cxf.personservice.person.Person;
 import net.lr.tutorial.karaf.cxf.personservice.person.PersonService;
 
 import org.apache.cxf.endpoint.Server;
+import org.apache.cxf.jaxws.JaxWsClientFactoryBean;
+import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
-import org.apache.cxf.jaxws.spring.JaxWsProxyFactoryBeanDefinitionParser.JAXWSSpringClientProxyFactoryBean;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,10 +20,10 @@ public class PersonServiceSOAPTest {
         PersonService personService = new PersonServiceImpl();;
         Server server = startPersonService(personService);
         
-        JAXWSSpringClientProxyFactoryBean proxy = new JAXWSSpringClientProxyFactoryBean();
+        JaxWsProxyFactoryBean proxy = new JaxWsProxyFactoryBean();
         proxy.setServiceClass(PersonService.class);
         proxy.setAddress(PERSONSERVICE_TESTURL);
-        PersonService personServiceProxy = proxy.create(PersonService.class);
+        PersonService personServiceProxy = (PersonService)proxy.create();
         
         personServiceProxy.addPerson(createPerson());
 

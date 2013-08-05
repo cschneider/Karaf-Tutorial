@@ -43,7 +43,7 @@ Run the service in Karaf
 
 Download Apache Karaf here: http://karaf.apache.org/index/community/download.html
 
-features:chooseurl cxf 2.7.3
+features:chooseurl cxf 2.7.5
 features:install http cxf
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
@@ -70,8 +70,8 @@ Now the list of persons should show two persons
 Install the web ui
 ------------------
 
-> install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-proxy/1.0-SNAPSHOT
-> install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-webui/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-proxy/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-webui/1.0-SNAPSHOT
 
 Test the proxy and web UI
 -------------------------
