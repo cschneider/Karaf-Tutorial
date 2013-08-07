@@ -4,7 +4,6 @@ import net.lr.tutorial.karaf.cxf.personservice.person.Person;
 import net.lr.tutorial.karaf.cxf.personservice.person.PersonService;
 
 import org.apache.cxf.endpoint.Server;
-import org.apache.cxf.jaxws.JaxWsClientFactoryBean;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.junit.Assert;

@@ -18,7 +18,6 @@ package net.lr.tutorial.karaf.cxf.personservice.impl;
 
 import java.io.IOException;
 
-
 import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
@@ -30,6 +29,7 @@ import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
  */
 public class PersonServiceStarter {
     
+    @SuppressWarnings("rawtypes")
     public void startRestService() {
         JAXRSServerFactoryBean factory = new JAXRSServerFactoryBean();
         factory.setAddress("http://localhost:8282/person");
