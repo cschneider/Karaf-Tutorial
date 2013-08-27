@@ -28,12 +28,6 @@ Go to the example project directory and type
 
 > mvn clean install
 
-Download and start ActiveMQ
----------------------------
-
-Download activemq http://activemq.apache.org/activemq-570-release.html
-Extract and start with bin/activemq start
-
 Prepare karaf for snapshots
 ---------------------------
 
