@@ -34,10 +34,18 @@ Download and start ActiveMQ
 Download activemq http://activemq.apache.org/activemq-570-release.html
 Extract and start with bin/activemq start
 
+Prepare karaf for snapshots
+---------------------------
+
+Add the line below to org.ops4j.pax.url.cfg below repo1
+http://repository.apache.org/content/groups/snapshots-group@snapshots@noreleases@id=apache, \
+
+This directs karaf to also look for bundles in the apache snapshot repository.
+
 Install personservice
 ---------------------
 
-features:chooseurl cxf 2.7.3
+features:chooseurl cxf 2.7.6
 features:install http cxf
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
@@ -45,8 +53,8 @@ install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-
 Install jms2rest
 ----------------
 
-features:chooseurl activemq 5.7.0
-features:chooseurl camel 2.10.4
+features:chooseurl activemq 5.9-SNAPSHOT
+features:chooseurl camel 2.11.1
 features:install  camel-blueprint camel-jms camel-http
 features:install activemq-blueprint
 activemq:create-broker --type blueprint 
