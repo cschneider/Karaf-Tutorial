@@ -27,7 +27,7 @@ public class VotingRoutes extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("twitter://search?type=polling&delay=10&keywords=#esbvote")
+        from("twitter://search?type=polling&delay=5&keywords=#esbvote")
         .bean(new TweetToVoteConverter())
         .choice().when(body().isNotNull()).to("bean:voteService").end()
         .to("log:INFO");
