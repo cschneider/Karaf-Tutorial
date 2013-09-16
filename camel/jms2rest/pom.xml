@@ -27,11 +27,11 @@
     <packaging>bundle</packaging>
 
     <properties>
-    	<camel.version>2.11.1</camel.version>
+    	<camel.version>2.12.0</camel.version>
     	<cxf.version>2.7.6</cxf.version>
         <log4j-version>1.2.16</log4j-version>
         <slf4j-version>1.6.1</slf4j-version>
-        <activemq-version>5.9-SNAPSHOT</activemq-version>
+        <activemq-version>5.7.0</activemq-version>
     </properties>
 
     <repositories>
@@ -81,7 +81,7 @@
         
         <dependency>
             <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-client</artifactId>
+            <artifactId>activemq-core</artifactId>
             <version>${activemq-version}</version>
         </dependency>
 

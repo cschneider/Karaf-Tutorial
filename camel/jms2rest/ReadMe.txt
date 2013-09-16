@@ -47,11 +47,11 @@ install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-
 Install jms2rest
 ----------------
 
-features:chooseurl activemq 5.9-SNAPSHOT
-features:chooseurl camel 2.11.1
+features:chooseurl activemq 5.7.0
+features:chooseurl camel 2.12.0
 features:install  camel-blueprint camel-jms camel-http
-features:install activemq-blueprint
-activemq:create-broker --type blueprint 
+features:install activemq-spring
+activemq:create-broker 
 install -s mvn:net.lr.tutorial.karaf.camel/example-jms2rest/1.0-SNAPSHOT
 
 What did we install
