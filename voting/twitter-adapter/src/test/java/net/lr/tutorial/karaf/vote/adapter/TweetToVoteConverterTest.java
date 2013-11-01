@@ -8,7 +8,7 @@ import org.easymock.EasyMock;
 import org.junit.Assert;
 import org.junit.Test;
 
-import twitter4j.Tweet;
+import twitter4j.Status;
 
 public class TweetToVoteConverterTest {
 
@@ -16,14 +16,14 @@ public class TweetToVoteConverterTest {
 	public void testConvert() {
 		TweetToVoteConverter converter = new TweetToVoteConverter();
 		
-		Tweet tweet = EasyMock.createMock(Tweet.class);
-		EasyMock.expect(tweet.getFromUser()).andReturn("schneider_chris").anyTimes();
+		Status tweet = EasyMock.createMock(Status.class);
+		EasyMock.expect(tweet.getSource()).andReturn("schneider_chris").anyTimes();
 		Date now = new Date();
 		EasyMock.expect(tweet.getCreatedAt()).andReturn(now).anyTimes();
 		EasyMock.expect(tweet.getText()).andReturn("#camel mytopic 2").anyTimes();
 		EasyMock.replay(tweet);
 		Vote vote = converter.convert(tweet);
-		Assert.assertEquals(tweet.getFromUser(), vote.getFromUser());
+		Assert.assertEquals(tweet.getSource(), vote.getFromUser());
 		Assert.assertEquals(now, vote.getVoteDateTime());
 		Assert.assertEquals(2, vote.getVote());
 		Assert.assertEquals("mytopic", vote.getTopic());

@@ -4,23 +4,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.lr.tutorial.karaf.vote.model.Vote;
-import twitter4j.Tweet;
+import twitter4j.Status;
 
 public class TweetToVoteConverter {
 	Logger LOG = LoggerFactory.getLogger(TweetToVoteConverter.class);
 	
-	public Vote convert(Tweet tweet) {
+	public Vote convert(Status tweet) {
 		try {
 			String text = tweet.getText();
 			String[] parts = text.split(" ");
-			Vote vote = new Vote();
-			vote.setTopic(parts[1]);
-			vote.setVote(Integer.parseInt(parts[2]));
-			vote.setFromUser(tweet.getFromUser());
-			vote.setVoteDateTime(tweet.getCreatedAt());
-			return vote;
+			String topic = parts[1];
+			int voteNum = Integer.parseInt(parts[2]);
+			String fromUser = tweet.getSource();
+			return new Vote(topic, voteNum, fromUser, tweet.getCreatedAt());
 		} catch (Throwable  e) {
-			LOG.info("Invalid tweet " + tweet.getText());
+			LOG.info("Invalid tweet " + tweet.getText() + ": " + e.getMessage());
 			return null;
 		}
 	}

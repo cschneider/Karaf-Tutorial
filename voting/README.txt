@@ -1,7 +1,7 @@
 h1. Overview
 
-Tutorial how to use all ESB features together to implement a Voting service that can be used through
-rest and twitter and has a web based UI for the Results. 
+Tutorial how to use all integration features together to implement a Voting service that can be used through
+rest and twitter and a web based UI. 
 
 It shows how to:
 
@@ -11,9 +11,11 @@ It shows how to:
 
 h1. Structure
 
-model - Voting model and service interface
-service - Rest Service implementation of voting service
+model           - Voting model and service interface
+service         - Rest Service implementation of voting service
 twitter-adapter - Adapter to allow voting throw twitter messages
+ui              - User interface based on jquery and google charts 
+features        - Feature file for simple installation on Apache Karaf
 
 h1. Build
 

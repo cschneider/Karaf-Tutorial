@@ -14,15 +14,16 @@ public class Vote {
 	public Vote() {
 	}
 	
-	public Vote(int vote, String fromUser, Date voteDateTime) {
+	public Vote(String topic, int vote) {
+		this(topic, vote, "Anonymous", new Date());
+	}
+	
+	public Vote(String topic, int vote, String fromUser, Date voteDateTime) {
 		super();
-		this.vote = vote;
+		this.topic = topic;
+		setVote(vote);
 		this.fromUser = fromUser;
 		this.voteDateTime = voteDateTime;
-	}
-
-	public Vote(int i) {
-		this(i, "Anonymous", new Date());
 	}
 
 	public int getVote() {
@@ -37,7 +38,18 @@ public class Vote {
 		return voteDateTime;
 	}
 
+	public String getTopic() {
+		return topic;
+	}
+
+	public void setTopic(String topic) {
+		this.topic = topic;
+	}
+	
 	public void setVote(int vote) {
+		if (!isValid(vote)) {
+			throw new IllegalArgumentException("Vote must be a number between 1 and 6");
+		}
 		this.vote = vote;
 	}
 
@@ -49,15 +61,7 @@ public class Vote {
 		this.voteDateTime = voteDateTime;
 	}
 
-	public String getTopic() {
-		return topic;
-	}
-
-	public void setTopic(String topic) {
-		this.topic = topic;
-	}
-
-	public boolean isValid() {
+	public static boolean isValid(int vote) {
 		return vote >= 1 && vote <= 6;
 	}
 	

@@ -7,9 +7,13 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @XmlRootElement
 @XmlType
 public class Voting {
+	private static final Logger LOG = LoggerFactory.getLogger(Voting.class);
 	private String topic;
 	private List<Vote> votes;
 	
@@ -45,9 +49,8 @@ public class Voting {
 	}
 
 	public void addVote(Vote vote) {
-		if (vote.isValid()) {
-			this.votes.add(vote);
-		}
+		this.votes.add(vote);
+		LOG.info("Adding vote {} on topic {}", vote.getVote(), vote.getTopic());
 	}
 
 	public String getStats() {

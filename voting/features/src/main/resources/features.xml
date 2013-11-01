@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features>
-	<repository>mvn:org.apache.cxf.karaf/apache-cxf/2.7.3/xml/features</repository>	
-	<repository>mvn:org.apache.camel.karaf/apache-camel/2.10.3/xml/features</repository>
+	<repository>mvn:org.apache.cxf.karaf/apache-cxf/${cxf.version}/xml/features</repository>	
+	<repository>mvn:org.apache.camel.karaf/apache-camel/${camel.version}/xml/features</repository>
 
     <feature name="example-voting" version="${pom.version}">
         <feature>cxf-jaxrs</feature>
@@ -10,7 +10,8 @@
         <bundle>mvn:net.lr.karaf.tutorial.voting/voting-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.karaf.tutorial.voting/voting-service/${pom.version}</bundle>
         <bundle>mvn:net.lr.karaf.tutorial.voting/voting-twitter-adapter/${pom.version}</bundle>
-        <bundle>mvn:net.lr.karaf.tutorial.voting/voting-ui/1.0.0-SNAPSHOT</bundle>
+        <bundle>mvn:net.lr.karaf.tutorial.voting/voting-ui/${pom.version}</bundle>
+        <bundle>mvn:net.lr.karaf.tutorial.voting/voting-command/${pom.version}</bundle>
     </feature>
    
 </features>

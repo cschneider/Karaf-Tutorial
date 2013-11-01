@@ -10,15 +10,16 @@
     <packaging>pom</packaging>
 
 	<properties>
-        <cxf.version>2.7.3</cxf.version>
-        <log4j-version>1.2.16</log4j-version>
-        <slf4j-version>1.6.1</slf4j-version>
-        <camel.version>2.10.3</camel.version>
+        <cxf.version>2.7.7</cxf.version>
+        <log4j-version>1.2.17</log4j-version>
+        <slf4j-version>1.7.1</slf4j-version>
+        <camel.version>2.12.0</camel.version>
+        <karaf.version>2.3.3</karaf.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     
     <dependencies>
-        		<dependency>
+		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j-version}</version>
@@ -29,6 +30,7 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j-version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
@@ -39,9 +41,15 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.1</version>
+			<scope>test</scope>
 		</dependency>
     </dependencies>
-
 
 	<build>
 	
@@ -49,16 +57,16 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>3.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>2.3.7</version>
+				<version>2.4.0</version>
 				<extensions>true</extensions>
 				<configuration>
 					<instructions>
@@ -74,8 +82,7 @@
         <module>service</module>
         <module>twitter-adapter</module>
         <module>ui</module>
-        <module>features</module>
+        <module>command</module>
     </modules>
 
 </project>
-

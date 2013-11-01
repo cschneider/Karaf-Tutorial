@@ -35,8 +35,8 @@ public class MemoryVoteService implements VoteService {
 	}
 
 	@Override
-	public void addVote(String topic, int vote) {
-		getVoting(topic).addVote(new Vote(vote));
+	public void addVote(String topic, int voteNum) {
+		getVoting(topic).addVote(new Vote(topic, voteNum));
 	}
 
 	@Override
