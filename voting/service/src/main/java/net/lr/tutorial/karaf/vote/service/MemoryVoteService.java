@@ -1,14 +1,14 @@
 package net.lr.tutorial.karaf.vote.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import javax.ws.rs.core.Link;
+import javax.ws.rs.core.Response;
 
 import net.lr.tutorial.karaf.vote.model.Vote;
 import net.lr.tutorial.karaf.vote.model.VoteService;
 import net.lr.tutorial.karaf.vote.model.Voting;
-import net.lr.tutorial.karaf.vote.model.VotingLink;
-import net.lr.tutorial.karaf.vote.model.VotingLinks;
 
 public class MemoryVoteService implements VoteService {
 	Map<String, Voting> votingMap;
@@ -40,13 +40,13 @@ public class MemoryVoteService implements VoteService {
 	}
 
 	@Override
-	public VotingLinks getVotings() {
-		VotingLinks result = new VotingLinks();
-		List<VotingLink> votingLinks = result.getVotingLinks();
+	public Response getVotings() {
+		Link[] links = new Link[votingMap.size()];
+		int c = 0;
 		for (Voting voting : votingMap.values()) {
-			votingLinks.add(new VotingLink(voting.getTopic(), voting.getTopic()));
+			links[c++] = Link.fromResourceMethod(VoteService.class, "getVoting",  voting.getTopic()).build(); 
 		}
-		return result;
+		return Response.ok().links(links).build();
 	}
 
 	@Override

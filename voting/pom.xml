@@ -83,6 +83,7 @@
         <module>twitter-adapter</module>
         <module>ui</module>
         <module>command</module>
-    </modules>
+    <module>voting-ui2</module>
+  </modules>
 
 </project>

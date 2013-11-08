@@ -56,7 +56,7 @@ public class Voting {
 	public String getStats() {
 		VoteStats stats = new VoteStats();
 		for (Vote vote : votes) {
-			stats.addVote(vote);
+			stats.countVote(vote);
 		}
 		return stats.getStats();
 	}

@@ -10,11 +10,11 @@ import org.junit.Test;
 
 import twitter4j.Status;
 
-public class TweetToVoteConverterTest {
+public class TwitterConverterTest {
 
 	@Test
-	public void testConvert() {
-		TweetToVoteConverter converter = new TweetToVoteConverter();
+	public void testConvertStatus() {
+		TwitterConverter converter = new TwitterConverter();
 		
 		Status tweet = EasyMock.createMock(Status.class);
 		EasyMock.expect(tweet.getSource()).andReturn("schneider_chris").anyTimes();

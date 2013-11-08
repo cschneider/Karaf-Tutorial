@@ -19,16 +19,25 @@ package net.lr.tutorial.karaf.vote.adapter;
 import org.apache.camel.builder.RouteBuilder;
 
 /**
- * Receives a person record on a jms queue and sends a HTTP PUT request to the PersonService with the same body data.
- * As the put request needs the person id in the header the id is extracted from the person record and the URI
- * of the rest service is created dynamically
+ * Receives votes based on twitter searches and direct messages 
  */
 public class VotingRoutes extends RouteBuilder {
 
     @Override
     public void configure() throws Exception {
-        from("twitter://search?type=polling&delay=5&keywords=#esbvote")
-        .bean(new TweetToVoteConverter())
+        from("twitter://search?type=polling&delay=10&keywords=#esbvote")
+        .bean(new TwitterConverter())
+        .to("direct:vote");
+        
+        from("twitter://directmessage?type=polling&delay=60")
+        .bean(new TwitterConverter())
+        .to("direct:vote");
+        
+    	from("irc:karafvoting@cameron.freenode.net:6667/karafvoting")
+    	.bean(new IrcConverter())
+    	.to("direct:vote");
+        
+        from("direct:vote")
         .choice().when(body().isNotNull()).to("bean:voteService").end()
         .to("log:INFO");
     }

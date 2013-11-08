@@ -7,12 +7,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+@Path("")
 public interface VoteService {
 	@Path("")
 	@GET
-	VotingLinks getVotings();
+	Response getVotings();
 
 	@Path("{topic}")
 	@GET

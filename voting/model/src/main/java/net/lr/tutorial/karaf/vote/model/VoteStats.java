@@ -15,10 +15,17 @@ public class VoteStats {
 		table = new String[7][2];
 	}
 	
-	public void addVote(Vote vote) {
+	/**
+	 * @param vote
+	 */
+	public void countVote(Vote vote) {
 		stats[vote.getVote()-1]++;
 	}
 
+	/**
+	 *
+	 * @return json table with two columns vote and count. In the lines each vote of 1 to 6 is represented
+	 */
 	@XmlElement
 	public String getStats() {
 		StringBuilder sb = new StringBuilder();
