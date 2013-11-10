@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features>
+
+    <feature name="example-tasklist-cdi" version="${pom.version}">
+        <feature>example-tasklist-cdi-persistence</feature>
+        <feature>example-tasklist-cdi-ui</feature>
+    </feature>
+    
+    <feature name="example-tasklist-cdi-persistence" version="${pom.version}">
+    	<feature>pax-cdi</feature>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
+    </feature>
+
+    <feature name="example-tasklist-cdi-ui" version="${pom.version}">
+    	<feature>pax-cdi</feature>
+        <feature>http</feature>
+        <feature>http-whiteboard</feature>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-ui/${pom.version}</bundle>
+    </feature>
+   
+</features>
