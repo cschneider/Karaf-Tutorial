@@ -2,14 +2,56 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-    	<groupId>net.lr.tasklist.cdi</groupId>
-    	<version>1.0.0-SNAPSHOT</version>
-        <artifactId>tasklist</artifactId>
-    </parent>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.lr.tasklist.cdi</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+		<artifactId>tasklist</artifactId>
+	</parent>
 
 	<packaging>bundle</packaging>
-    <artifactId>tasklist-model</artifactId>
+	<artifactId>tasklist-model</artifactId>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>openjpa-maven-plugin</artifactId>
+				<configuration>
+					<addDefaultConstructor>true</addDefaultConstructor>
+					<enforcePropertyRestriction>true</enforcePropertyRestriction>
+				</configuration>
+				<executions>
+					<execution>
+						<id>enhancer</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>enhance</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.openjpa</groupId>
+						<artifactId>openjpa</artifactId>
+						<version>${openjpa.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+						<version>1.7.1</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <configuration>
+                    <instructions>
+                        <Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
+                    </instructions>
+                </configuration>
+            </plugin>
+		</plugins>
+	</build>
 </project>

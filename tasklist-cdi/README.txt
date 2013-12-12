@@ -20,11 +20,13 @@ mvn clean install
 
 h1. Installation
 
+Start karaf 2.3.3
+features:addurl mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0-SNAPSHOT/xml/features
+features:addurl mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
+
 Start Karaf 3.0.0-SNAPSHOT
 
-feature:repo-add mvn:org.ops4j.pax.cdi/pax-cdi-features/0.4.0/xml/features
-install mvn:org.apache.xbean/xbean-bundleutils/3.12
-feature:install pax-cdi-openwebbeans
+feature:repo-add mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0-SNAPSHOT/xml/features
 feature:repo-add mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
 feature:install example-tasklist-cdi
 

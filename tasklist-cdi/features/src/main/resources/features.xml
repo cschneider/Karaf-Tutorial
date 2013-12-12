@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<features>
+<features name="tasklist-cdi-${pom.version}">
 
     <feature name="example-tasklist-cdi" version="${pom.version}">
         <feature>example-tasklist-cdi-persistence</feature>
@@ -8,12 +8,23 @@
     
     <feature name="example-tasklist-cdi-persistence" version="${pom.version}">
     	<feature>pax-cdi</feature>
+    	<feature>openjpa</feature>
+    	<feature>deltaspike-jpa</feature>
+    	<bundle>mvn:org.apache.derby/derby/10.8.2.2</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
+    </feature>
+    
+    <feature name="example-tasklist-cdi-persistence-simple" version="${pom.version}">
+    	<feature>pax-cdi</feature>
+    	<feature>pax-cdi-openwebbeans</feature>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence-simple/${pom.version}</bundle>
     </feature>
 
     <feature name="example-tasklist-cdi-ui" version="${pom.version}">
     	<feature>pax-cdi</feature>
+    	<feature>pax-cdi-openwebbeans</feature>
         <feature>http</feature>
         <feature>http-whiteboard</feature>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
