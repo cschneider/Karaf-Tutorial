@@ -25,9 +25,14 @@ features:addurl mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0/xml/features
 features:addurl mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
 features:install example-tasklist-cdi-persistence-simple example-tasklist-cdi-ui
 
-Start Karaf 3.0.0-SNAPSHOT
+Currently this seems to produce exceptions:
+https://gist.github.com/cschneider/8517495
 
-feature:repo-add mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6./xml/features
+So for now the only way to use pax cdi is with karaf 3.
+
+Start Karaf 3.0.0
+
+feature:repo-add mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0/xml/features
 feature:repo-add mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
 feature:install example-tasklist-cdi-persistence-simple example-tasklist-cdi-ui
 
