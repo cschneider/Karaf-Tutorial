@@ -2,16 +2,15 @@ package net.lr.tasklist.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+/*
 @Entity
 @Table(name="Task")
+*/
 public class Task {
+/*	
     @Id
     @GeneratedValue
+*/    
     String id;
     String title;
     String description;

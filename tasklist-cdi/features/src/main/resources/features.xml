@@ -16,6 +16,7 @@
     </feature>
     
     <feature name="example-tasklist-cdi-persistence-simple" version="${pom.version}">
+    	
     	<feature>pax-cdi</feature>
     	<feature>pax-cdi-openwebbeans</feature>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>

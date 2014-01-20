@@ -21,14 +21,15 @@ mvn clean install
 h1. Installation
 
 Start karaf 2.3.3
-features:addurl mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0-SNAPSHOT/xml/features
+features:addurl mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0/xml/features
 features:addurl mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
+features:install example-tasklist-cdi-persistence-simple example-tasklist-cdi-ui
 
 Start Karaf 3.0.0-SNAPSHOT
 
-feature:repo-add mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0-SNAPSHOT/xml/features
+feature:repo-add mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6./xml/features
 feature:repo-add mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
-feature:install example-tasklist-cdi
+feature:install example-tasklist-cdi-persistence-simple example-tasklist-cdi-ui
 
 h1. Test
 
