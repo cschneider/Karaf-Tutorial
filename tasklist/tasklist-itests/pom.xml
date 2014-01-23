@@ -15,44 +15,33 @@
     </properties>
 
     <dependencies>
-        <!-- 
-        <dependency>
-            <groupId>org.apache.karaf</groupId>
-            <artifactId>apache-karaf</artifactId>
-            <scope>test</scope>
-            <type>tar.gz</type>
-            <version>3.0.0</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>org.apache.karaf.client</artifactId>
-                    <groupId>org.apache.karaf</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        -->
         <dependency>
             <groupId>net.lr.tasklist</groupId>
             <artifactId>tasklist-features</artifactId>
             <version>${project.version}</version>
             <type>xml</type>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>net.lr.tasklist</groupId>
             <artifactId>tasklist-model</artifactId>
             <version>${project.version}</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.6.4</version>
+            <scope>test</scope>
         </dependency>
+
+        <!-- Dependencies for pax exam karaf container -->
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-container-karaf</artifactId>
             <version>${pax.exam.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-junit4</artifactId>
@@ -75,6 +64,7 @@
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
             <version>1</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -87,6 +77,7 @@
 
     <build>
         <plugins>
+            <!-- Needed if you use versionAsInProject() -->
             <plugin>
                 <groupId>org.apache.servicemix.tooling</groupId>
                 <artifactId>depends-maven-plugin</artifactId>
