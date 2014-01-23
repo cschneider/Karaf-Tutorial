@@ -19,5 +19,5 @@ First see datasources project REDAME and install one or more databases and datas
 
 > db:select <your datasource name>
 > db:exec "create table person (name VARCHAR(100))"
-> db:exec "insert into test (name) values ('Chris')"
-> db:query "select * from test"
+> db:exec "insert into person (name) values ('Chris')"
+> db:query "select * from person"

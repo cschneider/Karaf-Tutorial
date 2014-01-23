@@ -14,9 +14,12 @@ As a last step copy this file to the deploy folder
 <blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
   
   <bean id="dataSource" class="com.ibm.db2.jcc.DB2DataSource">
-      <property name="url" value="jdbc:db2://localhost:5021/sample"/>
-      <property name="user" value="db2admin"/>
-      <property name="password" value="db2admin"/>
+    <property name="serverName" value="localhost"/>
+    <property name="databaseName" value="sample"/>
+    <property name="portNumber" value="5021"/>
+    <property name="user" value="db2admin"/>
+    <property name="password" value="db2admin"/>
+    <property name="driverType" value="4"/>
   </bean>
   
   <service interface="javax.sql.DataSource" ref="dataSource">
