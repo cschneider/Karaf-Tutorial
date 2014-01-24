@@ -25,6 +25,15 @@ install -s wrap:mvn:net.sourceforge.serp/serp/1.13.1
 install -s mvn:org.apache.openjpa/openjpa/2.1.1
 install -s mvn:net.lr.tutorial.karaf.db/db-examplejpa/1.0-SNAPSHOT
 
+Karaf 3:
+install -s mvn:org.apache.derby/derby/10.8.2.2
+feature:install jdbc
+jdbc:create -t derby derbyds
+
+feature:install openjpa jndi
+install -s mvn:net.lr.tutorial.karaf.db/db-examplejpa/1.0-SNAPSHOT
+
+
 Test
 ----
 
