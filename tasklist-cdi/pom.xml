@@ -20,6 +20,7 @@
         <module>persistence-simple</module>
         <module>ui</module>
         <module>features</module>
+        <module>tasklist-webservice</module>
     </modules>
     
     <dependencies>
