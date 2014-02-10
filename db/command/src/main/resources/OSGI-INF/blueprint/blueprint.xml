@@ -13,22 +13,22 @@
     </bean>
 
     <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
-        <command>
+        <command name="db/query">
             <action class="net.lr.tutorial.karaf.db.command.QueryCommand">
                 <property name="dbAccess" ref="dbAccess" />
             </action>
         </command>
-        <command>
+        <command name="db/exec">
             <action class="net.lr.tutorial.karaf.db.command.ExecuteCommand">
                 <property name="dbAccess" ref="dbAccess" />
             </action>
         </command>
-        <command>
+        <command name="db/tables">
             <action class="net.lr.tutorial.karaf.db.command.ShowTablesCommand">
                 <property name="dbAccess" ref="dbAccess" />
             </action>
         </command>
-        <command>
+        <command name="db/select">
             <action class="net.lr.tutorial.karaf.db.command.SelectCommand">
                 <property name="dbSelect" ref="dbSelect" />
             </action>

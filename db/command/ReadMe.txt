@@ -10,6 +10,13 @@ Build
 
 mvn clean install
 
+Prerequisites
+-------------
+
+Requires Apache Karaf 2.x. Will not work on apache karaf 3 as the blueprint shell namespace changed in an incompatible way.
+
+Karaf 3 contains the jdbc feature by default though. So an improved version of these commands can be installed using feature:install jdbc.
+
 Installation
 ------------
 
