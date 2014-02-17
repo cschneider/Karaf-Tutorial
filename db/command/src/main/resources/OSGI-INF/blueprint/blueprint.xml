@@ -12,7 +12,7 @@
         <property name="dbSelect" ref="dbSelect" />
     </bean>
 
-    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.1.0">
+    <command-bundle xmlns="http://karaf.apache.org/xmlns/shell/v1.0.0">
         <command name="db/query">
             <action class="net.lr.tutorial.karaf.db.command.QueryCommand">
                 <property name="dbAccess" ref="dbAccess" />
