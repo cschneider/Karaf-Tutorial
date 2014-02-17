@@ -24,9 +24,9 @@ Installation
 
 First see datasources project REDAME and install one or more databases and datasources into karaf 
 
-> feature:install scr
-> install -s mvn:net.lr.tutorial.karaf.db/db-command2/1.0-SNAPSHOT
-> install -s mvn:org.apache.karaf.shell/command-exporter/3.0.1-SNAPSHOT
+feature:install scr
+install -s mvn:net.lr.tutorial.karaf.db/db-command2/1.0-SNAPSHOT
+install -s mvn:org.apache.karaf.shell/command-exporter/3.0.1-SNAPSHOT
 
 > db:select <your datasource name>
 > db:exec "create table person (name VARCHAR(100))"
