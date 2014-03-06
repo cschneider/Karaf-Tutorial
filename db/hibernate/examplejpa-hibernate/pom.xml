@@ -106,10 +106,13 @@
 					<instructions>
 						<Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
 						<Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
+						<!-- Importing proxy packages for hibernate lazy loading -->
 						<Import-Package>
 							org.apache.felix.service.command;version="[0.6,1)",
 							org.apache.felix.gogo.commands;version="[0.6,1)",
 							org.apache.karaf.shell.console;version="[2.2,4)",
+							org.hibernate.proxy,
+							javassist.util.proxy,
 							*
 						</Import-Package>
 					</instructions>
