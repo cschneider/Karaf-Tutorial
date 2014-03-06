@@ -4,7 +4,7 @@ dbexample
 Example how to access a DataSource using OSGi services and jdbc.
 
 Important Note:
-Hibernate 4.3.x is not compatible with aries jpa 1.0.0 which is used in karaf 2.3.7 and 3.0.0. Hibernate exposes the PersistenceProvider OSGi service with 
+Hibernate 4.3.x is not compatible with aries jpa 1.0.0 which is used in karaf 2.3.4 and 3.0.0. Hibernate exposes the PersistenceProvider OSGi service with 
 package version 2.1 and aries jpa only accepts 2.0. So make sure you use hibernate 4.2.x.
 
 Build
