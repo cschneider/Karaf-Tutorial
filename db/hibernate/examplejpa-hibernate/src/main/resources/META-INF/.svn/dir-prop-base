@@ -1,0 +1,10 @@
+K 10
+svn:ignore
+V 38
+.*
+target
+bin
+*.log
+maven-eclipse.xml
+
+END
