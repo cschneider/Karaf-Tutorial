@@ -24,6 +24,7 @@ public class TaskListServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
+		resp.setContentType("text/html");
 		String taskId = req.getParameter("taskId");
 		PrintWriter writer = resp.getWriter();
 		if (taskId != null && taskId.length() > 0) {
