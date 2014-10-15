@@ -18,24 +18,23 @@ package net.lr.tutorial.karaf.cxf.personservice.impl;
 
 import java.io.IOException;
 
+import net.lr.tutorial.karaf.cxf.personservice.model.PersonService;
+
 import org.apache.cxf.endpoint.Server;
-import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
-import org.apache.cxf.jaxrs.lifecycle.SingletonResourceProvider;
-import org.apache.cxf.jaxrs.provider.JAXBElementProvider;
+import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 
 /**
- * Start the rest service to test in the IDE
+ * Start the service to test in the IDE
  *
  */
 public class PersonServiceStarter {
     
-    @SuppressWarnings("rawtypes")
-    public void startRestService() {
-        JAXRSServerFactoryBean factory = new JAXRSServerFactoryBean();
+    public void startService() {
+        PersonServiceImpl personServiceImpl = new PersonServiceImpl();
+        JaxWsServerFactoryBean factory = new JaxWsServerFactoryBean();
         factory.setAddress("http://localhost:8282/person");
-        factory.setResourceClasses(PersonServiceImpl.class);
-        factory.setResourceProvider(new SingletonResourceProvider(new PersonServiceImpl()));
-        factory.setProvider(new JAXBElementProvider());
+        factory.setServiceClass(PersonService.class);
+        factory.setServiceBean(personServiceImpl);
         Server server = factory.create();
         server.start();
     }
@@ -45,7 +44,7 @@ public class PersonServiceStarter {
      * @throws IOException 
      */
     public static void main(String[] args) throws IOException {
-        new PersonServiceStarter().startRestService();
+        new PersonServiceStarter().startService();
         System.in.read();
     }
 

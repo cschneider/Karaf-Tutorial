@@ -31,7 +31,11 @@
     </parent>
 
     <dependencies>
-    
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.2</version>
+        </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>personservice-model</artifactId>

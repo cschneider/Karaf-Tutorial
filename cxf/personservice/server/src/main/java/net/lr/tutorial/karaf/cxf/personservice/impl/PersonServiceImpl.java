@@ -19,20 +19,12 @@ package net.lr.tutorial.karaf.cxf.personservice.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.jws.WebService;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
+import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
-import net.lr.tutorial.karaf.cxf.personservice.person.Person;
-import net.lr.tutorial.karaf.cxf.personservice.person.PersonService;
+import net.lr.tutorial.karaf.cxf.personservice.model.Person;
+import net.lr.tutorial.karaf.cxf.personservice.model.PersonService;
 
-@Produces(MediaType.APPLICATION_XML)
-@WebService
 public class PersonServiceImpl implements PersonService {
     Map<String, Person> personMap;
     
@@ -49,49 +41,24 @@ public class PersonServiceImpl implements PersonService {
         return person;
     }
     
-    /* (non-Javadoc)
-     * @see net.lr.tutorial.karaf.cxf.personservice.rest.PersonService#getAll()
-     */
-    @Override
-    @GET
-    @Path("/")
+    @RolesAllowed("admin")
     public Person[] getAll() {
         return personMap.values().toArray(new Person[]{});
     }
     
-    /* (non-Javadoc)
-     * @see net.lr.tutorial.karaf.cxf.personservice.rest.PersonService#getPerson(java.lang.String)
-     */
-    @Override
-    @GET
-    @Path("/{id}")
     public Person getPerson(@PathParam("id") String id) {
         return personMap.get(id);
     }
 
-    /* (non-Javadoc)
-     * @see net.lr.tutorial.karaf.cxf.personservice.rest.PersonService#updatePerson(java.lang.String, net.lr.tutorial.karaf.cxf.personservice.person.Person)
-     */
-    @Override
-    @PUT
-    @Path("/{id}")
     public void updatePerson(@PathParam("id") String id, Person person) {
         person.setId(id);
         System.out.println("Update request received for " + person.getId() + " name:" + person.getName());
         personMap.put(id, person);
     }
     
-    /* (non-Javadoc)
-     * @see net.lr.tutorial.karaf.cxf.personservice.rest.PersonService#addPerson(net.lr.tutorial.karaf.cxf.personservice.person.Person)
-     */
-    @Override
-    @POST
-    @Path("/")
     public void addPerson(Person person) {
         System.out.println("Add request received for " + person.getId() + " name:" + person.getName());
         personMap.put(person.getId(), person);
     }
-
-    
     
 }

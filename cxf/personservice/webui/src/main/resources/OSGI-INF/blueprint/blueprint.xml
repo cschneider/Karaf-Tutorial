@@ -14,7 +14,7 @@
     </bean>
 
     <reference id="personService"
-        interface="net.lr.tutorial.karaf.cxf.personservice.person.PersonService" />
+        interface="net.lr.tutorial.karaf.cxf.personservice.model.PersonService" />
 
     <service interface="javax.servlet.http.HttpServlet" ref="personServlet">
         <service-properties>

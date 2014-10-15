@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.lr.tutorial.karaf.cxf.personservice.person.Person;
-import net.lr.tutorial.karaf.cxf.personservice.person.PersonService;
+import net.lr.tutorial.karaf.cxf.personservice.model.Person;
+import net.lr.tutorial.karaf.cxf.personservice.model.PersonService;
 
 public class PersonServlet extends HttpServlet {
     private static final long serialVersionUID = -8444651625768440903L;

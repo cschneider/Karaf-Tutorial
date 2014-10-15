@@ -32,9 +32,9 @@
     </cm:property-placeholder>
     
 
-    <jaxws:client id="personServiceProxy" serviceClass="net.lr.tutorial.karaf.cxf.personservice.person.PersonService"
+    <jaxws:client id="personServiceProxy" serviceClass="net.lr.tutorial.karaf.cxf.personservice.model.PersonService"
         address="${personServiceSoap.URL}" />
 
-    <service ref="personServiceProxy" interface="net.lr.tutorial.karaf.cxf.personservice.person.PersonService" />
+    <service ref="personServiceProxy" interface="net.lr.tutorial.karaf.cxf.personservice.model.PersonService" />
 
 </blueprint>

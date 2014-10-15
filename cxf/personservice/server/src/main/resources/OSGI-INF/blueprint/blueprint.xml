@@ -9,33 +9,41 @@
 
 <!-- xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0" -->
 
-<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0" xmlns:cxf="http://cxf.apache.org/blueprint/core"
-    xmlns:jaxrs="http://cxf.apache.org/blueprint/jaxrs" xmlns:jaxws="http://cxf.apache.org/blueprint/jaxws"
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.1.0"
+    xmlns:cm="http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0"
+    xmlns:cxf="http://cxf.apache.org/blueprint/core"
+    xmlns:jaxws="http://cxf.apache.org/blueprint/jaxws"
+    xmlns:authz="http://aries.apache.org/xmlns/authorization/v1.0.0"
     xsi:schemaLocation="
   http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd
   http://www.osgi.org/xmlns/blueprint-ext/v1.1.0 https://svn.apache.org/repos/asf/aries/tags/blueprint-0.3.1/blueprint-core/src/main/resources/org/apache/aries/blueprint/ext/blueprint-ext.xsd  
   http://cxf.apache.org/blueprint/jaxws http://cxf.apache.org/schemas/blueprint/jaxws.xsd
   http://cxf.apache.org/blueprint/jaxrs http://cxf.apache.org/schemas/blueprint/jaxrs.xsd
   http://cxf.apache.org/blueprint/core http://cxf.apache.org/schemas/blueprint/core.xsd
-  http://camel.apache.org/schema/blueprint http://camel.apache.org/schema/blueprint/camel-blueprint.xsd
   http://aries.apache.org/blueprint/xmlns/blueprint-cm/v1.1.0 http://aries.apache.org/schemas/blueprint-cm/blueprint-cm-1.1.0.xsd
+  http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.1.0 http://aries.apache.org/schemas/blueprint-ext/blueprint-ext-1.1.xsd
   ">
-    <cm:property-placeholder persistent-id="net.lr.tutorial.karaf.cxf.personservice"
-        update-strategy="reload">
-    </cm:property-placeholder>
-
+    <!-- 
+    <authz:enable/>
+     -->
+    
     <cxf:bus id="personServiceBus">
+        <!-- 
+    	<cxf:features>
+    		<bean class="org.apache.cxf.interceptor.security.JAASAuthenticationFeature">
+    			<property name="reportFault" value="true"/>
+    		</bean>
+    	</cxf:features>
+        -->
     </cxf:bus>
 
-    <jaxrs:server address="/person" id="personService">
-        <jaxrs:serviceBeans>
-            <ref component-id="personServiceImpl" />
-        </jaxrs:serviceBeans>
-    </jaxrs:server>
-
-    <jaxws:endpoint implementor="#personServiceImpl" address="/personService"/>
-
     <bean id="personServiceImpl" class="net.lr.tutorial.karaf.cxf.personservice.impl.PersonServiceImpl"/>
+    
+    <jaxws:endpoint
+    	implementor="#personServiceImpl"
+    	address="/personService"
+    	implementorClass="net.lr.tutorial.karaf.cxf.personservice.impl.PersonServiceImpl"/>
 
 </blueprint>

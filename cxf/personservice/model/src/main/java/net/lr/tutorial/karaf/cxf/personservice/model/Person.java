@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package net.lr.tutorial.karaf.cxf.personservice.person;
+package net.lr.tutorial.karaf.cxf.personservice.model;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
