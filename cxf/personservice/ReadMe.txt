@@ -43,8 +43,14 @@ Run the service in Karaf
 
 Download Apache Karaf here: http://karaf.apache.org/index/community/download.html
 
+Karaf 2.x
 features:chooseurl cxf 2.7.10
 features:install http cxf
+
+Karaf 3
+feature:repo-add cxf 3.0.1-SNAPSHOT
+feature:install cxf-jaxws cxf-jaxrs
+
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
 
