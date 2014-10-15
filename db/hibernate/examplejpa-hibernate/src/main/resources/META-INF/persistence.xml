@@ -42,6 +42,7 @@ http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/pe
             <property name="openjpa.jdbc.DBDictionary" value="derby"/>
              -->
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <property name="hibernate.generate_statistics" value="true"/>
         </properties>
     </persistence-unit>
 

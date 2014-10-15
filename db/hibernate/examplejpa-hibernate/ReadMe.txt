@@ -21,10 +21,6 @@ For karaf 3 replace features:install with feature:install.
 features:addurl mvn:net.lr.hibernate/hibernate-features/1.0.0-SNAPSHOT/xml
 install -s mvn:org.apache.derby/derby/10.8.2.2
 features:install jndi hibernate
-#install -s mvn:commons-pool/commons-pool/1.5.4
-#install -s mvn:commons-dbcp/commons-dbcp/1.4
-#install -s mvn:commons-lang/commons-lang/2.6
-#install -s wrap:mvn:net.sourceforge.serp/serp/1.13.1
 install -s mvn:net.lr.tutorial.karaf.db/examplejpa-hibernate/1.0-SNAPSHOT
 
 Karaf 3:
@@ -32,8 +28,8 @@ install -s mvn:org.apache.derby/derby/10.8.2.2
 feature:install jdbc
 jdbc:create -t derby derbyds
 
-feature:install jndi hibernate/4.2.7
-install -s mvn:net.lr.tutorial.karaf.db/db-examplejpa/1.0-SNAPSHOT
+feature:install jndi hibernate/4.2.7.Final
+install -s mvn:net.lr.tutorial.karaf.db/examplejpa-hibernate/1.0-SNAPSHOT
 
 
 Test
