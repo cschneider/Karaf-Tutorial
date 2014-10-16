@@ -48,3 +48,6 @@ h1. Test
 
 Open the url below in your browser.
 http://localhost:8181/tasklist
+
+Btw. When shutting down karaf 3.0.2 you will see an exception while stopping model. This is a known bug in aries jpa and will be fixed in the next
+release. So hopefully karaf >= 3.0.3 will include it.
