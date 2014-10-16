@@ -7,25 +7,22 @@
     </feature>
     
     <feature name="example-tasklist-cdi-persistence" version="${pom.version}">
-    	<feature>pax-cdi</feature>
-    	<feature>openjpa</feature>
-    	<feature>deltaspike-jpa</feature>
+        <feature>jndi</feature>
+        <feature>jpa</feature>
+        <feature>transaction</feature>
+    	<feature version="4.2.15.Final">hibernate</feature>
     	<bundle>mvn:org.apache.derby/derby/10.8.2.2</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
     </feature>
     
     <feature name="example-tasklist-cdi-persistence-simple" version="${pom.version}">
-    	
-    	<feature>pax-cdi</feature>
-    	<feature>pax-cdi-openwebbeans</feature>
+        <feature>jpa</feature>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence-simple/${pom.version}</bundle>
     </feature>
 
     <feature name="example-tasklist-cdi-ui" version="${pom.version}">
-    	<feature>pax-cdi</feature>
-    	<feature>pax-cdi-openwebbeans</feature>
         <feature>http</feature>
         <feature>http-whiteboard</feature>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>

@@ -6,6 +6,8 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
+import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +21,9 @@ import org.ops4j.pax.cdi.api.Property;
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
-@OsgiServiceProvider
+@OsgiServiceProvider(classes={Servlet.class})
 @Properties({@Property(name="alias", value="/tasklist")})
+@Singleton
 public class TaskListServlet extends HttpServlet {
     
     @Inject @OsgiService
@@ -50,7 +53,7 @@ public class TaskListServlet extends HttpServlet {
 
     private void showTask(PrintWriter writer, String taskId) {
         SimpleDateFormat sdf = new SimpleDateFormat();
-        Task task = taskService.getTask(taskId);
+        Task task = taskService.getTask(new Integer(taskId));
         if (task != null) {
             writer.println("<h1>Task " + task.getTitle() + " </h1>");
             if (task.getDueDate() != null) {

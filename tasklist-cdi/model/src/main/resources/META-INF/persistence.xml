@@ -2,28 +2,16 @@
 <persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
-
-    <persistence-unit name="tasklist" transaction-type="RESOURCE_LOCAL">
+    
+    <persistence-unit name="tasklist" transaction-type="JTA">
+        <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/derbyds)</jta-data-source>
         <class>net.lr.tasklist.model.Task</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.AutoloadedDriver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:tasklist;create=true" />
-
-            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>
-            <property name="openjpa.jdbc.DBDictionary" value="derby"/>
-            
-            <!-- Example Open JPA Properties -->
-            <property name="openjpa.Log" value="slf4j" />
-<!--             <property name="openjpa.jdbc.SynchronizeMappings"
-                value="buildSchema(SchemaAction='add,deleteTableContents')" /> -->
-            
-            <!-- Example Eclipse Link Properties -->
-            <property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
-            
-            <!-- Example Hibernate Properties -->
-            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
     </persistence-unit>
 

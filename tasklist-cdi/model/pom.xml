@@ -14,47 +14,15 @@
 
 	<build>
 		<plugins>
-		<!-- 
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>openjpa-maven-plugin</artifactId>
-				<configuration>
-					<addDefaultConstructor>true</addDefaultConstructor>
-					<enforcePropertyRestriction>true</enforcePropertyRestriction>
-				</configuration>
-				<executions>
-					<execution>
-						<id>enhancer</id>
-						<phase>process-classes</phase>
-						<goals>
-							<goal>enhance</goal>
-						</goals>
-					</execution>
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.openjpa</groupId>
-						<artifactId>openjpa</artifactId>
-						<version>${openjpa.version}</version>
-						<optional/>
-					</dependency>
-					<dependency>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-						<version>1.7.1</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			-->
             <plugin>
                 <groupId>org.apache.felix</groupId>
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
-                <!-- 
                     <instructions>
                         <Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
+                        <!-- Needed for runtime enhancement -->
+                        <Import-Package>*, org.hibernate.proxy, javassist.util.proxy</Import-Package>
                     </instructions>
-                     -->
                 </configuration>
             </plugin>
 		</plugins>

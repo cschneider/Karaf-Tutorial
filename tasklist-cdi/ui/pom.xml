@@ -26,4 +26,26 @@
 		</dependency>
 	</dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>net.lr.blueprint.maven</groupId>
+                <artifactId>blueprint-maven-plugin</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>blueprint-generate</goal>
+                        </goals>
+                        <phase>process-classes</phase>
+                    </execution>
+                </executions>
+                <configuration>
+                    <scanPaths>
+                        <scanPath>net.lr.tasklist.ui</scanPath>
+                    </scanPaths>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

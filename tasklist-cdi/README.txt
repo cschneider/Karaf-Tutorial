@@ -1,40 +1,48 @@
 h1. Overview
 
-Example for the "Karaf Tutorial 9 - CDI and JavaEE meet OSGi" that implements a very small application to manage a list of tasks or to dos like in tutorial 1. Instead of blueprint this example is using pax cdi to leverage the Java EE dependency injection. 
+Example for the "Karaf Tutorial 9 - CDI meet OSGi" 
+that implements a very small application to manage a list of tasks or to dos like in tutorial 1. 
+Originally I planned to use pax cdi and deltaspike jpa for this tutorial. 
+Unfortunately deltaspike jpa does not yet work in OSGi. So I created a maven plugin that creates blueprint from CDI annotations.
+See https://github.com/cschneider/blueprint-maven-plugin
+
+This allows to build an example with JPA persistence, Transactions and a Servlet Ui using zero hand written blueprint xml.
 
 It shows how to:
 
 - Create bundles using maven and the maven bundle plugin
-- Wire bundles using cdi and OSGi services
+- Wire bundles using CDI annotations and OSGi services
+- Write JPA DAO classes like in JEE using @PersistenceUnit and @Transactional
 - Use the whiteboard pattern and the pax-web whiteboard extender to publish Servlets
 
 h1. Structure
 
-model - Service interface and model classes shared between persistence and ui
-persistence - Simple persistence implementation using an OSGi service and a in memory map
-ui - Simple servlet based UI that connects to the persistence layer using an OSGi service reference and that offers the Servlet as an OSGi service for the pax web whiteboard extender to pickup and publish
+Module             | Description  
+model              | Service interface and model classes shared between persistence and ui
+persistence        | Full persistence implementation using JPA and hibernate
+persistence-simple | Simple persistence implementation using an OSGi service and a in memory map
+ui                 | Simple servlet based UI that connects to the persistence layer using an OSGi service reference and publishes a servlet 
 
-h1. Build
+h1. Build blueprint-maven-plugin
+
+As there is no public release yet you have to build the plugin yourself
+
+git clone https://github.com/cschneider/blueprint-maven-plugin
+cd blueprint-maven-plugin
+mvn clean install
+
+h1. Build example
 
 mvn clean install
 
 h1. Installation
 
-Start karaf 2.3.3
-features:addurl mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0/xml/features
-features:addurl mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
-features:install example-tasklist-cdi-persistence-simple example-tasklist-cdi-ui
+Download and start Karaf 3
 
-Currently this seems to produce exceptions:
-https://gist.github.com/cschneider/8517495
-
-So for now the only way to use pax cdi is with karaf 3.
-
-Start Karaf 3.0.0
-
-feature:repo-add mvn:org.ops4j.pax.cdi/pax-cdi-features/0.6.0/xml/features
+feature:install jdbc
+jdbc:create -t Derby derbyds 
 feature:repo-add mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
-feature:install example-tasklist-cdi-persistence-simple example-tasklist-cdi-ui
+feature:install example-tasklist-cdi-persistence example-tasklist-cdi-ui
 
 h1. Test
 

@@ -2,27 +2,24 @@ package net.lr.tasklist.model;
 
 import java.util.Date;
 
-/*
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Entity
-@Table(name="Task")
-*/
 public class Task {
-/*	
     @Id
-    @GeneratedValue
-*/    
-    String id;
+    Integer id;
     String title;
     String description;
     Date dueDate;
     boolean finished;
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(Integer id) {
+        this.id = new Integer(id);
     }
 
     public String getTitle() {
