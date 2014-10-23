@@ -7,7 +7,7 @@
     <parent>
     	<groupId>net.lr.tasklist.cdi</groupId>
     	<version>1.0.0-SNAPSHOT</version>
-        <artifactId>tasklist</artifactId>
+        <artifactId>tasklist-cdi</artifactId>
     </parent>
 
 	<artifactId>tasklist-persistence</artifactId>
@@ -26,15 +26,6 @@
             <plugin>
                 <groupId>net.lr.blueprint.maven</groupId>
                 <artifactId>blueprint-maven-plugin</artifactId>
-                <version>1.0.0-SNAPSHOT</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>blueprint-generate</goal>
-                        </goals>
-                        <phase>process-classes</phase>
-                    </execution>
-                </executions>
                 <configuration>
                     <scanPaths>
                         <scanPath>net.lr.tasklist.persistence.impl</scanPath>

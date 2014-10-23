@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>net.lr.tasklist.cdi</groupId>
 		<version>1.0.0-SNAPSHOT</version>
-		<artifactId>tasklist</artifactId>
+		<artifactId>tasklist-cdi</artifactId>
 	</parent>
 
 	<packaging>bundle</packaging>

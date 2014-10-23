@@ -23,12 +23,13 @@ persistence        | Full persistence implementation using JPA and hibernate
 persistence-simple | Simple persistence implementation using an OSGi service and a in memory map
 ui                 | Simple servlet based UI that connects to the persistence layer using an OSGi service reference and publishes a servlet 
 
-h1. Build blueprint-maven-plugin
+h1. Build blueprint-maven-plugin 1.0.0
 
-As there is no public release yet you have to build the plugin yourself
+As there is no public release in central you have to build the plugin yourself
 
 git clone https://github.com/cschneider/blueprint-maven-plugin
 cd blueprint-maven-plugin
+git checkout blueprint-maven-plugin-1.0.0
 mvn clean install
 
 h1. Build example
