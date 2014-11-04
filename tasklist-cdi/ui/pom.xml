@@ -29,7 +29,7 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>net.lr.blueprint.maven</groupId>
+                <groupId>org.apache.aries.blueprint</groupId>
                 <artifactId>blueprint-maven-plugin</artifactId>
                 <configuration>
                     <scanPaths>

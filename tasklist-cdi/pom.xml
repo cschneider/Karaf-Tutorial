@@ -11,8 +11,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<deltaspike.version>0.5</deltaspike.version>
-		<openjpa.version>2.2.0</openjpa.version>
 	</properties>
 
 	<modules>
@@ -21,7 +19,6 @@
 		<module>persistence-simple</module>
 		<module>ui</module>
 		<module>features</module>
-
 	</modules>
 
 	<dependencies>
@@ -68,9 +65,9 @@
 		<pluginManagement>
 			<plugins>
 				<plugin>
-					<groupId>net.lr.blueprint.maven</groupId>
+					<groupId>org.apache.aries.blueprint</groupId>
 					<artifactId>blueprint-maven-plugin</artifactId>
-					<version>1.0.0</version>
+					<version>1.0.0-SNAPSHOT</version>
 					<executions>
 						<execution>
 							<goals>
