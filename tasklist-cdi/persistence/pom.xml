@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
-    	<groupId>net.lr.tasklist.cdi</groupId>
-    	<version>1.0.0-SNAPSHOT</version>
+        <groupId>net.lr.tasklist.cdi</groupId>
+        <version>1.0.0-SNAPSHOT</version>
         <artifactId>tasklist-cdi</artifactId>
         <relativePath>..</relativePath>
     </parent>
 
-	<artifactId>tasklist-persistence</artifactId>
-	<packaging>bundle</packaging>
+    <artifactId>tasklist-persistence</artifactId>
+    <packaging>bundle</packaging>
 
-	<dependencies>
+    <dependencies>
         <dependency>
             <groupId>javax.transaction</groupId>
             <artifactId>javax.transaction-api</artifactId>
             <version>1.2</version>
+            <optional>true</optional>
         </dependency>
-		<dependency>
-			<groupId>net.lr.tasklist.cdi</groupId>
-			<artifactId>tasklist-model</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>net.lr.tasklist.cdi</groupId>
+            <artifactId>tasklist-model</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

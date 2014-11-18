@@ -5,7 +5,7 @@ import java.util.Collection;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceUnit;
-import javax.transaction.cdi.Transactional;
+import javax.transaction.Transactional;
 
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;

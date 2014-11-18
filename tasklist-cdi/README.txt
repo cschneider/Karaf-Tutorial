@@ -42,6 +42,8 @@ Download and start Karaf 3
 
 Copy data source config to etc/org.ops4j.datasource-tasklist.cfg
 
+Start karaf and execute the commands below
+
 # Create data source
 feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.4.0/xml/features
 feature:install pax-jdbc-derby pax-jdbc-config
