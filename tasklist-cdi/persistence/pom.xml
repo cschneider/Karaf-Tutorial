@@ -15,6 +15,11 @@
 	<packaging>bundle</packaging>
 
 	<dependencies>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <version>1.2</version>
+        </dependency>
 		<dependency>
 			<groupId>net.lr.tasklist.cdi</groupId>
 			<artifactId>tasklist-model</artifactId>

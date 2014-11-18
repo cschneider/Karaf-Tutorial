@@ -5,7 +5,7 @@
     
     <persistence-unit name="tasklist" transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
-        <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/derbyds)</jta-data-source>
+        <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=tasklist)</jta-data-source>
         <class>net.lr.tasklist.model.Task</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         

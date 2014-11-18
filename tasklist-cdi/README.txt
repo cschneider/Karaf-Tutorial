@@ -40,8 +40,14 @@ h1. Installation
 
 Download and start Karaf 3
 
-feature:install jdbc
-jdbc:create -t Derby derbyds 
+Copy data source config to etc/org.ops4j.datasource-tasklist.cfg
+
+# Create data source
+feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.4.0/xml/features
+feature:install pax-jdbc-derby pax-jdbc-config
+cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-cdi/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
+service:list DataSource
+
 feature:repo-add mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
 feature:install example-tasklist-cdi-persistence example-tasklist-cdi-ui
 
