@@ -46,7 +46,7 @@ Start karaf and execute the commands below
 
 # Create data source
 feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.4.0/xml/features
-feature:install pax-jdbc-derby pax-jdbc-config
+feature:install pax-jdbc-derby pax-jdbc-config pax-jdbc-pool-dbcp2
 cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-cdi/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
 service:list DataSource
 
