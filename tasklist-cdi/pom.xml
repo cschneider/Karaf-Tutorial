@@ -20,6 +20,7 @@
 		<module>persistence-simple</module>
 		<module>ui</module>
 		<module>features</module>
+		<module>datasource</module>
 	</modules>
 
 	<dependencies>

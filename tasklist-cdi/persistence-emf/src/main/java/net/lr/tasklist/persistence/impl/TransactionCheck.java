@@ -47,7 +47,7 @@ public class TransactionCheck {
             em.persist(createTask());
             //em.flush();
             LOG.info("Number of tasks is now: " + getTasks(em).size());
-            sleep(5000);
+            sleep(8000);
             tm.commit();
             LOG.info("Committed " + getTasks(em).size());
             em.close();
@@ -88,13 +88,9 @@ public class TransactionCheck {
     private void taskWatcher() {
         EntityManager em = emf.createEntityManager();
         Thread.currentThread().setName("taskWatcher");
-        for (int c=0; c<10;c++) {
+        for (int c=0; c<20;c++) {
             LOG.info("Number in check " + getTasks(em).size());
-            try {
-                Thread.sleep(1000);
-            }
-            catch (InterruptedException e) {
-            }
+            sleep(1000);
         }
         em.close();
     }
