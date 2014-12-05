@@ -16,7 +16,6 @@
 	<modules>
 		<module>model</module>
 		<module>persistence</module>
-        <module>persistence-emf</module>
 		<module>persistence-simple</module>
 		<module>ui</module>
 		<module>features</module>
