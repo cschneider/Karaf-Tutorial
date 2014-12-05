@@ -58,5 +58,12 @@ h1. Test
 Open the url below in your browser.
 http://localhost:8181/tasklist
 
-Btw. When shutting down karaf 3.0.2 you will see an exception while stopping model. This is a known bug in aries jpa and will be fixed in the next
-release. So hopefully karaf >= 3.0.3 will include it.
+h1. Beware of bug in pax-jdbc-pool
+
+I am using pax-jdbc-pool-dbcp2 and pax-jdbc-config to create a XA ready DataSource.
+
+In pax-jdbc 0.4.0 there is a bug that causes the jpa code to not really work transactionally. For the example it does not matter
+but for any enterprise deployment this is a severe problem. So make sure you do not deploy the version from pax-jdbc 0.4.0 to
+production. pax-jdbc 0.5.0 will fix this.
+See https://ops4j1.jira.com/browse/PAXJDBC-52
+ 
