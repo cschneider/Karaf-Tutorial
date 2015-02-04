@@ -41,14 +41,17 @@ features:chooseurl cxf 2.7.10
 features:install http cxf-jaxws
 
 Karaf 3
-feature:repo-add cxf 3.0.1-SNAPSHOT
-feature:install cxf-jaxrs
+feature:repo-add cxf 3.1.0-SNAPSHOT
+feature:install cxf-jaxws
 
 install -s mvn:javax.annotation/javax.annotation-api/1.2
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-proxy/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-webui/1.0-SNAPSHOT
+
+If you use the blueprint authz namespace you will also need to install:
+install -s mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.authz/1.0.0
 
 Test the service
 ----------------
