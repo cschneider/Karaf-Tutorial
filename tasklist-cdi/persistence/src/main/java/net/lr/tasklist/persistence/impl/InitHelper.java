@@ -17,7 +17,11 @@ public class InitHelper {
     
     @PostConstruct
     public void addDemoTasks() {
-        taskService.addTask(createTask());
+        try {
+            taskService.addTask(createTask());
+        } catch (Exception e) {
+            LOG.warn(e.getMessage(), e);
+        }
     }
     
     private Task createTask() {
