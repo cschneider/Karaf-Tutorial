@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="tasklist-cdi-${pom.version}">
+
+    <feature name="example-tasklist-cdi" version="${pom.version}">
+        <feature>example-tasklist-cdi-persistence</feature>
+        <feature>example-tasklist-cdi-ui</feature>
+    </feature>
+    
+    <!-- Not using jpa feature directly to avoid the jpa 2.0 bundle -->
+    <feature name="example-tasklist-cdi-persistence" version="${pom.version}">
+        <feature>jndi</feature>
+        <feature>transaction</feature>
+        <feature version="2.1.0">jpa</feature>
+        <feature version="4.3.6.Final">hibernate</feature>
+
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
+    </feature>
+    
+    <feature name="example-tasklist-cdi-ui" version="${pom.version}">
+        <feature>http</feature>
+        <feature>http-whiteboard</feature>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-ui/${pom.version}</bundle>
+    </feature>
+   
+</features>

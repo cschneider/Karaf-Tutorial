@@ -25,7 +25,7 @@
         <dependency>
             <groupId>net.lr.tasklist.cdi</groupId>
             <artifactId>tasklist-model</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -47,6 +47,9 @@
                 <extensions>true</extensions>
                 <configuration>
                    <instructions>
+                        <!-- There is no OSGi bundel for JTA 1.2.
+                            As we need the spec only at build time we make sure we allow jta 1.1 at runtime
+                         -->
                         <Import-Package>!javax.transaction, *, javax.transaction;version="[1.1,2)"</Import-Package>
                    </instructions>
                 </configuration>
