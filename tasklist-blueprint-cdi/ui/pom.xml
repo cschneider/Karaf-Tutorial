@@ -1,30 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
     <parent>
-    	<groupId>net.lr.tasklist.cdi</groupId>
-    	<version>1.0.0-SNAPSHOT</version>
-        <artifactId>tasklist-cdi</artifactId>
+        <groupId>net.lr.tasklist.cdi</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>tasklist-blueprint-cdi</artifactId>
+        <relativePath>..</relativePath>
     </parent>
 
-	<artifactId>tasklist-ui</artifactId>
-	<packaging>bundle</packaging>
+    <artifactId>tasklist-ui</artifactId>
+    <packaging>bundle</packaging>
 
-	<dependencies>
-		<dependency>
-			<groupId>net.lr.tasklist.cdi</groupId>
-			<artifactId>tasklist-model</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>servlet-api</artifactId>
-			<version>2.5</version>
-		</dependency>
-	</dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>net.lr.tasklist.cdi</groupId>
+            <artifactId>tasklist-model</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>

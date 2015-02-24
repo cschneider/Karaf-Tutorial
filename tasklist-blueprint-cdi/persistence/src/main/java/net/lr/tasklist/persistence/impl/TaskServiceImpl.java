@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
 import net.lr.tasklist.model.Task;
@@ -23,7 +23,7 @@ import org.ops4j.pax.cdi.api.Property;
 @Transactional
 public class TaskServiceImpl implements TaskService {
     
-    @PersistenceUnit(unitName="tasklist")
+    @PersistenceContext(unitName="tasklist")
     EntityManager em;
 
     @Override

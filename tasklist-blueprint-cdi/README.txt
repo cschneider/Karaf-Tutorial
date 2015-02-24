@@ -18,9 +18,10 @@ It shows how to:
 h1. Structure
 
 Module             | Description  
+-------------------|------------------------------------------------------------------------------------
 model              | Service interface and model classes shared between persistence and ui
 persistence        | Full persistence implementation using JPA and hibernate
-ui                 | Simple servlet based UI that connects to the persistence layer using an OSGi service reference and publishes a servlet 
+ui                 | Servlet based UI. Uses TaskService and publishes a servlet 
 
 h1. Build example
 
@@ -28,7 +29,7 @@ mvn clean install
 
 h1. Installation
 
-Download and start Karaf 3
+Download and start Karaf 3.0.3
 
 Start karaf and execute the commands below
 

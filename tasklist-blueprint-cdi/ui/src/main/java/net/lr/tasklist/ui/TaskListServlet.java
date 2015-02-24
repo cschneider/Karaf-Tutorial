@@ -34,13 +34,24 @@ public class TaskListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
         IOException {
+        String add = req.getParameter("add");
         String taskId = req.getParameter("taskId");
+        String title = req.getParameter("title");
         PrintWriter writer = resp.getWriter();
-        if (taskId != null && taskId.length() > 0) {
+        if (add != null) {
+            addTask(taskId, title);
+        } else if (taskId != null && taskId.length() > 0) {
             showTask(writer, taskId);
         } else {
             showTaskList(writer);
         }
+    }
+
+    private void addTask(String taskId, String title) {
+        Task task = new Task();
+        task.setId(new Integer(taskId));
+        task.setTitle(title);
+        taskService.addTask(task );
     }
 
     private void showTaskList(PrintWriter writer) {
