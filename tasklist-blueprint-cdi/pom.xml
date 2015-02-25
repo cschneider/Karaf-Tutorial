@@ -61,7 +61,7 @@
                 <plugin>
                     <groupId>org.apache.aries.blueprint</groupId>
                     <artifactId>blueprint-maven-plugin</artifactId>
-                    <version>1.0.2-SNAPSHOT</version>
+                    <version>1.1.0</version>
                     <executions>
                         <execution>
                             <goals>
@@ -91,5 +91,12 @@
             </plugin>
         </plugins>
     </build>
+    
+    <pluginRepositories>
+        <pluginRepository>
+            <id>aries rc</id>
+            <url>https://repository.apache.org/content/repositories/orgapachearies-1017/</url>
+        </pluginRepository>
+    </pluginRepositories>
 </project>
 
