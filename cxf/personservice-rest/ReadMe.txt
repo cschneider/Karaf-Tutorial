@@ -41,7 +41,7 @@ features:chooseurl cxf 2.7.10
 features:install http cxf-jaxrs
 
 Karaf 3
-feature:repo-add cxf 3.0.1-SNAPSHOT
+feature:repo-add cxf 3.0.4
 feature:install cxf-jaxrs
 
 install -s mvn:net.lr.tutorial.karaf.cxf.personrest/personrest-model/1.0-SNAPSHOT
