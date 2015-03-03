@@ -1,9 +1,11 @@
 package net.lr.tutorial.karaf.db.examplejpa;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 public class Person {
+    @Id
     private String name;
     private String twitterName;
     

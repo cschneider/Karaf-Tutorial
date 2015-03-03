@@ -20,11 +20,13 @@ import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.sql.DataSource;
 
 public class DbExample {
+
     DataSource dataSource;
 
     public void setDataSource(DataSource dataSource) {
@@ -32,38 +34,45 @@ public class DbExample {
     }
 
     public void test() throws Exception {
-        Connection con = dataSource.getConnection();
-        Statement stmt = null;
-        DatabaseMetaData dbMeta = con.getMetaData();
-        System.out.println("Using datasource " + dbMeta.getDatabaseProductName() + ", URL " + dbMeta.getURL());
-        try {
-            stmt = con.createStatement();
-            try {
-                stmt.execute("drop table person");
-            } catch (Exception e) {
-                // Ignore as it will fail the first time
-            }
+        try (
+            Connection con = dataSource.getConnection();
+            Statement stmt = con.createStatement()
+            ) {
+            writeInfos(con);
+            dropTable(con);
             stmt.execute("create table person (name varchar(100), twittername varchar(100))");
             stmt.execute("insert into person (name, twittername) values ('Christian Schneider', '@schneider_chris')");
             ResultSet rs = stmt.executeQuery("select * from person");
             ResultSetMetaData meta = rs.getMetaData();
             while (rs.next()) {
-                for (int c = 1; c <= meta.getColumnCount(); c++) {
-                    System.out.print(rs.getString(c) + ", ");
-                }
-                System.out.println();
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            throw e;
-        } finally {
-            if (stmt != null) {
-                stmt.close();
-            }
-            if (con != null) {
-                con.close();
+                writeResult(rs, meta.getColumnCount());
             }
         }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            throw e;
+        }
+    }
+
+    private void writeInfos(Connection con) throws SQLException {
+        DatabaseMetaData dbMeta = con.getMetaData();
+        System.out.println("Using datasource " + dbMeta.getDatabaseProductName() + ", URL " + dbMeta.getURL());
+    }
+
+    private void dropTable(Connection con) {
+        try (Statement stmt = con.createStatement()) {
+            stmt.execute("drop table person");
+        }
+        catch (Exception e) {
+            // Ignore as it will fail the first time
+        }
+    }
+
+    private void writeResult(ResultSet rs, int columnCount) throws SQLException {
+        for (int c = 1; c <= columnCount; c++) {
+            System.out.print(rs.getString(c) + ", ");
+        }
+        System.out.println();
     }
 
 }

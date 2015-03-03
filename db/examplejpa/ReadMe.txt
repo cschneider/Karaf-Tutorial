@@ -11,28 +11,10 @@ mvn clean install
 Installation
 ------------
 
-First see datasources project README and install the derby db and datasource into karaf 2.x. 
-For karaf 3 replace features:install with feature:install.
-
-install -s mvn:org.apache.derby/derby/10.8.2.2
-features:install jndi jpa transaction
-install -s mvn:org.apache.geronimo.specs/geronimo-jpa_2.0_spec/1.1
-install -s mvn:commons-collections/commons-collections/3.2.1
-install -s mvn:commons-pool/commons-pool/1.5.4
-install -s mvn:commons-dbcp/commons-dbcp/1.4
-install -s mvn:commons-lang/commons-lang/2.6
-install -s wrap:mvn:net.sourceforge.serp/serp/1.13.1
-install -s mvn:org.apache.openjpa/openjpa/2.1.1
+feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.5.0/xml/features
+feature:install transaction jndi pax-jdbc-h2 pax-jdbc-config pax-jdbc-pool-dbcp2 jpa/2.1.0 hibernate/4.3.6.Final
+cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/db/org.ops4j.datasource-person.cfg | tac -f etc/org.ops4j.datasource-person.cfg
 install -s mvn:net.lr.tutorial.karaf.db/db-examplejpa/1.0-SNAPSHOT
-
-Karaf 3:
-install -s mvn:org.apache.derby/derby/10.8.2.2
-feature:install jdbc
-jdbc:create -t derby derbyds
-
-feature:install openjpa jndi
-install -s mvn:net.lr.tutorial.karaf.db/db-examplejpa/1.0-SNAPSHOT
-
 
 Test
 ----

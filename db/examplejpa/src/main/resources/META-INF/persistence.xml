@@ -17,25 +17,18 @@
  specific language governing permissions and limitations
  under the License.   
 -->
-<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    version="1.0">
-
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    
     <persistence-unit name="person" transaction-type="JTA">
-        <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/derbyds)</jta-data-source>
-        <class>net.lr.tutorial.karaf.db.examplejpa.Person</class>
-        <exclude-unlisted-classes>true</exclude-unlisted-classes>
-       
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>osgi:service/person</jta-data-source>
         <properties>
-<!--             <property name="openjpa.BrokerImpl" value="non-finalizing" />  -->
-<!--             <property name="openjpa.Sequence" value="table(Table=OPENJPASEQ, Increment=100)"/> -->
-<!--             <property name="openjpa.jdbc.UpdateManager" value="org.apache.openjpa.jdbc.kernel.BatchingConstraintUpdateManager"/> -->
-            <!-- These properties are creating the database on the fly. We are using them to avoid users having
-            to create a database to run the sample. This is not something that should be used in production.
-            See also the create=true line in the ariestrader-derby-ds blueprint meta data -->
-            <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>
-            <property name="openjpa.jdbc.DBDictionary" value="derby"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
     </persistence-unit>
 
 </persistence>
+

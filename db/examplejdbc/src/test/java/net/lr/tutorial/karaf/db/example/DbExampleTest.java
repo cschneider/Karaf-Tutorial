@@ -16,16 +16,15 @@
  */
 package net.lr.tutorial.karaf.db.example;
 
-import org.apache.derby.jdbc.EmbeddedDataSource;
+import org.h2.jdbcx.JdbcDataSource;
 import org.junit.Test;
 
 public class DbExampleTest {
 
     @Test
     public void test() throws Exception {
-        EmbeddedDataSource ds = new EmbeddedDataSource();
-        ds.setDatabaseName("./target/test");
-        ds.setCreateDatabase("create");
+        JdbcDataSource ds = new JdbcDataSource();
+        ds.setURL("jdbc:h2:mem:person");
         DbExample example = new DbExample();
         example.setDataSource(ds);
         example.test();

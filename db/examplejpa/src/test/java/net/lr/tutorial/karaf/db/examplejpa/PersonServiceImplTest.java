@@ -14,7 +14,7 @@ import javax.persistence.Persistence;
 
 import net.lr.tutorial.karaf.db.examplejpa.impl.PersonServiceImpl;
 
-import org.apache.derby.jdbc.EmbeddedDataSource;
+import org.h2.jdbcx.JdbcDataSource;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -29,14 +29,8 @@ public class PersonServiceImplTest {
 
     @Test
     public void testWriteRead() throws Exception {
-        NamingManager.setInitialContextFactoryBuilder(new MyInitialcontextFactoryBuilder());
-        InitialContext ic = new InitialContext();
-        EmbeddedDataSource ds = new EmbeddedDataSource();
-        ds.setDatabaseName("target/test");
-        ds.setCreateDatabase("create");
-        ic.bind("osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=jdbc/derbyds)", ds);
         PersonServiceImpl personService = new PersonServiceImpl();
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("personTest", System.getProperties());
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("person", System.getProperties());
         EntityManager em = emf.createEntityManager();
         personService.setEntityManager(em);
         em.getTransaction().begin();

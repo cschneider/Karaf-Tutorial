@@ -23,3 +23,8 @@ The table should show your datasource "bundles" as "Active" and "Created". If no
 
 
 After the datasource is installed you can use the db-commands to check if it works.
+
+h1. Deprecation
+
+Using blueprint to declare a DataSource is still possible but is regarded as deprecated now.
+Instead use pax-jdbc-config to create a DataSource from config.
