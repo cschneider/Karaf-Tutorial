@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 
 import net.lr.tasklist.model.Task;
@@ -38,7 +39,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     public Collection<Task> getTasks() {
-        return em.createQuery("select t from Task t", Task.class).getResultList();
+        CriteriaQuery<Task> query = em.getCriteriaBuilder().createQuery(Task.class);
+        return em.createQuery(query.select(query.from(Task.class))).getResultList();
     }
 
     @Override
