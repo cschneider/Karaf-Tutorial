@@ -1,31 +1,21 @@
 package net.lr.tutorial.karaf.db.examplejpa;
 
-import java.util.Hashtable;
 import java.util.List;
 
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.naming.spi.InitialContextFactory;
-import javax.naming.spi.InitialContextFactoryBuilder;
-import javax.naming.spi.NamingManager;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import net.lr.tutorial.karaf.db.examplejpa.impl.PersonServiceImpl;
 
-import org.h2.jdbcx.JdbcDataSource;
 import org.junit.Assert;
 import org.junit.Test;
 
+/**
+ * To test a persistence class we need to create and inject the EntityManager and
+ * we need to manage the transaction by hand.
+ */
 public class PersonServiceImplTest {
-
-    public final class MyInitialcontextFactoryBuilder implements InitialContextFactoryBuilder {
-        @Override
-        public InitialContextFactory createInitialContextFactory(Hashtable<?, ?> environment) throws NamingException {
-            return new MyInitialContextFactory();
-        }
-    }
 
     @Test
     public void testWriteRead() throws Exception {
@@ -33,10 +23,12 @@ public class PersonServiceImplTest {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("person", System.getProperties());
         EntityManager em = emf.createEntityManager();
         personService.setEntityManager(em);
+        
         em.getTransaction().begin();
         personService.deleteAll();
         personService.add(new Person("Christian Schneider", "@schneider_chris"));
         em.getTransaction().commit();
+
         List<Person> persons = personService.getAll();
         Assert.assertEquals(1, persons.size());
         Assert.assertEquals("Christian Schneider", persons.get(0).getName());
