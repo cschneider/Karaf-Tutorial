@@ -13,6 +13,18 @@ public class Task {
     String description;
     Date dueDate;
     boolean finished;
+    
+    
+    public Task() {
+    }
+    
+
+    public Task(Integer id, String title, String description) {
+        super();
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
 
     public Integer getId() {
         return id;

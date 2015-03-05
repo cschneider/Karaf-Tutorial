@@ -18,17 +18,11 @@ public class InitHelper {
     @PostConstruct
     public void addDemoTasks() {
         try {
-            taskService.addTask(createTask());
+            Task task = new Task(1, "Just a sample task", "Some more info");
+            taskService.addTask(task);
         } catch (Exception e) {
             LOG.warn(e.getMessage(), e);
         }
     }
-    
-    private Task createTask() {
-        Task task1 = new Task();
-        task1.setId(1);
-        task1.setTitle("Just a sample task");
-        task1.setDescription("Some more info");
-        return task1;
-    }
+
 }
