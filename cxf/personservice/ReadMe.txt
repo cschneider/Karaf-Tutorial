@@ -37,12 +37,12 @@ Run the service in Karaf
 Download Apache Karaf here: http://karaf.apache.org/index/community/download.html
 
 Karaf 2.x
-features:chooseurl cxf 2.7.10
-features:install http cxf-jaxws
+features:chooseurl cxf 2.7.15
+features:install http http-whiteboard cxf-jaxws
 
 Karaf 3
-feature:repo-add cxf 3.1.0-SNAPSHOT
-feature:install cxf-jaxws
+feature:repo-add cxf 3.0.4
+feature:install http http-whiteboard cxf-jaxws
 
 install -s mvn:javax.annotation/javax.annotation-api/1.2
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
@@ -59,18 +59,9 @@ Test the service
 The person service should show up in the list of currently installed services that can be found here
 http://localhost:8181/cxf/ 
 
-List the known persons
-http://localhost:8181/cxf/person
-This should show one person "chris"
+The SOAP service can be reached at 
+http://localhost:8181/cxf/personService
 
-Now using a firefox extension like Poster or Httprequester you can add a person.
-Send the content of src/test/resources/person1.xml to the following url using PUT:
-http://localhost:8181/cxf/person/1001
-
-Or to this url using POST:
-http://localhost:8181/cxf/person
-
-Now the list of persons should show two persons
 
 Test the web UI
 -------------------------
