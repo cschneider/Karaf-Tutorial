@@ -45,7 +45,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void updateTask(Task task) {
-        em.persist(task);
+        em.merge(task);
     }
     
     @Override
