@@ -41,7 +41,7 @@ features:chooseurl cxf 2.7.15
 features:install http http-whiteboard cxf-jaxws
 
 Karaf 3
-feature:repo-add cxf 3.0.4
+feature:repo-add cxf 3.1.1
 feature:install http http-whiteboard cxf-jaxws
 
 install -s mvn:javax.annotation/javax.annotation-api/1.2
