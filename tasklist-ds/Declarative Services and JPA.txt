@@ -1,0 +1,189 @@
+Apache Karaf Tutorial Part 10 - Declarative Services
+
+This example shows how to use Declarative Services together with the new Aries JPA 2.0.
+
+You can find the full source code on github Karaf-Tutorial/tasklist-ds
+
+h2. Declarative Services
+
+Declarative Services (DS) is the biggest contender to blueprint. It is a slim service injection framework that is completely
+focused on OSGi. DS allows you to offer and consume OSGi services and to work with configurations.
+
+At the core DS works with xml files to define scr components and their dependencies. They typically live in the OSGI-INF
+directory and are announced in the Manifest using the header "Service-Component" with the path to the component descriptor
+file.  Luckily it is not necessary to directly work with this xml as there is also support for DS annotations. These are 
+processed by the maven-bundle-plugin. The only prerequisite is that they have to be enabled by a setting in the configuration
+ instructions of the plugin .
+
+<_dsannotations>*</_dsannotations>
+
+For more details see http://www.aqute.biz/Bnd/Components
+
+h2. DS vs Blueprint
+
+Let us look into DS by comparing it to the already better known blueprint. There are some important differences:
+
+1. Blueprint always works on a complete blueprint context. So the context will be started when all mandatory service deps are
+present. It then publishes all offered services. As a consequence a blueprint context can not depend on services it offers itself.
+DS works on so called Components. A component is a class that offers a service and can depend on other services and configuration.
+
+In DS you can manage each component separately like start and stop it. It is also possible that a bundle offers two components but
+only one is started as the dependencies of the other are not yet there.
+
+2. DS supports the OSGi service dynamics much more directly than blueprint.
+Lets look into a simple example:
+You have a DS and blueprint module component that offers a service A and depends on a mandatory service B.
+Blueprint will wait on the first start for the mandatory service to be available. If it does not come up it will fail after a timeout
+and will not be able to recover from this. Once the blueprint context is up it stays up even if the mandatory service goes away. 
+This is called service damping and has the goal to avoid restarting blueprint contexts too often. Services are injected into blueprint beans
+as dynamic proxies. Internally the proxy handles the replacement and unavailability of services. One problem this causes is that
+calls to a non available service will block the thread until a timeout and then throw a RuntimeException. 
+In DS on the other hand a component lifecycle is directly bound to dependent services. So a component will only be activated when all mandatory
+services are present and deactivated as soon as one goes away. The advantage is that the service injected into the component does not have to be 
+proxied and calls to it should always work.
+
+3. Every DS component must be a service. While blueprint can have internal beans that are just there to wire internal classes to each other this
+is not possible in DS. So DS is not a complete dependency injection framework and lacks many of the features blueprint offers in this regard.
+
+3. DS does not support support interceptors. In blueprint an extension namespace can introduce and interceptor that is always called
+before or after a bean. This is for example used for security as well as transation handling. For this reason DS did not support JPA very well
+as the spec like usage mandates to have interceptors. See below how jpa can work on DS.
+
+4. DS does not support extension namespaces. Aries blueprint has support for quite a few other Apache projects using
+extension namespaces. Examples are: Aries jpa, Aries transactions, Aries authz, CXF, Camel. So using these technologies in
+DS can be a bit more difficult.
+
+So if DS is a good match for your project depends on how much you need the service dynamics and how well you can integrate DS with other
+projects.
+
+h2. JEE and JPA 
+
+The JPA spec is based on JEE which has a very special thread and interceptor model. In JEE you use session beans with a container managed EntityManger
+to manipulate JPA Entities. It looks like this:
+
+@Stateless
+class TaskServiceImpl implements TaskService {
+
+  @PersistenceContext(unitName="tasklist")
+  private EntityManager em;
+
+  public Task getTask(Integer id) {
+    return em.find(Task.class, id);
+  }
+  
+}
+
+In JEE this calling getTask will by default participate/start a transaction. The calls go to a pool of TaskServiceImpl instances.
+Each of these instances will only be used by one thread at a time. As a result of this the EntityManager interface is not thread safe! 
+If the method call succeeds the transaction will be committed, if there is an exception it will be rolled back.
+
+So the advantage of this model is that it looks simple and allows pretty small code. On the other hand it is a bit difficult to
+test such code outside a container as you have to mimic the way the container works with this class. It is also difficult to access e.g. em
+ as it is private and there is not setter.
+ 
+Blueprint supports a coding style similar to the JEE example and implements this using a special jpa and tx namespace and
+interceptors that handle the transaction / em management.
+
+h2. DS and JPA
+
+In DS each component is a singleton. So there is only one instance of it that needs to cope with multi threaded access.
+So working with the plain JEE concepts for JPA is not possible in DS.
+
+Of course it would be possible to inject an EntityManagerFactory and handle the EntityManager lifecycle and transactions by
+hand but this results in quite verbose and error prone code. 
+
+Aries JPA 2.0.0 is the first version that offers special support for frameworks like DS that do not offer interceptors.
+The solution here is the concept of a JPATemplate together with support for closures in Java 8.
+
+To see how the code looks like peek below at chapter persistence.
+
+Instead of the EntityManager we inject a thread safe JpaTemplate into our code. 
+We need to put the jpa code inside a closure and run it with jpa.txEpr. The JPATemplate will
+then guarantee the same environment like JEE inside the closure. As each closure runs as its own
+instance there is one em per thread. The code will also participate/create a transaction and the transaction 
+commit/rollback also works like in JEE. 
+
+So this requires a little more code but the advantage is that there is no need for a special framework integration.
+The code can also be tested much easier.
+
+h2. Structure
+    features
+    model
+    persistence
+    ui
+
+h2. Features
+
+Defines the karaf features to install the example as well as all necessary dependencies.
+
+h2. Model
+
+This module defines the Task JPA entity, a TaskService interface and the persistence.xml.
+For a detailed description of model see the tasklist-blueprint example. The model is exactly the same here.
+
+h3. Persistence
+
+@Component
+public class TaskServiceImpl implements TaskService {
+
+    private JpaTemplate jpa;
+
+    @Override
+    public Task getTask(Integer id) {
+        return jpa.txExpr(em -> em.find(Task.class, id));
+    }
+    
+    @Reference(target = "(osgi.unit.name=tasklist)")
+    public void setJpa(JpaTemplate jpa) {
+        this.jpa = jpa;
+    }
+}
+
+We define that we need an OSGi service with interface TaskService and a property osgi.unit.name with the value "tasklist".
+
+The class InitHelper creates and persists a first task so the UI has something to show. 
+@Reference TaskService taskService injects the TaskService into the field taskService.
+@Activate makes sure that addDemoTasks() is called after injection of this component.
+
+Another interesting thing in the module is the test TaskServiceImplTest. It runs outside OSGi and uses a special 
+persistence.xml for testing to create the EntityManagerFactory. It also shows how to instantiate a ResourceLocalJpaTemplate
+to avoid having to install a JTA transaction manager for the test. The test code shows that indeed the TaskServiceImpl can
+be used as plain java code without any special tricks. 
+
+h2. UI
+
+The tasklist-ui module uses the TaskService as an OSGi service and publishes a Servlet as an OSGi service. The Pax-web
+whiteboard bundle will then pick up the exported servlet and publish it using the HttpService so it is available on http.
+
+TasklistServlet
+@Component(immediate = true,
+service = { Servlet.class }, 
+property = { "alias:String=/tasklist" }
+) 
+public class TaskListServlet extends HttpServlet {
+    private TaskService taskService;
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
+        IOException {
+        // Actual code omitted
+    }
+    
+    @Reference
+    public void setTaskService(TaskService taskService) {
+        this.taskService = taskService;
+    }
+}
+
+The above snippet shows how to specify which interface to use when exporting a service as well as how to define service properties.
+
+The TaskListServlet is exported with the interface javax.servlet.Servlet with the service property alias="/tasklist". 
+So it is available on the url http://localhost:8181/tasklist.
+
+
+
+
+h2. Build
+
+mvn clean install
+Installation and test
+
+See Readme.txt on github.

@@ -1,0 +1,41 @@
+h1. Overview
+
+Example for the "Karaf Tutorial 10 - Declarative services and JPA" 
+
+In this tutorial we reimplement the TaskService example using declarative services (DS).
+Aries JPA 2 is used to bring jpa support to DS.
+
+The tutorial skips details about DataSource creation and the model bundle as they are exactly the same as in the blueprint
+example. 
+
+- Component using managing JPA entities and providing a service
+- Use the whiteboard pattern and the pax-web whiteboard extender to publish Servlets
+
+h1. Structure
+
+Module             | Description  
+-------------------|------------------------------------------------------------------------------------
+model              | Service interface and model classes shared between persistence and ui
+persistence        | Full persistence implementation using JPA and hibernate
+ui                 | Servlet based UI. Uses TaskService and publishes a servlet 
+
+h1. Build example
+Make sure to use JDK 8.
+mvn clean install
+
+h1. Installation
+Make sure you use JDK 8.
+Download and extract Karaf 4.0.0.
+
+Start karaf and execute the commands below
+
+# Install H2 DB annd create DataSource tasklist
+cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-blueprint-cdi/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
+feature:repo-add mvn:net.lr.tasklist.ds/tasklist-features/1.0.0-SNAPSHOT/xml
+feature:install example-tasklist-ds-persistence example-tasklist-ds-ui
+
+h1. Test
+
+Open the url below in your browser.
+http://localhost:8181/tasklist
+
