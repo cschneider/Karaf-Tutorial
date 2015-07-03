@@ -1,8 +1,14 @@
 package net.lr.tasklist.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Task {
+public class Task implements Serializable {
+	/**
+	 * Only needed for ECF generic transport 
+	 */
+	private static final long serialVersionUID = 5117254163782139591L;
+
 	String id;
 	String title;
 	String description;

@@ -1,5 +1,6 @@
 package net.lr.tasklist.persistence.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +38,8 @@ public class TaskServiceImpl implements TaskService {
 
 	@Override
 	public Collection<Task> getTasks() {
-		return taskMap.values();
+		// taskMap.values is not serializable
+		return new ArrayList<Task>(taskMap.values());
 	}
 
     @Override
