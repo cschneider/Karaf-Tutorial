@@ -36,13 +36,9 @@ Run the service in Karaf
 
 Download Apache Karaf here: http://karaf.apache.org/index/community/download.html
 
-Karaf 2.x
-features:chooseurl cxf 2.7.10
-features:install http cxf-jaxrs
-
-Karaf 3
-feature:repo-add cxf 3.0.4
-feature:install cxf-jaxrs
+Karaf 3, 4
+feature:repo-add cxf 3.1.0
+feature:install cxf-jaxrs http
 
 install -s mvn:net.lr.tutorial.karaf.cxf.personrest/personrest-model/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personrest/personrest-server/1.0-SNAPSHOT
@@ -59,7 +55,7 @@ http://localhost:8181/cxf/person
 This should show one person "chris"
 
 Now using a firefox extension like Poster or Httprequester you can add a person.
-Send the content of src/test/resources/person1.xml to the following url using PUT:
+Send the content of server/src/test/resources/person1.xml to the following url using PUT:
 http://localhost:8181/cxf/person/1001
 
 Or to this url using POST:
