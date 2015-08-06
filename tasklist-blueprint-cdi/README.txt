@@ -29,7 +29,8 @@ mvn clean install
 
 h1. Installation
 
-Download and start Karaf 3.0.3
+Download and start Karaf 3.0.3. 
+This example does not yet work on karaf 4.
 
 Start karaf and execute the commands below
 
