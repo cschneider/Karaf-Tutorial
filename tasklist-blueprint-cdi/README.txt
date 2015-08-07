@@ -30,7 +30,9 @@ mvn clean install
 h1. Installation
 
 Download and start Karaf 3.0.3. 
-This example does not yet work on karaf 4.
+
+For karaf 4 you have to change feature.xml
+<feature version="2.1.0">jpa</feature> into <feature version="1.0.4">jpa</feature>
 
 Start karaf and execute the commands below
 
