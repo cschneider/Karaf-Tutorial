@@ -38,7 +38,7 @@ Start karaf and execute the commands below
 
 # Install H2 DB annd create DataSource tasklist
 cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-blueprint-cdi/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
-feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.5.0/xml/features
+feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.6.0/xml/features
 feature:install transaction pax-jdbc-h2 pax-jdbc-config pax-jdbc-pool-dbcp2
 service:list DataSource
 
