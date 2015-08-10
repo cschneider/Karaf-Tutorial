@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="tasklist-cdi-${pom.version}">
+    <repository>mvn:org.apache.cxf.karaf/apache-cxf/3.1.1/xml/features</repository>
 
     <feature name="example-tasklist-cdi" version="${pom.version}">
         <feature>example-tasklist-cdi-persistence</feature>
@@ -16,6 +17,12 @@
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
     </feature>
+
+    <feature name="example-tasklist-cdi-service" version="${pom.version}">
+        <feature>cxf-jaxrs</feature>
+        <bundle>mvn:net.lr.tasklist.cdi/tasklist-service/${pom.version}</bundle>
+    </feature>
+
     
     <feature name="example-tasklist-cdi-ui" version="${pom.version}">
         <feature>http</feature>
