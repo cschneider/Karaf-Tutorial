@@ -29,16 +29,13 @@ mvn clean install
 
 h1. Installation
 
-Download and start Karaf 3.0.3. 
-
-For karaf 4 you have to change feature.xml
-<feature version="2.1.0">jpa</feature> into <feature version="1.0.4">jpa</feature>
+Download and start Karaf 4.0.1 
 
 Start karaf and execute the commands below
 
-# Install H2 DB annd create DataSource tasklist
+# Install H2 DB and create DataSource tasklist
 cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-blueprint-cdi/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
-feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.6.0/xml/features
+feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.7.0-SNAPSHOT/xml/features
 feature:install transaction pax-jdbc-h2 pax-jdbc-config pax-jdbc-pool-dbcp2
 service:list DataSource
 

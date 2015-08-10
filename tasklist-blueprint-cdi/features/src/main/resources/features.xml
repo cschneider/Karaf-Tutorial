@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<features name="tasklist-cdi-${pom.version}">
+<features name="tasklist-cdi-${pom.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
     <repository>mvn:org.apache.cxf.karaf/apache-cxf/3.1.1/xml/features</repository>
 
     <feature name="example-tasklist-cdi" version="${pom.version}">
@@ -7,15 +7,15 @@
         <feature>example-tasklist-cdi-ui</feature>
     </feature>
     
-    <!-- Not using jpa feature directly to avoid the jpa 2.0 bundle -->
     <feature name="example-tasklist-cdi-persistence" version="${pom.version}">
         <feature>jndi</feature>
         <feature>transaction</feature>
-        <feature version="2.1.0">jpa</feature>
+        <feature>jpa</feature>
         <feature version="4.3.6.Final">hibernate</feature>
-
+<!-- 
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
+         -->
     </feature>
 
     <feature name="example-tasklist-cdi-service" version="${pom.version}">
