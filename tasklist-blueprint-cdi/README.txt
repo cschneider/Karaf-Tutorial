@@ -45,6 +45,9 @@ service:list DataSource
 feature:repo-add mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
 feature:install example-tasklist-cdi-persistence example-tasklist-cdi-ui
 
+# If you also want to use the rest service do
+feature:install example-tasklist-cdi-service
+
 h1. Test
 
 Open the url below in your browser.
@@ -52,7 +55,7 @@ http://localhost:8181/tasklist
 
 http://localhost:8181/cxf/tasklistRest
 
-Create Task2
+Create Task2 using the rest service
 curl -i -X POST -H "Content-Type: application/json" -d '{task:{"id":2,"title":"Task2"}}'  http://localhost:8181/cxf/tasklistRest
 
 Retrieve Task2
