@@ -12,10 +12,8 @@
         <feature>transaction</feature>
         <feature>jpa</feature>
         <feature version="4.3.6.Final">hibernate</feature>
-<!-- 
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
-         -->
     </feature>
 
     <feature name="example-tasklist-cdi-service" version="${pom.version}">
