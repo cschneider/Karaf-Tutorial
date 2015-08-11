@@ -22,7 +22,7 @@
                     <instructions>
                         <Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
                         <!-- Needed for runtime enhancement -->
-                        <Dynamic-Import-Package>*, org.hibernate.proxy, javassist.util.proxy</Dynamic-Import-Package>
+                        <Import-Package>*, org.hibernate.proxy, javassist.util.proxy</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
