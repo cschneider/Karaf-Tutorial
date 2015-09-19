@@ -50,4 +50,4 @@ Create Task2 using the rest service
 curl -i -X POST -H "Content-Type: application/json" -d '{task:{"id":2,"title":"Task2"}}'  http://localhost:8181/cxf/tasklistRest
 
 Retrieve Task2
-curl -i http://localhost:8181/cxf/tasklistRest/3
+curl -i http://localhost:8181/cxf/tasklistRest/2
