@@ -1,0 +1,6 @@
+Meta-Persistence: \
+    META-INF/persistence.xml
+Import-Package: \
+    org.hibernate.proxy, \
+    javassist.util.proxy, \
+    *

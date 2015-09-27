@@ -98,10 +98,9 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <version>3.0.0</version>
                 <extensions>true</extensions>
-                <inherited>true</inherited>
                 <configuration>
                     <instructions>
-                        <_dsannotations>*</_dsannotations>
+                        <_include>osgi.bnd</_include>
                     </instructions>
                 </configuration>
             </plugin>

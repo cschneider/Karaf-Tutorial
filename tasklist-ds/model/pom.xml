@@ -13,19 +13,4 @@
     <packaging>bundle</packaging>
     <artifactId>tasklist-model</artifactId>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <instructions>
-                        <Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
-                        <!-- Needed for runtime enhancement -->
-                        <Dynamic-Import-Package>org.hibernate.proxy, javassist.util.proxy</Dynamic-Import-Package>
-                    </instructions>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
