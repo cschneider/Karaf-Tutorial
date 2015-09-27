@@ -21,6 +21,7 @@ import org.ops4j.pax.cdi.api.Property;
     @Property(name = "service.exported.interfaces", value = "*")
 })
 @Singleton
+@Transactional
 public class TaskServiceImpl implements TaskService {
     
     @PersistenceContext(unitName="tasklist")
@@ -33,7 +34,6 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    @Transactional
     public void addTask(Task task) {
         em.persist(task);
         em.flush();
@@ -45,13 +45,11 @@ public class TaskServiceImpl implements TaskService {
         return em.createQuery(query.select(query.from(Task.class))).getResultList();
     }
 
-    @Transactional
     @Override
     public void updateTask(Task task) {
         em.merge(task);
     }
     
-    @Transactional
     @Override
     public void deleteTask(Integer id) {
         em.remove(getTask(id));

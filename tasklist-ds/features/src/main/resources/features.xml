@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="tasklist-cdi-${pom.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.1">
 
-	<repository>mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.6.0/xml/features</repository>
+    <repository>mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.7.0/xml/features</repository>
 
     <feature name="example-tasklist-ds" version="${pom.version}">
         <feature>example-tasklist-ds-persistence</feature>
         <feature>example-tasklist-ds-ui</feature>
     </feature>
-    
+
     <!-- Not using jpa feature directly to avoid the jpa 2.0 bundle -->
     <feature name="example-tasklist-ds-persistence" version="${pom.version}">
-    	<feature>scr</feature>
-        <feature version="2.0.0">jpa</feature>
-        <feature version="4.3.6.Final">hibernate</feature>
-		<feature>pax-jdbc-h2</feature>
-		<feature>pax-jdbc-config</feature>
-		<feature>pax-jdbc-pool-dbcp2</feature>  
+        <feature>scr</feature>
+        <feature version="[2.2,3)">jpa</feature>
+        <feature version="[4.3,5)">hibernate</feature>
+        <feature>pax-jdbc-h2</feature>
+        <feature>pax-jdbc-config</feature>
+        <feature>pax-jdbc-pool-dbcp2</feature>
         <bundle>mvn:net.lr.tasklist.ds/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.ds/tasklist-persistence/${pom.version}</bundle>
     </feature>
-    
+
     <feature name="example-tasklist-ds-ui" version="${pom.version}">
-    	<feature>scr</feature>
+        <feature>scr</feature>
         <feature>http-whiteboard</feature>
         <feature>persistence-api</feature>
         <bundle>mvn:net.lr.tasklist.ds/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.ds/tasklist-ui/${pom.version}</bundle>
     </feature>
-   
+
 </features>

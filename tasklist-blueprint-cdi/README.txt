@@ -35,9 +35,8 @@ Start karaf and execute the commands below
 
 # Install H2 DB and create DataSource tasklist
 cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-blueprint-cdi/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
-feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.7.0-SNAPSHOT/xml/features
 feature:repo-add mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
-feature:install transaction pax-jdbc-h2 pax-jdbc-config pax-jdbc-pool-dbcp2 example-tasklist-cdi-persistence example-tasklist-cdi-ui example-tasklist-cdi-service
+feature:install example-tasklist-cdi-persistence example-tasklist-cdi-ui example-tasklist-cdi-service
 
 h1. Test
 

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="tasklist-cdi-${pom.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
     <repository>mvn:org.apache.cxf.karaf/apache-cxf/3.1.1/xml/features</repository>
+    <repository>mvn:org.apache.aries.jpa/jpa-features/2.2.0-SNAPSHOT/xml/features</repository>
+    <repository>mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.7.0/xml/features</repository>
 
     <feature name="example-tasklist-cdi" version="${pom.version}">
         <feature>example-tasklist-cdi-persistence</feature>
@@ -8,10 +10,13 @@
     </feature>
     
     <feature name="example-tasklist-cdi-persistence" version="${pom.version}">
+        <feature>pax-jdbc-h2</feature>
+        <feature>pax-jdbc-config</feature>
+        <feature>pax-jdbc-pool-dbcp2</feature>
         <feature>jndi</feature>
         <feature>transaction</feature>
-        <feature>jpa</feature>
-        <feature version="4.3.6.Final">hibernate</feature>
+        <feature version="[2.2, 2.3)">jpa</feature>
+        <feature version="[4.3, 4.4)">hibernate</feature>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
     </feature>

@@ -24,13 +24,15 @@ public class InitHelper {
             @Override
             public void run() {
                 try {
-                    addSampleTask();
+                    if (taskService.getTask(1) == null) {
+                        addSampleTask();
+                    }
                 } catch (Exception e) {
                     LOG.warn(e.getMessage(), e);
                 }
             }
         });
-
+ 
     }
 
     private void addSampleTask() {

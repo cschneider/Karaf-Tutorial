@@ -1,4 +1,4 @@
-package net.lr.tasklist.service.impl;
+package net.lr.tasklist.service;
 
 import java.net.URI;
 import java.util.Collection;
@@ -14,9 +14,14 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
+@Component(service=TaskServiceRest.class)
+@Path("tasklist")
 public class TaskServiceRest {
     TaskService taskService;
     
@@ -53,6 +58,11 @@ public class TaskServiceRest {
     @Path("{id}")
     public void deleteTask(@PathParam("id") Integer id) {
         taskService.deleteTask(id);
+    }
+    
+    @Reference
+    public void setTaskService(TaskService taskService) {
+        this.taskService = taskService;
     }
 
 }
