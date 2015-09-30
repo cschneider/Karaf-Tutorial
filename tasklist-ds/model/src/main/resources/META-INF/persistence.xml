@@ -5,12 +5,7 @@
     
     <persistence-unit name="tasklist" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        
-        <!-- Only used when transaction-type=JTA -->
         <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=tasklist)</jta-data-source>
-        
-        <!-- Only used when transaction-type=RESOURCE_LOCAL -->
-        <non-jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=tasklist)</non-jta-data-source>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>

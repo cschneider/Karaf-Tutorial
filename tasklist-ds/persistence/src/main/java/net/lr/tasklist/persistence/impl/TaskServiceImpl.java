@@ -11,10 +11,7 @@ import org.apache.aries.jpa.template.JpaTemplate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(
-		// Allows to export this service using distributed OSGi
-		property="osgi.remote.interfaces:String=*"
-)
+@Component
 public class TaskServiceImpl implements TaskService {
 
     private JpaTemplate jpa;
@@ -48,7 +45,7 @@ public class TaskServiceImpl implements TaskService {
     public void deleteTask(Integer id) {
         jpa.tx(em -> em.remove(getTask(id)));
     }
-    
+
     @Reference(target = "(osgi.unit.name=tasklist)")
     public void setJpa(JpaTemplate jpa) {
         this.jpa = jpa;
