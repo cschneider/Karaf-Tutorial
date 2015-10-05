@@ -20,7 +20,7 @@ public class TaskServiceImplTest {
         EntityManager em = emf.createEntityManager();
         JpaTemplate jpaTemplate = new SimpleJpaTemplate(em);
         TaskServiceImpl taskService = new TaskServiceImpl();
-        taskService.setJpa(jpaTemplate);
+        taskService.jpa = jpaTemplate;
 
         Task task = new Task();
         task.setId(1);

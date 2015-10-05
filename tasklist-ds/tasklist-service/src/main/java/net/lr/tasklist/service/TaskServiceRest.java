@@ -23,6 +23,7 @@ import net.lr.tasklist.model.TaskService;
 @Component(service=TaskServiceRest.class)
 @Path("tasklist")
 public class TaskServiceRest {
+    @Reference
     TaskService taskService;
     
     @Context
@@ -58,11 +59,6 @@ public class TaskServiceRest {
     @Path("{id}")
     public void deleteTask(@PathParam("id") Integer id) {
         taskService.deleteTask(id);
-    }
-    
-    @Reference
-    public void setTaskService(TaskService taskService) {
-        this.taskService = taskService;
     }
 
 }

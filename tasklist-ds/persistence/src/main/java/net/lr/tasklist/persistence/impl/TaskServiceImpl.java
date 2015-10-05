@@ -14,7 +14,8 @@ import org.osgi.service.component.annotations.Reference;
 @Component
 public class TaskServiceImpl implements TaskService {
 
-    private JpaTemplate jpa;
+    @Reference(target = "(osgi.unit.name=tasklist)")
+    JpaTemplate jpa;
 
     @Override
     public Task getTask(Integer id) {
@@ -44,11 +45,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Integer id) {
         jpa.tx(em -> em.remove(getTask(id)));
-    }
-
-    @Reference(target = "(osgi.unit.name=tasklist)")
-    public void setJpa(JpaTemplate jpa) {
-        this.jpa = jpa;
     }
 
 }

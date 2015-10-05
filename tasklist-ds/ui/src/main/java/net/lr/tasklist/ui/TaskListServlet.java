@@ -25,6 +25,7 @@ property = { "alias:String=/tasklist" }
 )
 @Designate(ocd = TaskUIConfig.class)
 public class TaskListServlet extends HttpServlet {
+    @Reference
     private TaskService taskService;
 
     private String docTitle;
@@ -84,11 +85,6 @@ public class TaskListServlet extends HttpServlet {
             writer.println("Task with id " + taskId + " not found");
         }
 
-    }
-
-    @Reference
-    public void setTaskService(TaskService taskService) {
-        this.taskService = taskService;
     }
 
 }

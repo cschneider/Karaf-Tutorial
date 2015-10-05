@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 @Component
 public class InitHelper {
     Logger LOG = LoggerFactory.getLogger(InitHelper.class);
+    
+    @Reference
     TaskService taskService;
     
     @Activate
@@ -22,10 +24,5 @@ public class InitHelper {
         } catch (Exception e) {
             LOG.warn(e.getMessage(), e);
         }
-    }
-
-    @Reference
-    public void setTaskService(TaskService taskService) {
-        this.taskService = taskService;
     }
 }
