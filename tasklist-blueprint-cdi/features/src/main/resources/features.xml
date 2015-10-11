@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <features name="tasklist-cdi-${pom.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://karaf.apache.org/xmlns/features/v1.3.0 http://karaf.apache.org/xmlns/features/v1.3.0">
     <repository>mvn:org.apache.cxf.karaf/apache-cxf/3.1.1/xml/features</repository>
-    <repository>mvn:org.apache.aries.jpa/jpa-features/2.2.0-SNAPSHOT/xml/features</repository>
     <repository>mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.7.0/xml/features</repository>
 
     <feature name="example-tasklist-cdi" version="${pom.version}">

@@ -50,3 +50,5 @@ curl -i -X POST -H "Content-Type: application/json" -d '{task:{"id":2,"title":"T
 
 Retrieve Task2
 curl -i http://localhost:8181/cxf/tasklistRest/2
+
+

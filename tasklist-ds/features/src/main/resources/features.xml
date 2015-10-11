@@ -25,6 +25,7 @@
     <feature name="example-tasklist-ds-service" version="${pom.version}">
         <feature>scr</feature>
         <feature>jax-rs-connector</feature>
+        <feature>jax-rs-provider-gson</feature>
         <bundle>mvn:net.lr.tasklist.ds/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.ds/tasklist-service/${pom.version}</bundle>
     </feature>

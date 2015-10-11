@@ -24,6 +24,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void addTask(Task task) {
+        if (task.getId() == null) {
+            throw new IllegalArgumentException("Id property must be set");
+        }
+        System.err.println("Adding task " + task.getId());
         jpa.tx(em -> {
             em.persist(task);
             em.flush();
