@@ -6,19 +6,16 @@
 <script src= "app.js"></script>
 <body>
 
-
-
 <div class="container-fluid" ng-app="myApp" ng-controller="TaskController as taskCtrl">
 <h1>Tasks</h1> 
 <div>
 <button class="btn btn-success" ng-click="reload()"><span class="glyphicon glyphicon-refresh"></span> Reload</button>
 <button class="btn btn-success" ng-click="newTask()"><span class="glyphicon glyphicon-plus"></span> New Task</button>
 </div>
-<hr>
 <table class="table table-striped">
 <thead>
   <tr>
-    <th>Del</th>
+    <th>Edit</th>
     <th>Id</th>
     <th>Title</th>
     <th>Description</th>
@@ -33,8 +30,6 @@
   </tr>
 </tbody>
 </table>
-
-<hr>
 
 <h2>Task</h2>
 

@@ -3,7 +3,6 @@
     app.factory("Post", function($resource) {
 	return $resource("/cxf/tasklistRest");
     });
-
     app.controller('TaskController', function($scope, $http) {
         $scope.task = {};
     	$scope.reload = function() {
