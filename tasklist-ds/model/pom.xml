@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>net.lr.tasklist.ds</groupId>
-		<version>1.0.0-SNAPSHOT</version>
-		<artifactId>tasklist-ds</artifactId>
-		<relativePath>..</relativePath>
-	</parent>
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>net.lr.tasklist.ds</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>tasklist-ds</artifactId>
+        <relativePath>..</relativePath>
+    </parent>
 
-	<packaging>bundle</packaging>
-	<artifactId>tasklist-model</artifactId>
+    <packaging>bundle</packaging>
+    <artifactId>tasklist-model</artifactId>
 
-	<build>
-		<plugins>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <configuration>
-                    <instructions>
-                        <Meta-Persistence>META-INF/persistence.xml</Meta-Persistence>
-                        <!-- Needed for runtime enhancement -->
-                        <Dynamic-Import-Package>org.hibernate.proxy, javassist.util.proxy</Dynamic-Import-Package>
-                    </instructions>
-                </configuration>
-            </plugin>
-		</plugins>
-	</build>
+    <dependencies>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.1-api</artifactId>
+        </dependency>
+    </dependencies>
 </project>

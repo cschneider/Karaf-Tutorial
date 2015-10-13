@@ -14,17 +14,31 @@ import javax.servlet.http.HttpServletResponse;
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.metatype.annotations.Designate;
 
 @Component(
 service = { Servlet.class }, 
 property = { "alias:String=/tasklist" }
-) 
+)
+@Designate(ocd = TaskUIConfig.class)
 public class TaskListServlet extends HttpServlet {
+    @Reference
     private TaskService taskService;
 
+    private String docTitle;
+
+    private int numTasks;
+
     private static final long serialVersionUID = 34992072289535683L;
+    
+    @Activate
+    public void activate(TaskUIConfig config) {
+        this.docTitle = config.title();
+        this.numTasks = config.numTasks();
+    }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,
@@ -50,11 +64,12 @@ public class TaskListServlet extends HttpServlet {
     }
 
     private void showTaskList(PrintWriter writer) {
-        writer.println("<h1>Tasks</h1>");
+        writer.println("<h1>" + docTitle + "</h1>");
         Collection<Task> tasks = taskService.getTasks();
         for (Task task : tasks) {
             writer.println("<a href=\"?taskId=" + task.getId() + "\">" + task.getTitle() + "</a><BR/>");
         }
+        writer.println("<BR>\nShowing up to " + numTasks + " tasks");
     }
 
     private void showTask(PrintWriter writer, String taskId) {
@@ -70,11 +85,6 @@ public class TaskListServlet extends HttpServlet {
             writer.println("Task with id " + taskId + " not found");
         }
 
-    }
-
-    @Reference
-    public void setTaskService(TaskService taskService) {
-        this.taskService = taskService;
     }
 
 }

@@ -11,13 +11,11 @@ import org.apache.aries.jpa.template.JpaTemplate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
-@Component(
-		// Allows to export this service using distributed OSGi
-		property="osgi.remote.interfaces:String=*"
-)
+@Component
 public class TaskServiceImpl implements TaskService {
 
-    private JpaTemplate jpa;
+    @Reference(target = "(osgi.unit.name=tasklist)")
+    JpaTemplate jpa;
 
     @Override
     public Task getTask(Integer id) {
@@ -26,6 +24,10 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void addTask(Task task) {
+        if (task.getId() == null) {
+            throw new IllegalArgumentException("Id property must be set");
+        }
+        System.err.println("Adding task " + task.getId());
         jpa.tx(em -> {
             em.persist(task);
             em.flush();
@@ -47,11 +49,6 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteTask(Integer id) {
         jpa.tx(em -> em.remove(getTask(id)));
-    }
-    
-    @Reference(target = "(osgi.unit.name=tasklist)")
-    public void setJpa(JpaTemplate jpa) {
-        this.jpa = jpa;
     }
 
 }

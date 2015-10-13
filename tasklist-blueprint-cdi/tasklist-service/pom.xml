@@ -49,21 +49,10 @@
             <plugin>
                 <groupId>org.apache.aries.blueprint</groupId>
                 <artifactId>blueprint-maven-plugin</artifactId>
-                <version>1.2.0-SNAPSHOT</version>
                 <configuration>
                     <scanPaths>
                         <scanPath>net.lr.tasklist.service.impl</scanPath>
                     </scanPaths>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
-                <version>2.5.3</version>
-                <extensions>true</extensions>
-                <configuration>
-                   <instructions>
-                   </instructions>
                 </configuration>
             </plugin>
         </plugins>

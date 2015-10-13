@@ -28,6 +28,7 @@ public class TaskServiceImpl implements TaskService {
     EntityManager em;
 
     @Override
+    @Transactional(Transactional.TxType.SUPPORTS)
     public Task getTask(Integer id) {
         return em.find(Task.class, id);
     }
@@ -38,6 +39,7 @@ public class TaskServiceImpl implements TaskService {
         em.flush();
     }
 
+    @Transactional(Transactional.TxType.SUPPORTS)
     public Collection<Task> getTasks() {
         CriteriaQuery<Task> query = em.getCriteriaBuilder().createQuery(Task.class);
         return em.createQuery(query.select(query.from(Task.class))).getResultList();

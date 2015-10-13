@@ -29,24 +29,14 @@ mvn clean install
 
 h1. Installation
 
-Download and start Karaf 3.0.3. 
-
-For karaf 4 you have to change feature.xml
-<feature version="2.1.0">jpa</feature> into <feature version="1.0.4">jpa</feature>
+Download and start Karaf 4.0.1 
 
 Start karaf and execute the commands below
 
-# Install H2 DB annd create DataSource tasklist
+# Install H2 DB and create DataSource tasklist
 cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-blueprint-cdi/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
-feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.6.0/xml/features
-feature:install transaction pax-jdbc-h2 pax-jdbc-config pax-jdbc-pool-dbcp2
-service:list DataSource
-
 feature:repo-add mvn:net.lr.tasklist.cdi/tasklist-features/1.0.0-SNAPSHOT/xml
-feature:install example-tasklist-cdi-persistence example-tasklist-cdi-ui
-
-# If you also want to use the rest service do
-feature:install example-tasklist-cdi-service
+feature:install example-tasklist-cdi-persistence example-tasklist-cdi-ui example-tasklist-cdi-service
 
 h1. Test
 
@@ -59,4 +49,6 @@ Create Task2 using the rest service
 curl -i -X POST -H "Content-Type: application/json" -d '{task:{"id":2,"title":"Task2"}}'  http://localhost:8181/cxf/tasklistRest
 
 Retrieve Task2
-curl -i http://localhost:8181/cxf/tasklistRest/3
+curl -i http://localhost:8181/cxf/tasklistRest/2
+
+

@@ -2,42 +2,40 @@ package net.lr.tasklist.persistence.impl;
 
 import java.util.Collection;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-import net.lr.tasklist.model.Task;
-
-import org.apache.aries.jpa.supplier.EmSupplier;
-import org.apache.aries.jpa.support.impl.EMSupplierImpl;
-import org.apache.aries.jpa.support.impl.ResourceLocalJpaTemplate;
 import org.apache.aries.jpa.template.JpaTemplate;
 import org.junit.Assert;
 import org.junit.Test;
+
+import net.lr.tasklist.model.Task;
 
 public class TaskServiceImplTest {
 
     @Test
     public void testWriteRead() throws Exception {
-        JpaTemplate jpaTemplate = createJpaTemplate();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tasklist", System.getProperties());
+        EntityManager em = emf.createEntityManager();
+        JpaTemplate jpaTemplate = new SimpleJpaTemplate(em);
         TaskServiceImpl taskService = new TaskServiceImpl();
-        taskService.setJpa(jpaTemplate);
+        taskService.jpa = jpaTemplate;
 
         Task task = new Task();
         task.setId(1);
         task.setTitle("Test task");
+        
+        em.getTransaction().begin();
         taskService.addTask(task);
+        em.getTransaction().commit();
         Collection<Task> persons = taskService.getTasks();
 
         Assert.assertEquals(1, persons.size());
         Task task1 = persons.iterator().next();
         Assert.assertEquals(new Integer(1), task1.getId());
         Assert.assertEquals("Test task", task1.getTitle());
-    }
-
-    private ResourceLocalJpaTemplate createJpaTemplate() {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("tasklist", System.getProperties());
-        EmSupplier emSupplier = new EMSupplierImpl(emf);
-        return new ResourceLocalJpaTemplate(emSupplier);
+        em.close();
     }
 
 }
