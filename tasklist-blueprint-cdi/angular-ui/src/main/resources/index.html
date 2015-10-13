@@ -1,32 +1,15 @@
 <!DOCTYPE html>
 <html>
-<style>
-table, th , td  {
-  border: 1px solid grey;
-  border-collapse: collapse;
-  padding: 5px;
-}
-table tr:nth-child(odd)	{
-  background-color: #f1f1f1;
-}
-table tr:nth-child(even) {
-  background-color: #ffffff;
-}
-table tbody tr:hover {
-  border-color: red;
-  cursor: pointer;
-}
-</style>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 <script src= "app.js"></script>
 <body>
 
-<h1>Tasks</h1>
 
-<div ng-app="myApp" ng-controller="TaskController as taskCtrl"> 
+
+<div class="container-fluid" ng-app="myApp" ng-controller="TaskController as taskCtrl">
+<h1>Tasks</h1> 
 <div>
 <button class="btn btn-success" ng-click="reload()"><span class="glyphicon glyphicon-refresh"></span> Reload</button>
 <button class="btn btn-success" ng-click="newTask()"><span class="glyphicon glyphicon-plus"></span> New Task</button>
