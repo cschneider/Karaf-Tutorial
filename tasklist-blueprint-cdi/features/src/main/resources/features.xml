@@ -15,7 +15,8 @@
         <feature>jndi</feature>
         <feature>transaction</feature>
         <feature version="[2.2, 2.3)">jpa</feature>
-        <feature version="[4.3, 4.4)">hibernate</feature>
+        <!-- <feature version="[4.3, 4.4)">hibernate</feature> -->
+        <feature version="[2.6, 2.7)">eclipselink</feature>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
     </feature>
