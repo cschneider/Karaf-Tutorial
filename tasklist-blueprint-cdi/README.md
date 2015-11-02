@@ -1,14 +1,17 @@
 # Apache Karaf Tutorial Part 9 - Annotation based blueprint and JPA
 
-A small application to manage a list of tasks to do like in tutorial 1. The goal was to use JEE annotations to avoid handwritten xml. The blueprint-maven-plugin allows to use subset of the JEE annotations in source code and creates standard blueprint xml from it. This allows to build an example with JPA persistence, Transactions and a Servlet UI using zero hand written blueprint xml.
+A small application to manage a list of tasks to do like in tutorial 1. Uses JEE annotations to avoid handwritten xml.
 
-It shows how to:
+The blueprint-maven-plugin allows to use subset of the JEE annotations in source code and creates standard blueprint xml from it. This allows to build an example with JPA persistence, Transactions and a Servlet UI using zero hand written blueprint xml.
+
+Shows how to:
 
 * Create DataSources using pax-jdbc
 * Create bundles using maven and the maven bundle plugin
 * Wire bundles using CDI annotations and OSGi services
 * Write JPA DAO classes like in JEE using @PersistenceContext and @Transactional
 * Use the whiteboard pattern and the pax-web whiteboard extender to publish Servlets
+* Interface with modern UI frameworks like Angular JS
 
 # Structure
 
