@@ -22,8 +22,10 @@ import org.osgi.service.component.annotations.Reference;
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
-@Component(service=TaskServiceRest.class)
-@Path("tasklist")
+@Component(service=TaskServiceRest.class, property={"service.exported.interfaces=*",
+                                                    "service.exported.configs=org.apache.cxf.rs",
+                                                    "org.apache.cxf.rs.address=/tasklistRest"})
+@Path("")
 public class TaskServiceRest {
     @Reference
     TaskService taskService;

@@ -30,13 +30,11 @@ Download and start Karaf 4.0.3
 
 Start karaf and execute the commands below
 
-<code>
+```Shell
 cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-blueprint-cdi/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
-
 feature:repo-add mvn:net.lr.tasklist.blueprint.cdi/features/1.0.0-SNAPSHOT/xml
-
 feature:install example-tasklist-cdi-persistence example-tasklist-cdi-ui example-tasklist-cdi-service
-</code>
+```
 
 # Test
 
