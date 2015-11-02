@@ -5,17 +5,17 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>net.lr.tasklist.ds</groupId>
-        <artifactId>tasklist-ds</artifactId>
+        <artifactId>parent</artifactId>
         <version>1.0.0-SNAPSHOT</version>
         <relativePath>..</relativePath>
     </parent>
-    <artifactId>tasklist-service</artifactId>
+    <artifactId>service</artifactId>
     <packaging>bundle</packaging>
 
     <dependencies>
         <dependency>
             <groupId>net.lr.tasklist.ds</groupId>
-            <artifactId>tasklist-model</artifactId>
+            <artifactId>model</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

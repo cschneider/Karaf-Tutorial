@@ -6,12 +6,12 @@
     <parent>
         <groupId>net.lr.tasklist.ds</groupId>
         <version>1.0.0-SNAPSHOT</version>
-        <artifactId>tasklist-ds</artifactId>
         <relativePath>..</relativePath>
+        <artifactId>parent</artifactId>
     </parent>
 
     <packaging>bundle</packaging>
-    <artifactId>tasklist-model</artifactId>
+    <artifactId>model</artifactId>
 
     <dependencies>
         <dependency>

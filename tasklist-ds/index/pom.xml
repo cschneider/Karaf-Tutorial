@@ -5,6 +5,13 @@
     <artifactId>tasklist-ds-index</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    
+    <description>
+        Experimental use of the bnd indexer plugin to create an OBR index from the dependencies 
+        of the tasklist-ds example.
+        
+        This allows to build a similar example in bndtools.
+    </description>
 
     <properties>
         <aries.jpa.version>2.2.0</aries.jpa.version>

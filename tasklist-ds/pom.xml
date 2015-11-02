@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.lr.tasklist.ds</groupId>
-    <artifactId>tasklist-ds</artifactId>
+    <artifactId>parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -16,10 +16,9 @@
     <modules>
         <module>model</module>
         <module>persistence</module>
+        <module>service</module>
         <module>ui</module>
         <module>features</module>
-        <module>tasklist-service</module>
-        <module>index</module>
     </modules>
 
     <dependencies>
@@ -60,6 +59,7 @@
             <scope>test</scope>
         </dependency>
 
+
     </dependencies>
 
     <dependencyManagement>
@@ -78,6 +78,13 @@
                 <groupId>org.apache.aries.jpa</groupId>
                 <artifactId>org.apache.aries.jpa.support</artifactId>
                 <version>2.2.0</version>
+                <exclusions>
+                    <!-- Exclude to avoid old version -->
+                    <exclusion>
+                        <artifactId>org.osgi.compendium</artifactId>
+                        <groupId>org.osgi</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
         </dependencies>
     </dependencyManagement>
