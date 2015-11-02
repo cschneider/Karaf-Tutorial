@@ -6,18 +6,18 @@
 
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <groupId>net.lr.tasklist.cdi</groupId>
-    <artifactId>tasklist-blueprint-cdi</artifactId>
+    <groupId>net.lr.tasklist.blueprint.cdi</groupId>
     <version>1.0.0-SNAPSHOT</version>
     <relativePath>..</relativePath>
+    <artifactId>parent</artifactId>
   </parent>
-  <artifactId>tasklist-service</artifactId>
+  <artifactId>service</artifactId>
   <packaging>bundle</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>net.lr.tasklist.cdi</groupId>
-            <artifactId>tasklist-model</artifactId>
+            <groupId>net.lr.tasklist.blueprint.cdi</groupId>
+            <artifactId>model</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

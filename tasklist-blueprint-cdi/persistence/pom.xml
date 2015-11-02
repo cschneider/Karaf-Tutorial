@@ -7,19 +7,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>net.lr.tasklist.cdi</groupId>
+        <groupId>net.lr.tasklist.blueprint.cdi</groupId>
         <version>1.0.0-SNAPSHOT</version>
-        <artifactId>tasklist-blueprint-cdi</artifactId>
         <relativePath>..</relativePath>
+        <artifactId>parent</artifactId>
     </parent>
 
-    <artifactId>tasklist-persistence</artifactId>
+    <artifactId>persistence</artifactId>
     <packaging>bundle</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>net.lr.tasklist.cdi</groupId>
-            <artifactId>tasklist-model</artifactId>
+            <groupId>net.lr.tasklist.blueprint.cdi</groupId>
+            <artifactId>model</artifactId>
             <version>${project.version}</version>
         </dependency>
         

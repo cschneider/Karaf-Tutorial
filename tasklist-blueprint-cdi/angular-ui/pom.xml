@@ -3,11 +3,11 @@
     <modelVersion>4.0.0</modelVersion>
     
     <parent>
-        <artifactId>tasklist-blueprint-cdi</artifactId>
-        <groupId>net.lr.tasklist.cdi</groupId>
+        <groupId>net.lr.tasklist.blueprint.cdi</groupId>
         <version>1.0.0-SNAPSHOT</version>
+        <artifactId>parent</artifactId>
     </parent>
     
-    <artifactId>tasklist-angular-ui</artifactId>
+    <artifactId>angular-ui</artifactId>
     <packaging>bundle</packaging>
 </project>

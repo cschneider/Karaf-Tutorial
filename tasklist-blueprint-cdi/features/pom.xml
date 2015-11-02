@@ -3,9 +3,14 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.lr.tasklist.cdi</groupId>
-    <artifactId>tasklist-features</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <parent>
+        <groupId>net.lr.tasklist.blueprint.cdi</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+        <artifactId>parent</artifactId>
+        <relativePath>..</relativePath>
+    </parent>
+
+    <artifactId>features</artifactId>
     <packaging>pom</packaging>
 
     <build>

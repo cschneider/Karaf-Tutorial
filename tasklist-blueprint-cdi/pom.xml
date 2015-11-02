@@ -3,8 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>net.lr.tasklist.cdi</groupId>
-    <artifactId>tasklist-blueprint-cdi</artifactId>
+    <groupId>net.lr.tasklist.blueprint.cdi</groupId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -19,7 +18,7 @@
         <module>ui</module>
         <module>features</module>
         <module>tasklist-service</module>
-    <module>angular-ui</module>
+        <module>angular-ui</module>
   </modules>
 
     <dependencies>
@@ -123,4 +122,5 @@
         </plugins>
     </build>
     
+    <artifactId>parent</artifactId>
 </project>

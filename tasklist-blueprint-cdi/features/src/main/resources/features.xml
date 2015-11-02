@@ -14,28 +14,28 @@
         <feature>pax-jdbc-pool-dbcp2</feature>
         <feature>jndi</feature>
         <feature>transaction</feature>
-        <feature version="[2.2, 2.3)">jpa</feature>
-        <feature version="[4.3, 4.4)">hibernate</feature>
-        <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
-        <bundle>mvn:net.lr.tasklist.cdi/tasklist-persistence/${pom.version}</bundle>
+        <feature version="[2.2, 3)">jpa</feature>
+        <feature version="[4.3, 5)">hibernate</feature>
+        <bundle>mvn:${groupId}/model/${pom.version}</bundle>
+        <bundle>mvn:${groupId}/persistence/${pom.version}</bundle>
     </feature>
 
     <feature name="example-tasklist-cdi-service" version="${pom.version}">
         <feature>cxf-features-logging</feature>
         <feature>cxf-jaxrs</feature>
-        <bundle>mvn:net.lr.tasklist.cdi/tasklist-service/${pom.version}</bundle>
+        <bundle>mvn:${groupId}/service/${pom.version}</bundle>
     </feature>
 
     <feature name="example-tasklist-cdi-ui" version="${pom.version}">
         <feature>war</feature>
-        <bundle>mvn:net.lr.tasklist.cdi/tasklist-angular-ui/${pom.version}</bundle>
+        <bundle>mvn:${groupId}/angular-ui/${pom.version}</bundle>
     </feature>
     
     <feature name="example-tasklist-cdi-ui-old" version="${pom.version}">
         <feature>http</feature>
         <feature>http-whiteboard</feature>
-        <bundle>mvn:net.lr.tasklist.cdi/tasklist-model/${pom.version}</bundle>
-        <bundle>mvn:net.lr.tasklist.cdi/tasklist-ui/${pom.version}</bundle>
+        <bundle>mvn:${groupId}/model/${pom.version}</bundle>
+        <bundle>mvn:${groupId}/ui/${pom.version}</bundle>
     </feature>
    
 </features>
