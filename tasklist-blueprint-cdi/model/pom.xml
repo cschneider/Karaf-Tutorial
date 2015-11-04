@@ -10,7 +10,7 @@
       <artifactId>parent</artifactId>
     </parent>
 
-  <packaging>bundle</packaging>
   <artifactId>model</artifactId>
+  <packaging>bundle</packaging>
 
 </project>

@@ -34,6 +34,7 @@ public class TaskServiceImpl implements TaskService {
         });
     }
 
+    @Override
     public Collection<Task> getTasks() {
         return jpa.txExpr(em -> {
             CriteriaQuery<Task> query = em.getCriteriaBuilder().createQuery(Task.class);
