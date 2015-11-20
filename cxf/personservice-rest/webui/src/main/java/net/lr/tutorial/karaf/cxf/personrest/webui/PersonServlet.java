@@ -29,7 +29,7 @@ public class PersonServlet extends HttpServlet {
         }
         os.println("</table>");
         os.println("<h2>Add Person</h2>");
-        os.println("<form name='input' action='/personui' method='post'>");
+        os.println("<form name='input' action='/personuirest' method='post'>");
         os.println("<table>");
         os.println("<tr><td>Id</td><td><input type='text' name='id'/></td></tr>");
         os.println("<tr><td>Name</td><td><input type='text' name='name'/></td></tr>");
@@ -50,7 +50,7 @@ public class PersonServlet extends HttpServlet {
         person.setName(name);
         person.setUrl(url);
         personService.addPerson(person );
-        resp.sendRedirect("/personui");
+        resp.sendRedirect("/personuirest");
     }
 
     public void setPersonService(PersonService personService) {
