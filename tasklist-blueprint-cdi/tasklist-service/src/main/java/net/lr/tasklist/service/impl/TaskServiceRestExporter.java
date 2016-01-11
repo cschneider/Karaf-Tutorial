@@ -12,6 +12,12 @@ import org.apache.cxf.endpoint.Server;
 import org.apache.cxf.ext.logging.LoggingFeature;
 import org.apache.cxf.jaxrs.JAXRSServerFactoryBean;
 
+/**
+ * Allows to export the service without using any XML.
+ * Alternatively a blueprint.xml can be put into src/main/resources to
+ * use the CXF namespaces to export the service.
+ * As another option CXF DOSGi can be used like in the DS example.
+ */
 @Singleton
 public class TaskServiceRestExporter {
     @Inject
