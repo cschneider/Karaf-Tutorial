@@ -40,11 +40,11 @@ Open the url below in your browser to view all known tasks:
 <http://localhost:8181/tasklist>
 
 View the tasks as a rest resource
-<http://localhost:8181/cxf/net/lr/tasklist/service/TaskServiceRest>
+<http://localhost:8181/cxf/tasklistRest>
 
 Create Task2 using the rest service
 
-	curl -i -X POST -H "Content-Type: application/json" -d '{task:{"id":2,"title":"Task2"}}'  http://localhost:8181/cxf/net/lr/tasklist/service/TaskServiceRest
+	curl -i -X POST -H "Content-Type: application/json" -d '{task:{"id":2,"title":"Task2"}}'  http://localhost:8181/cxf/tasklistRest
 
 Retrieve Task2
 
