@@ -44,17 +44,4 @@
         </dependency>
     </dependencies>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.aries.blueprint</groupId>
-                <artifactId>blueprint-maven-plugin</artifactId>
-                <configuration>
-                    <scanPaths>
-                        <scanPath>net.lr.tasklist.service.impl</scanPath>
-                    </scanPaths>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>
