@@ -107,7 +107,7 @@
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <_include>osgi.bnd</_include>
+                        <_include>bnd.bnd</_include>
                     </instructions>
                 </configuration>
             </plugin>
