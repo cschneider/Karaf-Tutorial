@@ -5,4 +5,6 @@
 -resolve.effective: active;skip:="osgi.service"
 
 
-x-ignore-standalone: 
+-standalone: file:/home/cschneider/checkout/Karaf-Tutorial/tasklist-ds/index/target/index.xml
+-runrequires: osgi.identity;filter:='(osgi.identity=dom4j)'
+-runbundles: dom4j;version='[1.6.1,1.6.2)'
