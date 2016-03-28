@@ -37,7 +37,7 @@ public class OrderRouteBuilder extends RouteBuilder {
             .otherwise().recipientList(simple("file:ordersout/${header.customer}"));
 
         from("direct:vendor").id("mailtovendor")
-        .setHeader("to", bean("vendorMailService"))
+        .setHeader("to", method("vendorMailService"))
         .setHeader("subject", simple("Bestellung fuer ${header.customer}"))
         .to("velocity:mailtemplate.txt")
         .to("stream:out")

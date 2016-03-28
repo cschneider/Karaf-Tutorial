@@ -39,8 +39,8 @@ This directs karaf to also look for bundles in the apache snapshot repository.
 Install personservice
 ---------------------
 
-features:chooseurl cxf 2.7.6
-features:install http cxf
+feature:repo-add cxf 3.1.5
+feature:install http cxf
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
 
