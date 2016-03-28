@@ -34,14 +34,9 @@ Build and Test
 Run the service in Karaf
 ------------------------
 
-Download Apache Karaf here: http://karaf.apache.org/index/community/download.html
+Download Apache Karaf 4 here: http://karaf.apache.org/index/community/download.html
 
-Karaf 2.x
-features:chooseurl cxf 2.7.15
-features:install http http-whiteboard cxf-jaxws
-
-Karaf 3
-feature:repo-add cxf 3.1.1
+feature:repo-add cxf 3.1.5
 feature:install http http-whiteboard cxf-jaxws
 
 install -s mvn:javax.annotation/javax.annotation-api/1.2

@@ -40,18 +40,19 @@ Install personservice
 ---------------------
 
 feature:repo-add cxf 3.1.5
-feature:install http cxf
-install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
-install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
+feature:install cxf-jaxrs http
+
+install -s mvn:net.lr.tutorial.karaf.cxf.personrest/personrest-model/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personrest/personrest-server/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personrest/personrest-webui/1.0-SNAPSHOT
 
 Install jms2rest
 ----------------
 
-features:chooseurl activemq 5.7.0
-features:chooseurl camel 2.12.0
-features:install  camel-blueprint camel-jms camel-http
-features:install activemq-spring
-activemq:create-broker 
+feature:repo-add activemq 5.12.2
+feature:repo-add camel 2.16.2
+feature:install  camel-blueprint camel-jms camel-http camel-saxon activemq-broker jms
+jms:create -t activemq localhost
 install -s mvn:net.lr.tutorial.karaf.camel/example-jms2rest/1.0-SNAPSHOT
 
 What did we install
@@ -68,11 +69,13 @@ As a last step we install the example project. The example also starts with a bl
 Test
 ----
 
+Run in karaf to see what happens:
+log:tail
+
 To test the route we simply copy the file src/test/resources/person1.xml into the "in" folder below that karaf directory. This file will first be sent to the 
 jms queue "person". There the second route picks up the message, transforms it into the rest call and calls the rest service.
 
 If the rest service is not installed you will see a 404 http error in the karaf log (log:display).
 
 If the rest service is installed it should print "update request received".
-
- 
+You should also see the messages CXF receives and sends back.
