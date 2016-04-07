@@ -37,7 +37,7 @@ Run the service in Karaf
 Download Apache Karaf 4 here: http://karaf.apache.org/index/community/download.html
 
 feature:repo-add cxf 3.1.5
-feature:install cxf-jaxrs http-whiteboard
+feature:install cxf-jaxrs http http-whiteboard
 
 install -s mvn:net.lr.tutorial.karaf.cxf.personrest/personrest-model/1.0-SNAPSHOT
 install -s mvn:net.lr.tutorial.karaf.cxf.personrest/personrest-server/1.0-SNAPSHOT
