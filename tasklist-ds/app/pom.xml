@@ -58,9 +58,30 @@
             <scope>compile</scope>
             <version>${karaf.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.karaf.features</groupId>
+            <artifactId>enterprise</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>compile</scope>
+            <version>${karaf.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.lr.tasklist.ds</groupId>
+            <artifactId>features</artifactId>
+            <classifier>features</classifier>
+            <type>xml</type>
+            <scope>compile</scope>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -77,6 +98,7 @@
             <plugin>
                 <groupId>org.apache.karaf.tooling</groupId>
                 <artifactId>karaf-maven-plugin</artifactId>
+	            <version>${karaf.version}</version>
                 <executions>
                     <execution>
                         <id>process-resources</id>
@@ -93,13 +115,16 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <javase>1.8</javase>
                     <startupFeatures>
-                        <startupFeature>static-framework</startupFeature>
-                        <!--  <startupFeature>jaas</startupFeature>
-                        <startupFeature>shell</startupFeature>
+                        <startupFeature>jaas</startupFeature>
                         <startupFeature>bundle</startupFeature>
                         <startupFeature>config</startupFeature>
-                        <startupFeature>log</startupFeature> -->
+                        <startupFeature>log</startupFeature>
+                        <startupFeature>shell</startupFeature>
+                        <startupFeature>service</startupFeature>
+                        <startupFeature>example-tasklist-ds-persistence</startupFeature>
+                        <startupFeature>example-tasklist-ds-ui</startupFeature>
                     </startupFeatures>
                 </configuration>
             </plugin>

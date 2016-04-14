@@ -4,3 +4,4 @@ Import-Package: \
     org.hibernate.proxy, \
     javassist.util.proxy, \
     *
+Provide-Capability: osgi.service; objectClass=org.apache.aries.jpa.template.JpaTemplate
