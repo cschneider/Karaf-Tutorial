@@ -19,6 +19,7 @@
         <module>service</module>
         <module>ui</module>
         <module>features</module>
+        <module>app</module>
     </modules>
 
     <dependencies>
