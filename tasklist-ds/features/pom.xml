@@ -3,7 +3,7 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>features</artifactId>
+    <artifactId>tasklist</artifactId>
     <packaging>pom</packaging>
     
     <parent>

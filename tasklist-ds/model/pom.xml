@@ -11,7 +11,7 @@
     </parent>
 
     <packaging>bundle</packaging>
-    <artifactId>model</artifactId>
+    <artifactId>net.lr.tasklist.ds.model</artifactId>
 
     <dependencies>
         <dependency>

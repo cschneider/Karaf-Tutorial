@@ -32,7 +32,7 @@
     <packaging>pom</packaging>
     
     <properties>
-        <karaf.version>4.0.4</karaf.version>
+        <karaf.version>4.0.5</karaf.version>
     </properties>
 
     <dependencies>
@@ -117,14 +117,16 @@
                 <configuration>
                     <javase>1.8</javase>
                     <startupFeatures>
+                    <!-- 
                         <startupFeature>jaas</startupFeature>
                         <startupFeature>bundle</startupFeature>
                         <startupFeature>config</startupFeature>
                         <startupFeature>log</startupFeature>
                         <startupFeature>shell</startupFeature>
-                        <startupFeature>service</startupFeature>
+                        <startupFeature>service</startupFeature>-->
                         <startupFeature>example-tasklist-ds-persistence</startupFeature>
                         <startupFeature>example-tasklist-ds-ui</startupFeature>
+                        <startupFeature>example-tasklist-ds-service</startupFeature>
                     </startupFeatures>
                 </configuration>
             </plugin>

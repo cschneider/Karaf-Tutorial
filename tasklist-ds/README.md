@@ -30,7 +30,7 @@ Start karaf and execute the commands below
 
 ```Shell
 cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/tasklist-ds/org.ops4j.datasource-tasklist.cfg | tac -f etc/org.ops4j.datasource-tasklist.cfg
-feature:repo-add mvn:net.lr.tasklist.ds/features/1.0.0-SNAPSHOT/xml
+feature:repo-add mvn:net.lr.tasklist.ds/tasklist/1.0.0-SNAPSHOT/xml/features
 feature:install example-tasklist-ds
 ```
 
