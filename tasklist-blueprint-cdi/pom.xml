@@ -97,6 +97,7 @@
                 <version>3.0.0</version>
                 <extensions>true</extensions>
                 <configuration>
+                    <obrRepository>NONE</obrRepository>
                     <instructions>
                         <_include>osgi.bnd</_include>
                     </instructions>
@@ -105,13 +106,12 @@
             <plugin>
                 <groupId>org.apache.aries.blueprint</groupId>
                 <artifactId>blueprint-maven-plugin</artifactId>
-                <version>1.4.0-SNAPSHOT</version>
+                <version>1.4.0</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>blueprint-generate</goal>
                         </goals>
-                        <phase>process-classes</phase>
                     </execution>
                 </executions>
                 <configuration>
