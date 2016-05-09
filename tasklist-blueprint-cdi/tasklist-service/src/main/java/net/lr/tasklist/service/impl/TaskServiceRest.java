@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.Collection;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.Named;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -18,12 +18,12 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
+import org.ops4j.pax.cdi.api.OsgiService;
+
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
-import org.ops4j.pax.cdi.api.OsgiService;
-
-@Singleton
+@Named
 @Consumes({"application/json", "test/xml"})
 @Produces({"application/json", "test/xml"})
 public class TaskServiceRest {

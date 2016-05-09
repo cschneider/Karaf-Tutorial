@@ -2,25 +2,25 @@ package net.lr.tasklist.persistence.impl;
 
 import java.util.Collection;
 
-import javax.inject.Singleton;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.transaction.Transactional;
 
-import net.lr.tasklist.model.Task;
-import net.lr.tasklist.model.TaskService;
-
 import org.ops4j.pax.cdi.api.OsgiServiceProvider;
 import org.ops4j.pax.cdi.api.Properties;
 import org.ops4j.pax.cdi.api.Property;
+
+import net.lr.tasklist.model.Task;
+import net.lr.tasklist.model.TaskService;
 
 @OsgiServiceProvider(classes = {TaskService.class})
 // The properties below allow to transparently export the service as a web service using Distributed OSGi
 @Properties({
     @Property(name = "service.exported.interfaces", value = "*")
 })
-@Singleton
+@Named
 @Transactional
 public class TaskServiceImpl implements TaskService {
     

@@ -4,15 +4,15 @@ import java.util.concurrent.Executors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
-import javax.inject.Singleton;
-
-import net.lr.tasklist.model.Task;
-import net.lr.tasklist.model.TaskService;
+import javax.inject.Named;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@Singleton
+import net.lr.tasklist.model.Task;
+import net.lr.tasklist.model.TaskService;
+
+@Named
 public class InitHelper {
     Logger LOG = LoggerFactory.getLogger(InitHelper.class);
     @Inject

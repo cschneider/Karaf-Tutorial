@@ -26,7 +26,7 @@ mvn clean install
 
 # Installation
 
-Download and start Karaf 4.0.3 
+Download and start Karaf 4.0.5
 
 Start karaf and execute the commands below
 
