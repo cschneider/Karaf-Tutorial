@@ -11,11 +11,12 @@ It shows how to:
 
 ## Structure
 
-| Module         | Description                                                                       |
-| -------------- | --------------------------------------------------------------------------------- |
-| tasklist-model       | Service interface and model classes shared between persistence and ui       |
-| tasklist-persistence | Simple persistence implementation using an OSGi service and a in memory map |
-| tasklist-ui          | Simple servlet based UI that connects to the persistence layer using an OSGi service reference and that offers the Servlet as an OSGi service for the pax web whiteboard extender to pickup and publish |
+| Module         | Description                                                                         |
+| -------------- | ----------------------------------------------------------------------------------- |
+| tasklist-model       | Service interface and model classes shared between persistence and ui         |
+| tasklist-persistence | Persistence implementation using an OSGi service and a in memory map          |
+| tasklist-ui          | Servlet based UI that connects to the persistence layer using an OSGi service |
+| tasklist-command     | Felix gogo command to interact with tasks from the shell                      |
 
 ## Build
 
@@ -31,5 +32,9 @@ mvn clean install
 	http:list
 
 This should show the servlet we expose.
+
+	task:list
+	
+Will list the tasks currently managed by the service
 
 Open the URL below in your browser [http://localhost:8181/tasklist](http://localhost:8181/tasklist). It should show the pre defined tasks.

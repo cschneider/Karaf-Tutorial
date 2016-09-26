@@ -19,6 +19,7 @@
         <module>tasklist-ui</module>
         <module>tasklist-features</module>
         <module>tasklist-itests</module>
+        <module>tasklist-command</module>
     </modules>
     
     <dependencies>

@@ -14,6 +14,7 @@
     <feature name="example-tasklist-persistence" version="${pom.version}">
         <bundle>mvn:net.lr.tasklist/tasklist-model/${pom.version}</bundle>
         <bundle>mvn:net.lr.tasklist/tasklist-persistence/${pom.version}</bundle>
+        <bundle>mvn:net.lr.tasklist/tasklist-command/${pom.version}</bundle>
     </feature>
 
     <feature name="example-tasklist-ui" version="${pom.version}">
