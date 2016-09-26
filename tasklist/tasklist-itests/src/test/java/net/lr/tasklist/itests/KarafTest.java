@@ -51,7 +51,7 @@ public class KarafTest {
         MavenArtifactUrlReference karafUrl = maven()
             .groupId("org.apache.karaf")
             .artifactId("apache-karaf")
-            .version("3.0.0").type("tar.gz");
+            .version("4.0.7").type("tar.gz");
         MavenArtifactUrlReference tasklistRepo = maven()
             .groupId("net.lr.tasklist")
             .artifactId("tasklist-features")

@@ -11,7 +11,7 @@
     <name>Integration Tests using pax exam</name>
 
     <properties>
-        <pax.exam.version>3.4.0</pax.exam.version>
+        <pax.exam.version>4.8.0</pax.exam.version>
     </properties>
 
     <dependencies>
