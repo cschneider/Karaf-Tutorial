@@ -7,6 +7,8 @@ Example for the Karaf Tutorial part 1 that implements a very small application t
 It shows how to:
 *   Create bundles using maven and the maven bundle plugin
 *   Wire bundles using blueprint and OSGi services
+*   Define blueprint beans using annotations
+*   Define Felix gogo shell commands
 *   Use the whiteboard pattern and the pax-web whiteboard extender to publish Servlets
 
 ## Structure

@@ -18,8 +18,8 @@
         <module>tasklist-persistence</module>
         <module>tasklist-ui</module>
         <module>tasklist-features</module>
+        <module>tasklist-command</module>        
         <module>tasklist-itests</module>
-        <module>tasklist-command</module>
     </modules>
     
     <dependencies>
@@ -34,6 +34,12 @@
             <artifactId>pax-cdi-api</artifactId>
             <version>0.5.0</version>
             <optional>true</optional>
+            <exclusions>
+            	<exclusion>
+            		<groupId>org.osgi</groupId>
+            		<artifactId>org.osgi.compendium</artifactId>
+            	</exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
