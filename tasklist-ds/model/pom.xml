@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>net.lr.tasklist.ds</groupId>
-        <version>1.0.0-SNAPSHOT</version>
-        <relativePath>..</relativePath>
-        <artifactId>parent</artifactId>
-    </parent>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.lr.tasklist.ds</groupId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+		<artifactId>parent</artifactId>
+	</parent>
 
-    <packaging>bundle</packaging>
-    <artifactId>net.lr.tasklist.ds.model</artifactId>
+	<packaging>bundle</packaging>
+	<artifactId>net.lr.tasklist.ds.model</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-        </dependency>
-    </dependencies>
+	<dependencies>
+		 <dependency>
+		 <groupId>org.apache.geronimo.specs</groupId>
+		 <artifactId>geronimo-jpa_2.0_spec</artifactId>
+		 <version>1.1</version>
+		 </dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.openjpa</groupId>
+				<artifactId>openjpa-maven-plugin</artifactId>
+				<version>3.0.0-SNAPSHOT</version>
+				<configuration>
+					<includes>**/*.class</includes>
+					<addDefaultConstructor>true</addDefaultConstructor>
+					<enforcePropertyRestrictions>true</enforcePropertyRestrictions>
+				</configuration>
+				<executions>
+					<execution>
+						<id>enhancer</id>
+						<phase>process-classes</phase>
+						<goals>
+							<goal>enhance</goal>
+						</goals>
+					</execution>
+				</executions>
+				<dependencies>
+					<dependency>
+						<groupId>org.apache.openjpa</groupId>
+						<artifactId>openjpa</artifactId>
+						<version>3.0.0-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+
+		</plugins>
+	</build>
 </project>

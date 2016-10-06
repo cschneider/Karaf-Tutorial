@@ -22,13 +22,14 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     
     <persistence-unit name="tasklist" transaction-type="RESOURCE_LOCAL">
-        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-        <class>net.lr.tasklist.model.Task</class>
+         <class>net.lr.tasklist.model.Task</class>
         <properties>
             <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
-        </properties>
+
+	        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>
+	    </properties>
     </persistence-unit>
 
 </persistence>

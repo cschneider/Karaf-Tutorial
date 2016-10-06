@@ -4,12 +4,22 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
     
     <persistence-unit name="tasklist" transaction-type="JTA">
+    <!-- 
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+         -->
         <jta-data-source>osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=tasklist)</jta-data-source>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+            <!-- 
+            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:data/test"/>
+             -->
+   	        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='drop,add')"/>
+        	<property name="openjpa.jdbc.DBDictionary" value="h2"/>
+   	        <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=TRACE, Tool=INFO, SQL=TRACE"/>
         </properties>
     </persistence-unit>
-
+	
 </persistence>
