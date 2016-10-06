@@ -24,12 +24,15 @@
     <persistence-unit name="tasklist" transaction-type="RESOURCE_LOCAL">
          <class>net.lr.tasklist.model.Task</class>
         <properties>
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"/>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 
-	        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema"/>
+	        <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema(SchemaAction='drop,add')"/>
+	        <property name="openjpa.jdbc.DBDictionary" value="h2"/>
+   	        <property name="openjpa.Log" value="DefaultLevel=WARN, Runtime=TRACE, Tool=INFO, SQL=TRACE"/>
 	    </properties>
     </persistence-unit>
 
