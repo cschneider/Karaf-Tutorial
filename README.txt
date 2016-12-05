@@ -7,4 +7,5 @@ See here for the documentations:
 http://liquid-reality.de/display/liquid/Karaf+Tutorials
 
 
-Join the chat at https://gitter.im/Karaf-Tutorial/Lobby
+Join the chat at https://gitter.im/cschneider/Karaf-Tutorial
+
