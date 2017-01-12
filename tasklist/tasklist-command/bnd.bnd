@@ -1,0 +1,3 @@
+Import-Package: \
+	org.apache.karaf.shell.table;version='[3,5)',\
+	*
