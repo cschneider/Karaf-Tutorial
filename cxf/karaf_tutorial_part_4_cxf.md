@@ -27,30 +27,27 @@ First we build, install and run the example to give an overview of what it does.
 
 h2. Installing Karaf and preparing for CXF
 
-We start with a fresh Karaf 2.2.4 and tune it to be able to run CXF like described in Dan Kulp´s Blog:
-See http://www.dankulp.com/blog/2011/11/apache-cxf-in-osgi/
-
-* Unpack Karaf 2.2.4 from http://karaf.apache.org/index/community/download.html
-* Download https://svn.apache.org/repos/asf/karaf/branches/karaf-2.2.x/assemblies/apache-karaf/src/main/filtered-resources/etc/jre.properties.cxf
-  and save as etc/jre.properties
-* Run Karaf
-
-Newer karaf version contain a suitable jre.properties.cxf in the etc dir of the distribution so it only needs to be renamed.
+We start with a fresh Karaf 4.0.4
+Unpack Karaf from http://karaf.apache.org/index/community/download.html
+Run Karaf using bin/karaf
 
 h2. Installing CXF
 
 In Karaf Console run
 
 {code}
-features:addurl mvn:org.apache.cxf.karaf/apache-cxf/2.5.1/xml/features
-features:install http
-features:install cxf
+feature:repo-add cxf 3.1.5
+feature:install http cxf-jaxws http-whiteboard
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-model/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-server/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-proxy/1.0-SNAPSHOT
+install -s mvn:net.lr.tutorial.karaf.cxf.personservice/personservice-webui/1.0-SNAPSHOT
 {code}
 
 h2. Build and Test
 
 > mvn clean install
-> mvn java:run
+
 
 h2. Install service and ui in karaf
 
