@@ -6,10 +6,12 @@ This example just contains a blueprint file with a camel context and a route.
 Run in Karaf
 ------------
 
-features:addurl mvn:org.apache.camel.karaf/apache-camel/2.8.2/xml/features
-features:install camel-blueprint camel-stream
+feature:repo-add camel 2.16.2
+feature:list
 
-Copy the file simplecamel.xml into the deploy folder of karaf
+feature:install camel-blueprint camel-stream
+
+Copy the file simple-camel-blueprint.xml into the deploy folder of karaf
 
 > list
 
@@ -31,5 +33,4 @@ Now the the console should not show any more Hello World and instead the lines s
 > log:display
 
 Should show lines like:
-2011-12-29 16:26:48,104 | INFO | simple | simplecamel | ache.camel.processor.CamelLogger   87 | 84 - org.apache.camel.camel-core - 2.8.2 | Exchange[ExchangePattern:InOnly, BodyType:String, Body:Hello World]
-
+2017-01-12 20:30:27,045 | INFO  | - timer://simple | display                          | 42 - org.apache.camel.camel-core - 2.16.4 | Exchange[ExchangePattern: InOnly, BodyType: String, Body: Hello World]
