@@ -32,14 +32,34 @@ Build
 How to run
 ----------
 
-You can run the route either from the command line or in Apache Karaf
+his example again uses maven to build, a blueprint.xml context to boot up camel and a java class OrderRouteBuilder for the camel routes. So from an OSGi perspective it works almost the same as the jms2rest example.
+The routes are defined in net.lr.tutorial.karaf.camel.order.OrderRouteBuilder. The "order" route listens on the directory "orderin" and expects xml order files to be placed there. The route uses xpath to extract several attributes of the order into message headers. A splitter is used to handle each (/order/item) spearately. Then a content based router is used to handle "direct" items different from others.
+In the case of a direct item the recipientlist pattern is used to build the destination folder dynamically using a simple language expression.
+recipientList(simple("file:ordersout/${header.customer}"))
+If the vendor is not "direct" then the route "mailtovendor" is called to create and send a mail to the vendor. Some subject and to address are set using special header names that the mail component understands. The content of the mail is expected in the message body. As the body also should be comfigureable the velocity component is used to fill the mailtemplate.txt with values from the headers that were extracted before.
 
 To run the route using maven from the command line:
 
-> mvn exec:java
+> mvn clean install
 
 To deploy in Karaf
 
-features:addurl mvn:org.apache.camel.karaf/apache-camel/2.9.0/xml/features
-features:install camel-blueprint camel-mail camel-velocity camel-stream
+The deployment is also very similar to the previous example but a little simpler as we do not need jms. Type the following in karaf
+feature:repo-add camel 2.16.2
+feature:install camel-blueprint camel-mail camel-velocity camel-stream
 install -s mvn:net.lr.tutorial.karaf.camel/example-order/1.0-SNAPSHOT
+
+To be able to receive the mail you have to edit the configuration pid. You can either do this by placing a properties file
+into etc/net.lr.tutorial.karaf.cxf.personservice.cfg or editing the config pid using the karaf webconsole. (See part 2 and part 3 of the Karaf Tutorial series).
+Basically you have to set these two properties according to your own mail environment.
+mailserver=yourmailserver.com
+testVendorEmail=youmail@yourdomain.com
+
+Test the order example
+----------
+Copy the file order1.xml into the folder "ordersin" below the karaf dir.
+The Karaf console will show:
+Order from Christian Schneider
+ 
+Count: 1, Article: Flatscreen TV
+The same should be in a mail in your inbox. At the same time a file should be created in ordersout/Christian Schneider/order1.xml that contains the book item.
