@@ -3,7 +3,7 @@ h1. Installing DataSources for databases
 As OSGi is modular we want to be quite flexible in the kind of DB we use. For Java EE this is typically done by configuring a DataSource
 as a JNDI object and then referencing this JNDI object from your application.
 
-In Karaf we first need to install the DB driver. Most drivers are already valid bundles and available in the maven repo. So this is tpyically only
+In Karaf we first need to install the DB driver. Most drivers are already valid bundles and available in the maven repo. So this is typically only
 one Karaf command. Where the driver is available in maven but no bundle we can most times use the wrap: protocol of Karaf. If the driver is not even
 in the maven repo we have to install the file into the maven repo first.
 
@@ -28,3 +28,4 @@ h1. Deprecation
 
 Using blueprint to declare a DataSource is still possible but is regarded as deprecated now.
 Instead use pax-jdbc-config to create a DataSource from config.
+use pax-jdbc-config ??

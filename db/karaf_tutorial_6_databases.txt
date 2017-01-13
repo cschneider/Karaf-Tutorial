@@ -84,7 +84,7 @@ Now we just need to create a configuration with the correct pid to create a Data
 So create the file etc/org.ops4j.datasource-tasklist.cfg with the following content
 
 osgi.jdbc.driver.name=H2-pool-xa
-url=jdbc:h2:mem:person
+url=jdbc:h2:mem:test
 dataSourceName=person
 
 The config will automatically trigger the pax-jdbc-config module to create a DataSource.

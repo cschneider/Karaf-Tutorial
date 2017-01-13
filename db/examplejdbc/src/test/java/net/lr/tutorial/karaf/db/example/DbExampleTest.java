@@ -24,7 +24,7 @@ public class DbExampleTest {
     @Test
     public void test() throws Exception {
         JdbcDataSource ds = new JdbcDataSource();
-        ds.setURL("jdbc:h2:mem:person");
+        ds.setURL("jdbc:h2:mem:test");
         DbExample example = new DbExample();
         example.setDataSource(ds);
         example.test();
