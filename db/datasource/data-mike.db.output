@@ -1,0 +1,4 @@
+karaf@root> jdbc:query jdbc/oracleds "select count (*) from person"
+ 
+COUNT(*)
+104090

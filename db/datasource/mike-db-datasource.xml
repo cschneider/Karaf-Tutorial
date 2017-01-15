@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0">
+  <bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
+      <property name="URL" value="jdbc:oracle:thin:@ace03.cadm.harvard.edu:8103:ACEDEV"/>
+      <property name="user" value="ace"/>
+      <property name="password" value="my_secret_password"/>
+      <property name="connectionProperties">
+          <props>
+              <prop key="oracle.net.encryption_client" value="REQUIRED"/>
+          </props>
+      </property>
+  </bean>
+  <service interface="javax.sql.DataSource" ref="dataSource" id="unusedButNecessary">
+    <service-properties>
+            <entry key="osgi.jndi.service.name" value="jdbc/oracleds"/>
+    </service-properties>
+  </service>
+</blueprint>
+<!-- 
+TP
+https://wiki.harvard.edu/confluence/display/ATSESB/Example+4+-+Querying+an+Oracle+Database
+-->

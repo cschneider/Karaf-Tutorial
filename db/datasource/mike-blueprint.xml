@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.osgi.org/xmlns/blueprint/v1.0.0 http://www.osgi.org/xmlns/blueprint/v1.0.0/blueprint.xsd">
+ 
+    <reference id="myDataSource" interface="javax.sql.DataSource"
+            filter="(osgi.jndi.service.name=jdbc/oracleds)" availability="mandatory" />       
+ 
+    <camelContext xmlns="http://camel.apache.org/schema/blueprint">
+        <route>
+             
+            <!-- Step 1: Get the surname to query from the XML input file. -->
+            <from uri="file:data-mike/db/input"/>
+            <setBody><xpath resultType="java.lang.String">/query/lastName</xpath></setBody>
+            <log message="step1:${body}:"/>
+             
+            <!-- Step 2: Do the SQL query. -->
+            <to uri="sql:select count(*) as cnt from person where last_name=# and status='A'?dataSource=myDataSource"/>
+            <log message="step2:${body}:"/>
+             
+            <!-- Step 3: The result is a List of Maps (one Map for each record returned). Extract
+            the value we were querying for and convert it to a string. -->
+            <setBody><simple>${body[0][CNT]}</simple></setBody>
+            <setBody><simple>${bodyAs(String)}</simple></setBody>
+            <log message="step3:${body}:"/>
+             
+            <!-- Step 4: Write count to a file. -->
+            <to uri="file:data-mike/db/output"/>
+ 
+        </route>
+    </camelContext>
+ 
+</blueprint>

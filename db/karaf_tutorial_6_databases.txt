@@ -81,7 +81,7 @@ Creating the DataSource
 
 Now we just need to create a configuration with the correct pid to create a DataSource as a service
 
-So create the file etc/org.ops4j.datasource-tasklist.cfg with the following content
+So create the file etc/org.ops4j.datasource-person.cfg with the following content
 
 osgi.jdbc.driver.name=H2-pool-xa
 url=jdbc:h2:mem:test
@@ -157,6 +157,8 @@ Using datasource H2, URL jdbc:h2:~/test
 Christian Schneider, @schneider_chris,
 
 After installation the bundle should directly print the db info and the persisted person.
+
+-----------------------------------------
 Accessing the database using JPA
 
 For larger projects it is quite typical that JPA is used instead of hand crafted SQL. Using JPA has two big advantages over JDBC.
@@ -164,18 +166,24 @@ For larger projects it is quite typical that JPA is used instead of hand crafted
     You need to maintain less SQL code
     JPA provides dialects for the subtle differences in databases that else you would have to code yourself.
 
-For this example we use Hibernate as the JPA Implementation. On top of it we add Apache Aries JPA which supplies an implementation of the OSGi JPA Service Specification and blueprint integration for JPA.
+For this example we use Hibernate as the JPA Implementation. 
+On top of it we add Apache Aries JPA which supplies an implementation of the OSGi JPA Service Specification 
+and blueprint integration for JPA.
 
 The project examplejpa shows a simple project that implements a PersonService managing Person objects.
-Person is just a java bean annotated with JPA @Entitiy.
+Person is just a java bean annotated with JPA @Entity.
 
 Additionally the project implements two Karaf shell commands person:add and person:list that allow to easily test the project.
+---------------
 persistence.xml
 
-Like in a typical JPA project the peristence.xml defines the DataSource lookup, database settings and lists the persistent classes. The datasource is refered using the jndi name "osgi:service/javax.sql.DataSource/(osgi.jndi.service.name=person)".
+Like in a typical JPA project the persistence.xml defines the DataSource lookup, database settings and lists the persistent classes. 
+The datasource is refered using the jndi name "osgi:service/person".
 
-The OSGi JPA Service Specification defines that the Manifest should contain an attribute "Meta-Persistence" that points to the persistence.xml. So this needs to be defined in the config of the maven bundle plugin in the prom. The Aries JPA container will scan for these attributes
+The OSGi JPA Service Specification defines that the Manifest should contain an attribute "Meta-Persistence" that points to the persistence.xml. 
+So this needs to be defined in the config of the maven bundle plugin in the pom. The Aries JPA container will scan for these attributes
 and register an initialized EntityMangerFactory as an OSGi service on behalf of the use bundle.
+--------------
 blueprint.xml
 
 We use a blueprint.xml context to inject an EntityManager into our service implementation and to provide automatic transaction support.
@@ -187,11 +195,15 @@ The following snippet is the interesting part:
   </bean>
 
 This makes a lookup for the EntityManagerFactory OSGi service that is suitable for the persistence unit person and injects a thread safe EnityManager into the
-PersonServiceImpl. Additionally it wraps each call to a method of PersonServiceImpl with code that opens a transaction before the method and commits on success or rollbacks on any exception thrown.
+PersonServiceImpl. Additionally it wraps each call to a method of PersonServiceImpl with code that opens a transaction before the method 
+and commits on success or rollbacks on any exception thrown.
+-----------------
 Build and Install
 
-The project builds with mvn clean install like usual. A prerequisite is that the derby datasource is installed like described above. Then we have to install the bundles for hibernate, aries jpa, transaction, jndi) and of course our db-examplejpa bundle.
+The project builds with mvn clean install like usual. A prerequisite is that the derby datasource is installed like described above. 
+Then we have to install the bundles for hibernate, aries jpa, transaction, jndi) and of course our db-examplejpa bundle.
 See ReadMe.txt for the exact commands to use.
+-------
 Test
 
 person:add 'Christian Schneider' @schneider_chris
@@ -201,9 +213,11 @@ Then we list the persisted persons
 karaf@root> person:list
 Christian Schneider, @schneider_chris
 
+--------
 Summary
 
-In this tutorial we learned how to work with databases in Apache Karaf. We installed drivers for our database and a DataSource. We were able to check and manipulate the DataSource using the jdbc:* commands. In the examplejdbc we learned how to acquire a datasource
+In this tutorial we learned how to work with databases in Apache Karaf. We installed drivers for our database and a DataSource. 
+We were able to check and manipulate the DataSource using the jdbc:* commands. In the examplejdbc we learned how to acquire a datasource
 and work with it using plain jdbc4.  Last but not least we also used jpa to access our database.
 
 Back to Karaf Tutorials
