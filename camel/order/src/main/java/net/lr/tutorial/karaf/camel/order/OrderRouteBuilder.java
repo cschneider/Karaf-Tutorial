@@ -38,7 +38,7 @@ public class OrderRouteBuilder extends RouteBuilder {
 
         from("direct:vendor").id("mailtovendor")
         .setHeader("to", method("vendorMailService"))
-        .setHeader("subject", simple("Bestellung fuer ${header.customer}"))
+        .setHeader("subject", simple("Order from  ${header.customer}"))
         .to("velocity:mailtemplate.txt")
         .to("stream:out")
         .to("smtp:{{mailserver}}");

@@ -6,10 +6,10 @@ This example just contains a blueprint file with a camel context and a route.
 Run in Karaf
 ------------
 
-features:addurl mvn:org.apache.camel.karaf/apache-camel/2.8.2/xml/features
-features:install camel-blueprint camel-stream
+feature:repo-add camel 2.16.2
+feature:install camel-blueprint camel-stream
 
-Copy the file simplecamel.xml into the deploy folder of karaf
+Copy the file simple-camel-blueprint.xml into the deploy folder of karaf
 
 > list
 

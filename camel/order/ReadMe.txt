@@ -40,6 +40,21 @@ To run the route using maven from the command line:
 
 To deploy in Karaf
 
-features:addurl mvn:org.apache.camel.karaf/apache-camel/2.9.0/xml/features
-features:install camel-blueprint camel-mail camel-velocity camel-stream
+feature:repo-add camel 2.16.2
+feature:install camel-blueprint camel-mail camel-velocity camel-stream
 install -s mvn:net.lr.tutorial.karaf.camel/example-order/1.0-SNAPSHOT
+
+To be able to receive the mail you have to edit the configuration pid. You can either do this by placing a properties file
+into etc/net.lr.tutorial.karaf.cxf.personservice.cfg or editing the config pid using the karaf webconsole. (See part 2 and part 3 of the Karaf Tutorial series).
+Basically you have to set these two properties according to your own mail environment.
+mailserver=yourmailserver.com
+testVendorEmail=youmail@yourdomain.com
+
+Test the order example
+----------
+Copy the file order1.xml into the folder "ordersin" below the karaf dir.
+The Karaf console will show:
+Order from Christian Schneider
+ 
+Count: 1, Article: Flatscreen TV
+The same should be in a mail in your inbox. At the same time a file should be created in ordersout/Christian Schneider/order1.xml that contains the book item.
