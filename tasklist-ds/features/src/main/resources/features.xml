@@ -36,7 +36,8 @@
     <feature name="example-tasklist-ds-ui" version="${pom.version}">
         <feature>scr</feature>
         <feature>http-whiteboard</feature>
-        <feature>persistence-api</feature>
+        <!--  <feature>persistence-api</feature>-->
+        <bundle dependency="true">mvn:org.eclipse.persistence/javax.persistence/2.1.0</bundle>
         <bundle>mvn:${groupId}/net.lr.tasklist.ds.model/${pom.version}</bundle>
         <bundle>mvn:${groupId}/net.lr.tasklist.ds.ui/${pom.version}</bundle>
     </feature>

@@ -32,7 +32,7 @@ The first step is to install the driver jar(s) for your database system into Kar
 one Karaf command. If the driver is available in maven but no bundle we can most times use the wrap: protocol of Karaf to make it a bundle on the fly. If the driver is not even
 in the repo we have to install the file into the maven repo first.
 
-For derby the following command will work
+For H2 the following command will work
 
 feature:install transaction jndi pax-jdbc-h2 pax-jdbc-pool-dbcp2 pax-jdbc-config
 service:list DataSourceFactory

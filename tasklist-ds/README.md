@@ -4,7 +4,7 @@ Example for the "Karaf Tutorial 10 - Declarative services and JPA"
 
 In this tutorial we reimplement the TaskService example using declarative services (DS).
 Aries JPA 2 is used to bring jpa support to DS. The eclipsesource jax-rs-connector is used to
-export an annotated class as REST servoce.
+export an annotated class as REST service.
 
 The tutorial skips details about DataSource creation and the model bundle as they are exactly the
 same as in the blueprint example. 

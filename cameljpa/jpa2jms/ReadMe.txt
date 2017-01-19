@@ -23,26 +23,15 @@ Run in Karaf
 Install Prerequisites
 ---------------------
 
-Karaf 2.x:
-
-features:addUrl mvn:org.apache.activemq/activemq-karaf/5.6.0/xml/features
-features:addurl mvn:org.apache.camel.karaf/apache-camel/2.9.2/xml/features
-features:install camel-blueprint camel-jms camel-jpa camel-jaxb camel-spring
-features:install activemq-spring
-features:install jpa jndi transaction
-install -s  mvn:org.apache.derby/derby/10.8.2.2
-install -s mvn:commons-dbcp/commons-dbcp/1.4
-install -s mvn:org.apache.openjpa/openjpa/2.1.1
-
 Karaf 3:
 
 feature:repo-add activemq 5.9.0
 feature:repo-add camel 2.12.0
-feature:install camel-blueprint camel-jms camel-jpa camel-jaxb camel-spring activemq-blueprint jdbc jpa jndi transaction
+feature:install jms camel-blueprint camel-jms camel-jpa camel-jaxb camel-spring activemq-blueprint jdbc jpa jndi transaction
 install -s  mvn:org.apache.derby/derby/10.8.2.2
 install -s mvn:commons-dbcp/commons-dbcp/1.4   
 
-jdbc:create -t derby derbyds
+jdbc:ds-create -dn derby derbyds
 copy connectionfactory-default.xml to deploy folder
 
 # Alternatively you can create the connection factory

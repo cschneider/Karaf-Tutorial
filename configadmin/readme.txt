@@ -17,5 +17,5 @@ h2. Installation
 
 There is only an automated installation for the blueprint case.
 
-features:addurl mvn:net.lr.tutorial.configadmin/configadmin-features/1.0/xml
+features:repo-add mvn:net.lr.tutorial.configadmin/configadmin-features/1.0/xml
 features:install  tutorial-configadmin
