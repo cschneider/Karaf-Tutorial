@@ -22,7 +22,9 @@ import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
 @OsgiServiceProvider(classes = Servlet.class)
-@Properties(@Property(name = "alias", value = "/tasklist"))
+@Properties({@Property(name = "alias", value = "/tasklist"), // For pax web
+		@Property(name = "osgi.http.whiteboard.servlet.pattern", value = "/tasklist") // For felix http
+}) 
 @Singleton
 public class TaskListServlet extends HttpServlet {
     @Inject @OsgiService

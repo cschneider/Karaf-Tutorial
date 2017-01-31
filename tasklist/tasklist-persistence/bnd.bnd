@@ -1,0 +1,1 @@
+#Provide-Capability: osgi.service;objectClass=net.lr.tasklist.model.TaskService

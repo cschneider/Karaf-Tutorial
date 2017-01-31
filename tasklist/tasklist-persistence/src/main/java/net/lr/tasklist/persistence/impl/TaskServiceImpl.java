@@ -14,7 +14,7 @@ import org.ops4j.pax.cdi.api.Property;
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
-@OsgiServiceProvider
+@OsgiServiceProvider(classes=TaskService.class)
 @Properties(@Property(name = "service.exported.interfaces", value = "*"))
 @Singleton
 public class TaskServiceImpl implements TaskService {

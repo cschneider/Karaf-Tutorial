@@ -1,0 +1,4 @@
+Require-Capability:\
+	osgi.service;filter:="(objectClass=org.osgi.service.http.HttpService)";effective:=active
+# From karaf 4.1.0 we can switch to requiring the OSGi http impl
+# osgi.implementation;osgi.implementation="osgi.http"
