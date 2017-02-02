@@ -21,9 +21,14 @@ import org.ops4j.pax.cdi.api.Property;
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
+/**
+ * The is an issue in Apache Karaf 4.1.0 when both properties below are set. The servlet will then not be registered.
+ * For this case remove the alias property.
+ */
 @OsgiServiceProvider(classes = Servlet.class)
-@Properties({@Property(name = "alias", value = "/tasklist"), // For pax web
-		@Property(name = "osgi.http.whiteboard.servlet.pattern", value = "/tasklist") // For felix http
+@Properties({//
+	//@Property(name = "alias", value = "/tasklist"), // For pax web < 6 like in Apache Karaf < 4.1
+	@Property(name = "osgi.http.whiteboard.servlet.pattern", value = "/tasklist") // For felix http
 }) 
 @Singleton
 public class TaskListServlet extends HttpServlet {

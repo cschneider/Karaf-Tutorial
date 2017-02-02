@@ -12,7 +12,7 @@ import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
 @Singleton
-@OsgiServiceProvider
+@OsgiServiceProvider(classes=TaskAddCommand.class)
 @Properties(//
 {
  @Property(name = "osgi.command.scope", value = "task"),
