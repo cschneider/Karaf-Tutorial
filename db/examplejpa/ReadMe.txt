@@ -1,7 +1,7 @@
 dbexample
 ---------
 
-Example how to access a DataSource using OSGi services and jdbc.
+Example how to access a DataSource using OSGi services and jpa.
 
 Build
 -----
