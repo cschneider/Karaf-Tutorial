@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<features name="tasklist-cdi-${pom.version}" xmlns="http://karaf.apache.org/xmlns/features/v1.2.1">
+    <repository>mvn:org.ops4j.pax.jdbc/pax-jdbc-features/1.1.0/xml/features</repository>
+    
+    <feature name="example-dbng" version="${pom.version}">
+        <feature>scr</feature>
+        <feature>pax-jdbc-h2</feature>
+        <feature>pax-jdbc-config</feature>
+        <bundle>mvn:org.yaml/snakeyaml/1.17</bundle>
+        <bundle>mvn:org.liquibase/liquibase-osgi/3.4.2</bundle>
+        <bundle>mvn:${groupId}/net.lr.tutorial.dbng.migrator/${pom.version}</bundle>
+        <bundle>mvn:${groupId}/net.lr.tutorial.dbng.service/${pom.version}</bundle>
+    </feature>
+
+</features>
