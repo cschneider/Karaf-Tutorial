@@ -9,7 +9,6 @@ import org.ops4j.pax.jdbc.hook.PreHook;
 import org.osgi.service.component.annotations.Component;
 
 import liquibase.Contexts;
-import liquibase.LabelExpression;
 import liquibase.Liquibase;
 import liquibase.database.Database;
 import liquibase.database.DatabaseConnection;
@@ -20,11 +19,8 @@ import liquibase.exception.LiquibaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 
-@Component(property="name=mydb")
+@Component(property="name=persondb")
 public class Migrator implements PreHook {
-
-    private String changeLog = "db/changesets.xml";
-    private String tag;
 
     @Override
     public void prepare(DataSource ds) throws SQLException {
@@ -40,15 +36,8 @@ public class Migrator implements PreHook {
         Database database = DatabaseFactory.getInstance().findCorrectDatabaseImplementation(databaseConnection);
         ClassLoader classLoader = this.getClass().getClassLoader();
         ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor(classLoader);
-        Liquibase liquibase = new Liquibase(changeLog, resourceAccessor, database);
-        liquibase.update(tag, new Contexts(), new LabelExpression());
+        Liquibase liquibase = new Liquibase("db/changesets.xml", resourceAccessor, database);
+        liquibase.update(new Contexts());
     }
-    
-    public void setChangeLog(String changeLog) {
-        this.changeLog = changeLog;
-    }
-    
-    public void setTag(String tag) {
-        this.tag = tag;
-    }
+
 }
