@@ -8,8 +8,7 @@
         <feature>pax-jdbc-config</feature>
         <bundle>mvn:org.yaml/snakeyaml/1.17</bundle>
         <bundle>mvn:org.liquibase/liquibase-osgi/3.4.2</bundle>
-        <bundle>mvn:${groupId}/net.lr.tutorial.dbng.migrator/${pom.version}</bundle>
-        <bundle>mvn:${groupId}/net.lr.tutorial.dbng.service/${pom.version}</bundle>
+        <bundle>mvn:${groupId}/net.lr.tutorial.lb.service/${pom.version}</bundle>
     </feature>
 
 </features>

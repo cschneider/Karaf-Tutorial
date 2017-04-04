@@ -12,7 +12,6 @@
     </properties>
 
     <modules>
-		<module>migrator</module>
         <module>service</module>
         <module>features</module>
     </modules>

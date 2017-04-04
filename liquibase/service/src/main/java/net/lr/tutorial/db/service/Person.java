@@ -1,24 +1,17 @@
 package net.lr.tutorial.db.service;
 
+/**
+ * Very simple model class. This already contains the age property 
+ * to make the tutorial steps simpler.
+ */
 public class Person {
 
-    private long id;
-    private String name;
+    public long id;
+    public String name;
+    public int age;
 
-    public long getId() {
-        return id;
+    @Override
+    public String toString() {
+        return id + ":" + name + ":" + age;
     }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
 }

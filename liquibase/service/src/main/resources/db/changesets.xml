@@ -18,11 +18,13 @@
     <column name="name">Chris</column>
   </insert>
 </changeSet>
- 
+
+<!-- 
 <changeSet id="2" author="cs">
   <addColumn tableName="person">
-    <column name="age" type="int" defaultValue="29"/>
+    <column name="age" type="int" defaultValue="42"/>
   </addColumn>
 </changeSet>
-
+-->
+ 
 </databaseChangeLog>
