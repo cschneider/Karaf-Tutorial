@@ -105,7 +105,7 @@ The PersonRepo class uses simple jdbc4 code to query the person table and return
 
 Download and start Apache Karaf 4.1.1. Then install the example-lb feature
 
-    cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/liquibased/org.ops4j.datasource-person.cfg | tac -f etc/org.ops4j.datasource-person.cfg
+    cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/liquibase/org.ops4j.datasource-person.cfg | tac etc/org.ops4j.datasource-person.cfg
     feature:repo-add mvn:net.lr.tutorial.lb/lb/1.0.0-SNAPSHOT/xml/features
     feature:install example-lb jdbc
 
