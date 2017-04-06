@@ -23,7 +23,7 @@ Download and extract Karaf 4.1.1.
 Start karaf and execute the commands below
 
 ```Shell
-cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/liquibased/org.ops4j.datasource-person.cfg | tac -f etc/org.ops4j.datasource-person.cfg
+cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/liquibase/org.ops4j.datasource-person.cfg | tac etc/org.ops4j.datasource-person.cfg
 feature:repo-add mvn:net.lr.tutorial.lb/lb/1.0.0-SNAPSHOT/xml/features
 feature:install example-lb
 ```
