@@ -7,7 +7,7 @@
         <feature>pax-jdbc-h2</feature>
         <feature>pax-jdbc-config</feature>
         <bundle>mvn:org.yaml/snakeyaml/1.17</bundle>
-        <bundle>mvn:org.liquibase/liquibase-osgi/3.4.2</bundle>
+        <bundle>mvn:org.liquibase/liquibase-core/3.5.3</bundle>
         <bundle>mvn:${groupId}/net.lr.tutorial.lb.service/${pom.version}</bundle>
     </feature>
 
