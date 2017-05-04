@@ -20,7 +20,9 @@
 		<module>tasklist-ui</module>
 		<module>tasklist-features</module>
 		<module>tasklist-command</module>
+		<!--
 		<module>tasklist-index</module>
+		-->
 		<module>tasklist-itests</module>
 	</modules>
 
