@@ -26,6 +26,8 @@ mvn clean install
 
 ## Installation
 
+Download and start karaf >= 4.1. If you want to use karaf 4.0.x you need to switch the way the http servlet is published. See the comment in TaskListServlet.
+
 	feature:repo-add mvn:net.lr.tasklist/tasklist-features/1.0.0-SNAPSHOT/xml
 	feature:install example-tasklist
 
