@@ -48,7 +48,7 @@ Create Task2 using the rest service
 
 Retrieve Task2
 
-	curl -i http://localhost:8181/cxf/net/lr/tasklist/service/TaskServiceRest/2
+	curl -i http://localhost:8181/cxf/tasklistRest/2
 
 # Import the source in eclipse
 
