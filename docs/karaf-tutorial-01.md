@@ -37,7 +37,7 @@ karaf@root()>
 
 
 # Some handy commands
- 
+
 ||Command||Description||
 |la|Shows all installed bundles|
 |list|Show user bundles|
@@ -191,7 +191,7 @@ feature:install example-tasklist-persistence example-tasklist-ui
 
 Add the features descriptor to Karaf so it is added to the available features, then Install and start the tasklist feature. After this command the tasklist application should run
 ```
-list 
+list
 ```
 
 Check that all bundles of tasklist are active. If not try to start them and check the log.
