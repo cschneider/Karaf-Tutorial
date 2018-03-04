@@ -2,26 +2,22 @@
 
 In the first part of the Karaf Tutorial we learned how to use maven and blueprint to offer and use pojo services and how to use the http service to publish a servlet.
 
-In this second part we concentrate on configuration for our OSGi bundles. Unlike servlet containers OSGi contains a very good specification for configuration: The Config Admin Service from the OSGi enterprise spec.
-
-In this tutorial we will cover ussing the Config Admin Service with pure OSGi and blueprint and how to automatically deploy config files with your bundles.
-
-The practical parts of this tutorial can be found on github in [https://github.com/cschneider/Karaf-Tutorial/tree/master/configadmin|https://github.com/cschneider/Karaf-Tutorial/tree/master/configadmin]
+In this second part we concentrate on configuration for our OSGi bundles. In this tutorial we will cover ussing the [Configuration Admin Service](https://osgi.org/specification/osgi.cmpn/7.0.0/service.cm.html) with plain OSGi APIs and blueprint and how to automatically deploy config files with your bundles. The examples can be found on github [https://github.com/cschneider/Karaf-Tutorial/tree/master/configadmin]
 
 ## The Configuration Admin Service spec
 
 We will first get a fast overview of the Configuration Admin Service spec. There two main interfaces for us to use:
 
-* ConfigurationAdmin - Allows to retrieve and change configurations. This service is offered by the Config Admin Service implementation
-* ManagedService - Allows to react on configuration changes. You have to implement this and register it as a service to get notified
+- **ConfigurationAdmin** - Allows to retrieve and change configurations. This service is offered by the Config Admin Service implementation
+- **ManagedService** - Allows to react on configuration changes. You have to implement this and register it as a service to get notified
 
-So basically a configuration in the Config Admin Service is a Dictionary that contains attributes and their values. The Dictionary is identified by a persistent identifier (pid). This is simply a String that should uniquely identify the configuration.
+So basically a configuration in the Config Admin Service is a Dictionary that contains attributes and their values. The Dictionary is identified by a persistent identifier (pid). This is simply a String that uniquely identifies the configuration.
 
 ## How to work with configuration?
 
-While you can retrieve a configuration using the ConfigurationAdmin.getConfiguration interface I would not recommend to do so. OSGi is very dynamic so it may happen that your bundle starts before the config admin service or that the config admin service did not yet read the configuration. So you may end up sometimes getting Null for the configuration.
+While you can retrieve a configuration using the ConfigurationAdmin.getConfiguration interface I do not recommend to do so. OSGi is very dynamic so it may happen that your bundle starts before the config admin service or that the config admin service did not yet read the configuration. So you may end up sometimes getting Null for the configuration.
 
-So the recommended way is to use a ManagedService and react on updates. If your bundle can not start without config then it is a good idea to create the pojo class to be configured on the first update received.
+The recommended way is to use a ManagedService and react on updates. If your bundle can not start without config then it is a good idea to create the pojo class to be configured on the first update received.
 
 ## Introducing our very simple class to be configured
 
@@ -49,26 +45,21 @@ So our goal is to configure the title when the configuration changes and then ca
 
 The first practical part in this tutorial shows how to use the config admin service using just OSGi interfaces. While this is probably not the way you will do it later it helps to understand what happens under the hood.
 
-You can find the implementation in the subdirectory configapp ([https://github.com/cschneider/Karaf-Tutorial/tree/master/configadmin/configapp|https://github.com/cschneider/Karaf-Tutorial/tree/master/configadmin/configapp])
-
-So we first need a pom file for the maven build. You best start with the pom from the configapp example.\
-
+You can find the implementation in the [subdirectory configapp](https://github.com/cschneider/Karaf-Tutorial/tree/master/configadmin/configapp).
 If you start fresh you will have to use the maven-bundle-plugin to make your project a OSGi bundle and you need to add two dependencies:
 
 ```
+<dependency>
+  <groupId>org.osgi</groupId>
+  <artifactId>org.osgi.core</artifactId>
+  <version>4.2.0</version>
+</dependency>
 <dependency>
   <groupId>org.osgi</groupId>
   <artifactId>org.osgi.compendium</artifactId>
   <version>4.2.0</version>
 </dependency>
-<dependency>
-  <groupId>org.osgi</groupId>
-  <artifactId>org.osgi.core</artifactId>
-  <version>4.2.0</version>
-</dependency>
 ```
-
-The first is for the config admin service interfaces and the second is to be able to create the Activator and contains the basic OSGi interfaces.
 
 Now we will care about updating the MyApp class. The following little class does the trick. We implement the ManagedService interface to talk to the Config Admin Service. So we get called whenever the config changes. The first thing is to check for null as this can happen when the config is removed. We could a this point stop our MyApp but to keep it simple we just ignore those. The next step is to create the MyApp class. Normally you would do this in the Activator but then you would have to be able to work with an empty configuration which is not always desired. The last part is to simply call the setter with the value from the config and call refresh after all settings were made.
 
@@ -105,7 +96,7 @@ serviceReg = context.registerService(ManagedService.class.getName(), new ConfigU
 * Start a fresh Karaf instance
 * Copy the configapp.jar bundle from the target dir to the Karaf deploy dir
 
-Now we notice that nothing seems to happen. Calling list in the Karaf console you should be able to see that the bundle is indeed started but it will not do create any output as there is no config.\
+Now we notice that nothing seems to happen. Calling list in the Karaf console you should be able to see that the bundle is indeed started but it will not do create any output as there is no config.
 
 We still need to create the config file and set the title.
 
@@ -128,11 +119,11 @@ Type the following in the Karaf console:
 ```
 > config:list
 
-Pid:            ConfigApp
-BundleLocation: file:/C:/java/apache-karaf-2.2.3/deploy/configapp.jar
+Pid: ConfigApp
+BundleLocation: file:...
 Properties:
    service.pid = ConfigApp
-   felix.fileinstall.filename = file:/C:/java/apache-karaf-2.2.3/etc/ConfigApp.cfg
+   felix.fileinstall.filename = file:...
    title = my Title
 ```
 
@@ -142,13 +133,11 @@ We can also change the config:
 
 ```
 > config:edit ConfigApp
-
-> config:propset title "A better title"
-
-> config:proplist
+> config:property-set title "A better title"
+> config:property-list
 
    service.pid = ConfigApp
-   felix.fileinstall.filename = file:/C:/java/apache-karaf-2.2.3/etc/ConfigApp.cfg
+   felix.fileinstall.filename = file:...
    title = A better title
 
 > config:update
@@ -205,10 +194,6 @@ After we have successfully used the Config Admin Service the only thing that rem
 
 So one last question is how to deploy the config to maven for the configfile element to find it. This happens like for the feature with the build-helper-maven-plugin in Karaf See the pom file for details how to use it.
 
-## Summing it up and a look into the future
+## Summing it up
 
 During this tutorial we have learned how the Config Admin Service works and how to use it with pure OSGi and blueprint. We have also seen how to build and deploy our projects together with documentation.
-
-While this is already very usefull some small things are missing in my opinion. The first thing is that configfile does not really seem to be consistent with the config admin service. In fact Karaf does not use the config admin service to deploy the file. So what I would like to see is that the also existing config element not only writes the config to the config admin service but also persists it. Fortunately my colleague Jean Baptiste is already working on this. See [https://issues.apache.org/jira/browse/KARAF-888|https://issues.apache.org/jira/browse/KARAF-888]
-
-The other thing is that for enterprise environments a config admin service with some additional features is needed. One thing is that it should be possible to do configuration on a whole network of servers with a central source for configuration and a nice UI. The other thing is that you would like to not only deploy the default config but also the config the admin really wants for the system. So I  imagine that you should be able to define a deployment plan with bundles and features to install but also with the required configuration changes. If this is done right it will allow good audits of deployment and config changes and will also allow an admin to roll back a change in case something goes wrong. I hope we can provide some of this in one of the next [Talend|http://www.talend.com/] ESB EE releases.

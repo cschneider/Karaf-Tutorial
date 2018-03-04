@@ -17,7 +17,7 @@ All together these features make developing server based OSGi applications almos
 * Download Karaf 4.0.7 from the [Karaf web site|http://karaf.apache.org/].
 * Extract and start with bin/karaf
 You should see the welcome screen:
-
+ 
 ```
         __ __                  ____
        / //_/____ __________ _/ __/
