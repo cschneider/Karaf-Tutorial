@@ -7,15 +7,17 @@ import java.util.Map;
 
 import javax.inject.Singleton;
 
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
-import org.ops4j.pax.cdi.api.Properties;
-import org.ops4j.pax.cdi.api.Property;
+import org.apache.aries.blueprint.annotation.service.Service;
+import org.apache.aries.blueprint.annotation.service.ServiceProperty;
 
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
 
-@OsgiServiceProvider(classes=TaskService.class)
-@Properties(@Property(name = "service.exported.interfaces", value = "*"))
+@Service(classes=TaskService.class,
+properties= {
+		// Only necessary for Remote Services
+		@ServiceProperty(name = "service.exported.interfaces", values = "*")
+})
 @Singleton
 public class TaskServiceImpl implements TaskService {
     Map<String, Task> taskMap;

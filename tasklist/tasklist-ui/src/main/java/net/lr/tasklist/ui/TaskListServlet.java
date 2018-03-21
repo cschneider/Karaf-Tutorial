@@ -13,10 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.ops4j.pax.cdi.api.OsgiService;
-import org.ops4j.pax.cdi.api.OsgiServiceProvider;
-import org.ops4j.pax.cdi.api.Properties;
-import org.ops4j.pax.cdi.api.Property;
+import org.apache.aries.blueprint.annotation.service.Reference;
+import org.apache.aries.blueprint.annotation.service.Service;
+import org.apache.aries.blueprint.annotation.service.ServiceProperty;
 
 import net.lr.tasklist.model.Task;
 import net.lr.tasklist.model.TaskService;
@@ -25,14 +24,16 @@ import net.lr.tasklist.model.TaskService;
  * The is an issue in Apache Karaf 4.1.0 when both properties below are set. The servlet will then not be registered.
  * For this case remove the alias property.
  */
-@OsgiServiceProvider(classes = Servlet.class)
-@Properties({//
-	//@Property(name = "alias", value = "/tasklist"), // For pax web < 6 like in Apache Karaf < 4.1
-	@Property(name = "osgi.http.whiteboard.servlet.pattern", value = "/tasklist") // For felix http
-}) 
+@Service(
+		classes = Servlet.class,
+		properties = {
+				//@ServiceProperty(name = "alias", values = "/tasklist"), // For pax web < 6 like in Apache Karaf < 4.1
+				@ServiceProperty(name = "osgi.http.whiteboard.servlet.pattern", values = "/tasklist") // For felix http
+		}
+		) 
 @Singleton
 public class TaskListServlet extends HttpServlet {
-    @Inject @OsgiService
+    @Inject @Reference
     TaskService taskService;
 
     private static final long serialVersionUID = 34992072289535683L;
