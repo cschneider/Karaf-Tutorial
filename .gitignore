@@ -4,3 +4,4 @@ target
 .settings
 in
 generated/
+.DS_store
