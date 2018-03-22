@@ -104,11 +104,13 @@ This project contains the domain model in our case it is the Task class and a T
 
 The very simple persistence implementation TaskServiceImpl manages tasks in a simple HashMap. The class uses the @Singleton annotation to expose the class as an blueprint bean.
 
-The annotation  @OsgiServiceProvider will expose the bean as an OSGi service and the @Properties annotation allows to add serice properties. In our case the property service.exported.interfaces we set can be used by CXF-DOSGi which we present  in a later tutorial. For this tutorial the properties could also be removed.
+The annotation  @Service will expose the bean as an OSGi service and the properties attribute allows to add serice properties. In our case the property service.exported.interfaces we set can be used by CXF-DOSGi which we present  in a later tutorial. For this tutorial the properties could also be removed.
 
 ```
-@OsgiServiceProvider
-@Properties(@Property(name = "service.exported.interfaces", value = "*"))
+@Service(classes=TaskService.class,
+properties= {
+		@ServiceProperty(name = "service.exported.interfaces", values = "*")
+})
 @Singleton
 public class TaskServiceImpl implements TaskService {
 	...
@@ -127,14 +129,17 @@ Automatically created blueprint xml can be found in target/generated-resources
 
 ## Tasklist-ui
 
-The ui project contains a small servlet TaskServlet to display the tasklist and individual tasks. To work with the tasks the servlet needs the TaskService. We inject the TaskService by using the annotation @Inject which is able to inject any bean by type and the annotation @OsgiService which creates a blueprint reference to an OSGiSerivce of the given type.
+The ui project contains a small servlet TaskServlet to display the tasklist and individual tasks. To work with the tasks the servlet needs the TaskService. We inject the TaskService by using the annotation @Inject which is able to inject any bean by type and the annotation @Service which creates a blueprint reference to an OSGi serivce of the given type.
 
-The whole class is exposed as an OSGi service of interface java.http.Servlet with a special property alias=/tasklist. This triggers the whiteboard extender of pax web which picks up the service and exports it as a servlet at the relative url /tasklist.
+The whole class is exposed as an OSGi service of interface java.http.Servlet with a special property osgi.http.whiteboard.servlet.pattern=/tasklist. This triggers the whiteboard extender of pax web which picks up the service and exports it as a servlet at the relative url /tasklist.
 
 Snippet of the relevant code:
 ```
-@OsgiServiceProvider(classes = Servlet.class)
-@Properties(@Property(name = "alias", value = "/tasklist"))
+@Service(classes = Servlet.class,
+	properties = {
+		@ServiceProperty(name = "osgi.http.whiteboard.servlet.pattern", values = "/tasklist")
+	}
+) 
 @Singleton
 public class TaskListServlet extends HttpServlet {
     @Inject @OsgiService
