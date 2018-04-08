@@ -21,7 +21,7 @@ You will see the list of configurations the config admin service knows about:
 
 So the first thing we want to see is the untyped configuration. To see this copy the ConfigApp.cfg file from the git sources to the etc dir of Karaf. It should now be listed in the above list. If you click edit you will see the following:
 
-![Image](karaf-tutorial-03/config-detail-untyped.png)
+![Image](config-detail-untyped.png)
 So you get a freeform text editor with the current config. You can edit and save the config.The config is changed in the config admin service and internally persisted but not written to the etc dir (in current Karaf version).
 
 Now delete the file from etc again. The config will not be shown in the list anymore.
@@ -76,10 +76,13 @@ Now build the configapp project using mvn install and copy the configapp.jar to 
 
 You can then click edit and should see the following screen:
 
-![Image](karaf-tutorial-03/config-detail-typed.png)
+![Image](config-detail-typed.png)
+
 So we get a nice form to edit our configuration and also get default values if we create a new config. A click on Save will create or update this config in the config admin service and out bundle will reflect the change.
 
-To see a larger example you can edit the configuration of the felix fileinstall bundle which will show the following screen: ![Image](karaf-tutorial-03/config-fileinstall.png)
+To see a larger example you can edit the configuration of the felix fileinstall bundle which will show the following screen: 
+
+![Image](config-fileinstall.png)
 
 ### Summary
 
