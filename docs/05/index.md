@@ -1,3 +1,6 @@
+---
+title: Karaf Tutorial Part 5 - Apache Camel integrations in OSGi
+---
 
 Shows how to run your camel routes in the OSGi server Apache Karaf. Like for CXF blueprint is used to boot up camel. The tutorial shows three examples - a simple blueprint route, a jms2rest adapter and an order processing example.
 
