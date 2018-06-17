@@ -181,4 +181,4 @@ mvn clean install
 ```
 
 Installation and test
-See Readme.txt on github.
+See [Readme.txt on github](../../tasklist-blueprint-cdi/README.md).
