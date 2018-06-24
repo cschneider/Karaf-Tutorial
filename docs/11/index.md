@@ -1,9 +1,6 @@
-
 ---
 title: Karaf Tutorial 11 - Managing database schema with liquibase
 ---
-
-# {{page.title}}
 
 A typical pain point in continuous delivery is the database schema and contents. The database schema changes over time and can not be deployed like bundles. Sometimes even the database contents have to be adapted when the schema changes. In a modern deployment pipeline we of course also want to automate this part of the deployment. This tutorial builds upon the db tutorial and shows how to leverage liquibase to automatically keep the db schema up to date with the java code. We assume familiarity with how to create DataSources using pax-jdbc-config and declarative services.
 
