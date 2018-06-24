@@ -2,8 +2,6 @@
 title: Apache Karaf Tutorial Part 8 - Distributed OSGi
 ---
 
-# {{page.title}}
-
 By default OSGi services are only visible and accessible in the OSGi container where they are published. Distributed OSGi allows to define services in one container and use them in some other (even over machine boundaries).
 
 For this tutorial we use the DOSGi sub project of CXF which is the reference implementation of the OSGi Remote Service Admin specification, chapter 122 in the OSGi 4.2 Enterprise Specification).
