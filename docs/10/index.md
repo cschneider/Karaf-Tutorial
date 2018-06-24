@@ -1,4 +1,9 @@
-Apache Karaf Tutorial part 10 - Declarative services
+
+---
+title: Apache Karaf Tutorial part 10 - Declarative services
+---
+
+# {{page.title}}
 
 This tutorial shows how to use Declarative Services together with the new Aries JPA 2.0.You can find the full source code on [github Karaf-Tutorial/tasklist-ds](https://github.com/cschneider/Karaf-Tutorial/tree/master/tasklist-ds)
 
