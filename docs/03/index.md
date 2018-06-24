@@ -2,6 +2,8 @@
 title: Karaf Tutorial Part 3 - Improving configuration editing using the OSGI Metatype Service and the Felix Webconsole
 ---
 
+# Karaf Tutorial Part 3 - Improving configuration editing using the OSGI Metatype Service and the Felix Webconsole
+
 In [Karaf Tutorial Part 2 - Using the Configuration Admin Service](karaf-tutorial-02) we learned how to configure our bundles using simple configurations.
 
 In this part we will learn how to use the Metatype Service and the Felix Webconsole to easily create and edit these configurations
