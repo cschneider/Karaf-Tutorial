@@ -1,4 +1,3 @@
-
 ---
 title: Apache Karaf Tutorial Part 9 - Annotation based blueprint and JPA
 ---
