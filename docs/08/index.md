@@ -1,4 +1,3 @@
-
 ---
 title: Apache Karaf Tutorial Part 8 - Distributed OSGi
 ---
