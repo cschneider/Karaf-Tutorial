@@ -2,8 +2,6 @@
 title: Karaf Tutorial Part 4 - CXF Services in OSGi
 ---
 
-# Karaf Tutorial Part 4 - CXF Services in OSGi
-
 Shows how to publish and use a simple REST and SOAP service in karaf using cxf and blueprint.
 
 To run the example you need to install the http feature of karaf. The default http port is 8080 and can be configured using the
