@@ -3,9 +3,6 @@
 title: Apache Karaf Tutorial Part 9 - Annotation based blueprint and JPA
 ---
 
-# {{page.title}}
-
-
 Shows how to create a small application with a model, persistence layer and UI just with CDI annotations running as blueprint.
 
 ## blueprint-maven-plugin
