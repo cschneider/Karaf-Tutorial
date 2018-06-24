@@ -1,4 +1,6 @@
-# Karaf Tutorial Part 2 - Using the Configuration Admin Service
+---
+title: Karaf Tutorial Part 2 - Using the Configuration Admin Service
+---
 
 In the first part of the Karaf Tutorial we learned how to use maven and blueprint to offer and use pojo services and how to use the http service to publish a servlet.
 
