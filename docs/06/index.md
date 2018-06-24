@@ -2,6 +2,8 @@
 title: Apache Karaf Tutorial Part 6 - Database Access
 ---
 
+# Apache Karaf Tutorial Part 6 - Database Access
+
 Shows how to access databases from OSGi applications running in Karaf and how to abstract from the DB product by installing DataSources as OSGi services. Some new Karaf shell commands can be used to work with the database from the command line. Finally JDBC and JPA examples show how to use such a DataSource from user code.
 
 ## Prerequisites
