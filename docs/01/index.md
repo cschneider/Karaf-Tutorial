@@ -1,4 +1,8 @@
-# Karaf Tutorial Part 1 - Installation and First application
+---
+title: Karaf Tutorial Part 1 - Installation and First application
+---
+
+# {{ page.title }}
 
 # Getting Started
 {excerpt:atlassian-macro-output-type=INLINE}With this post I am beginning a series of posts about Apache Karaf, an OSGi container based on Equinox or Felix. The main difference to these frameworks is that it brings excellent management features with it.{excerpt}
