@@ -2,8 +2,6 @@
 title: Apache Karaf Tutorial Part 7 - Camel JPA and JTA transactions
 ---
 
-# {{page.title}}
-
 Practical Camel example that polls from a database table and sends the contents as XML to a jms queue. The route uses a JTA transaction to synchronize the DB and JMS transactions. An error case shows how you can handle problems.
 
 ## Route and Overview
