@@ -9,7 +9,7 @@ You need an installation of apache karaf 4.1.x for this tutorial.
 
 ## Example sources
 
-The example projects are on github Karaf-Tutorial/db.
+The example projects sources are at [Karaf-Tutorial db](https://github.com/cschneider/Karaf-Tutorial/tree/master/db).
 
 ## Drivers and DataSources
 
@@ -21,7 +21,8 @@ So we need to learn how to create and use DataSources first.
 
 To make it easier to create DataSources in OSGi the specs define a DataSourceFactory interface. It allows to create a DataSource using a specific driver from properties. Each database driver is expected to implement this interface and publish it with properties for the driver class name and the driver name.
 
-Introducing pax-jdbc
+# Introducing pax-jdbc
+
 The pax-jdbc project aims at making it a lot easier to use databases in an OSGi environment. It does the following things:
 
 * Implement the DataSourceFactory service for Databases that do not create this service directly
@@ -40,7 +41,7 @@ For several databases pax-jdbc already provides karadf features to install a cur
 For H2 the following commands will work
 
 ```
-feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.8.0/xml/features
+feature:repo-add pax-jdbc 1.3.0
 feature:install transaction jndi pax-jdbc-h2 pax-jdbc-pool-dbcp2 pax-jdbc-config
 service:list DataSourceFactory
 ```
@@ -55,24 +56,10 @@ This will install the pax-jdbc feature repository and the h2 database driver. Th
  osgi.jdbc.driver.class = org.h2.Driver
  osgi.jdbc.driver.name = H2
  osgi.jdbc.driver.version = 1.3.172
- service.id = 691
-Provided by :
- H2 Database Engine (68)
-The pax-jdbc-pool-dbcp2 feature wraps this DataSourceFactory to provide pooling and XA support.
-
-[org.osgi.service.jdbc.DataSourceFactory]
------------------------------------------
- osgi.jdbc.driver.class = org.h2.Driver
- osgi.jdbc.driver.name = H2-pool-xa
- osgi.jdbc.driver.version = 1.3.172
- pooled = true
- service.id = 694
- xa = true
-Provided by :
- OPS4J Pax JDBC Pooling support using Commons-DBCP2 (73)
+ service.bundleid = 72
+ service.id = 124
+ service.scope = singleton
 ```
-
-Technically this DataSourceFactory also creates DataSource objects but internally they manage XA support and pooling. So we want to use this one for our later code examples.
 
 ## Creating the DataSource
 
@@ -81,16 +68,19 @@ Now we just need to create a configuration with the correct factory pid to creat
 So create the file etc/org.ops4j.datasource-person.cfg with the following content
 
 ```
-osgi.jdbc.driver.name=H2-pool-xa
-url=jdbc:h2:mem:person
+osgi.jdbc.driver.name=H2
+pool=dbcp2
+xa=true
+url=jdbc:h2:mem:test
 dataSourceName=person
 ```
 
 The config will automatically trigger the pax-jdbc-config module to create a DataSource.
 
-The name osgi.jdbc.driver=H2-pool-xa will select the H2 DataSourceFactory with pooling and XA support we previously installed.
+The name osgi.jdbc.driver=H2 selects the H2 DataSourceFactory.
+pool and xa enable pooling and XA support.
 The url configures H2 to create a simple in memory database named test.
-The dataSourceName will be reflected in a service property of the DataSource so we can find it later
+The dataSourceName will be reflected in a service property of the DataSource so we can find it later.
 You could also set pooling configurations in this config but we leave it at the defaults
 
 ```
@@ -98,22 +88,20 @@ karaf@root()> service:list DataSource
 [javax.sql.DataSource]
 ----------------------
  dataSourceName = person
- osgi.jdbc.driver.name = H2-pool-xa
+ felix.fileinstall.filename = file:/Users/cschneid/java/apache-karaf-4.1.5/etc/org.ops4j.datasource-person.cfg
+ osgi.jdbc.driver.name = H2
  osgi.jndi.service.name = person
+ pax.jdbc.managed = true
+ service.bundleid = 73
  service.factoryPid = org.ops4j.datasource
- service.id = 696
- service.pid = org.ops4j.datasource.83139141-24c6-4eb3-a6f4-82325942d36a
- url = jdbc:h2:mem:person
-Provided by :
- OPS4J Pax JDBC Config (69)
+ service.id = 135
+ service.pid = org.ops4j.datasource.3ffa37b1-d2f6-4130-9333-cd82d609011b
+ service.scope = singleton
+ url = jdbc:h2:mem:test
 ```
 So when we search for services implementing the DataSource interface we find the person datasource we just created.
 
 When we installed the features above we also installed the aries jndi feature. This module maps OSGi services to jndi objects. So we can also use jndi to retrieve the DataSource which will be used in the persistence.xml for jpa later.
-
-```
-osgi:service/person
-```
 
 ## Karaf jdbc commands
 
@@ -121,16 +109,16 @@ Karaf contains some commands to manage DataSources and do queries on databases.
 
 ```
 feature:install jdbc
-jdbc:datasources
+jdbc:ds-list
 jdbc:tables person
 ```
 
-We first install the karaf jdbc feature which provides the jdbc commands. Then we list the DataSources and show the tables of the database accessed by the person DataSource. Be aware that older versions of karaf required the sql code to be enclosed in " ".
+We first install the karaf jdbc feature which provides the jdbc commands. Then we list the DataSources and show the tables of the database accessed by the person DataSource.
 
 ```
-jdbc:execute person create table person (name varchar(100), twittername varchar(100))
-jdbc:execute person insert into person (name, twittername) values ('Christian Schneider', '@schneider_chris')
-jdbc:query person select * from person
+jdbc:execute person "create table person (name varchar(100), twittername varchar(100))"
+jdbc:execute person "insert into person (name, twittername) values ('Christian Schneider', '@schneider_chris')"
+jdbc:query person "select * from person"
 ```
 
 This creates a table person, adds a row to it and shows the table.
