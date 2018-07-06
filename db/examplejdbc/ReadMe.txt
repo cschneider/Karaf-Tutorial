@@ -10,8 +10,8 @@ mvn clean install
 Installation
 ------------
 
-feature:repo-add mvn:org.ops4j.pax.jdbc/pax-jdbc-features/0.5.0/xml/features
-feature:install transaction jndi pax-jdbc-h2 pax-jdbc-pool-dbcp2 pax-jdbc-config
+feature:repo-add pax-jdbc 1.3.0
+feature:install scr transaction jndi pax-jdbc-h2 pax-jdbc-pool-dbcp2 pax-jdbc-config
 
 cat https://raw.githubusercontent.com/cschneider/Karaf-Tutorial/master/db/org.ops4j.datasource-person.cfg | tac -f etc/org.ops4j.datasource-person.cfg
 install -s mvn:net.lr.tutorial.karaf.db/db-examplejdbc/1.0-SNAPSHOT

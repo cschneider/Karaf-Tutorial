@@ -25,14 +25,21 @@ import java.sql.Statement;
 
 import javax.sql.DataSource;
 
+import org.osgi.service.component.annotations.Activate;
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
+@Component
 public class DbExample {
 
-    DataSource dataSource;
+    @Reference
+    private DataSource dataSource;
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
-
+    
+    @Activate
     public void test() throws Exception {
         try (
             Connection con = dataSource.getConnection();

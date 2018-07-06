@@ -20,7 +20,7 @@ import org.h2.jdbcx.JdbcDataSource;
 import org.junit.Test;
 
 public class DbExampleTest {
-
+    
     @Test
     public void test() throws Exception {
         JdbcDataSource ds = new JdbcDataSource();
