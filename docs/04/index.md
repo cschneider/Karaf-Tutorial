@@ -12,6 +12,8 @@ If you use Talend ESB instead of plain karaf then the default http port is 8044 
 
 ## PersonService Example
 
+You can find the [full source on github(https://github.com/cschneider/Karaf-Tutorial/tree/master/cxf/personservice/).
+
 The "business case" is to manage a list of persons. As service should provide the typical CRUD operations. Front ends should be a REST service, a SOAP service and a web UI.
 
 ![Image](Overview.png)
@@ -22,8 +24,6 @@ The example consists of four projects
 - server - Service implementation and logic to publish the service using jax-ws (SOAP)
 - proxy - Accesses the SOAP service and publishes it as an OSGi service
 - webui - Provides a simple servlet based web ui to list and add persons. Uses the OSGi service
-
-You can find the [full source on github(https://github.com/cschneider/Karaf-Tutorial/tree/master/cxf/personservice/).
 
 ## Installation and test run
 
