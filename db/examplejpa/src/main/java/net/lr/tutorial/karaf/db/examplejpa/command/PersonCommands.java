@@ -18,28 +18,38 @@ package net.lr.tutorial.karaf.db.examplejpa.command;
 
 import java.util.List;
 
+import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+
 import net.lr.tutorial.karaf.db.examplejpa.Person;
 import net.lr.tutorial.karaf.db.examplejpa.PersonService;
 
-import org.apache.felix.gogo.commands.Action;
-import org.apache.felix.gogo.commands.Command;
-import org.apache.felix.service.command.CommandSession;
-
-@Command(scope = "person", name = "list", description = "Lists all persons")
-public class ListPersonsCommand implements Action {
+@Component(service = PersonCommands.class,
+        property = {"osgi.command.scope=person",
+                "osgi.command.function=add",
+                "osgi.command.function=list",
+                "osgi.command.function=deleteAll"})
+public class PersonCommands {
+    @Reference
     private PersonService personService;
     
     public void setPersonService(PersonService personService) {
         this.personService = personService;
     }
 
-    @Override
-    public Object execute(CommandSession session) throws Exception {
+    public void add(String name, String twitterName) {
+        Person person = new Person(name, twitterName);
+        personService.add(person);
+    }
+    
+    public void deleteAll() {
+        personService.deleteAll();
+    }
+
+    public void list() {
         List<Person> persons = personService.getAll();
         for (Person person : persons) {
             System.out.println(person.getName() + ", " + person.getTwitterName());
         }
-        return null;
     }
-
 }

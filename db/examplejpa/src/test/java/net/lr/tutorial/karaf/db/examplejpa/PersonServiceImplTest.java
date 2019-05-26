@@ -8,6 +8,7 @@ import javax.persistence.Persistence;
 
 import net.lr.tutorial.karaf.db.examplejpa.impl.PersonServiceImpl;
 
+import org.apache.aries.jpa.template.JpaTemplate;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -22,12 +23,10 @@ public class PersonServiceImplTest {
         PersonServiceImpl personService = new PersonServiceImpl();
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("person", System.getProperties());
         EntityManager em = emf.createEntityManager();
-        personService.setEntityManager(em);
-        
-        em.getTransaction().begin();
+        JpaTemplate jpaTemplate = new TestTemplate(em);
+        personService.setJpa(jpaTemplate);
         personService.deleteAll();
         personService.add(new Person("Christian Schneider", "@schneider_chris"));
-        em.getTransaction().commit();
 
         List<Person> persons = personService.getAll();
         Assert.assertEquals(1, persons.size());
