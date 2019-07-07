@@ -3,8 +3,7 @@ title: Karaf Tutorial Part 1 - Installation and First application
 ---
 
 # Getting Started
-{excerpt:atlassian-macro-output-type=INLINE}With this post I am beginning a series of posts about Apache Karaf, an OSGi container based on Equinox or Felix. The main difference to these frameworks is that it brings excellent management features with it.{excerpt}
-
+With this post I am beginning a series of posts about Apache Karaf, an OSGi container based on Equinox or Felix. The main difference to these frameworks is that it brings excellent management features with it.
 Outstanding features of Karaf:
 
 * Extensible Console with Bash like completion features
@@ -47,7 +46,7 @@ karaf@root()>
 |exports|Shows exported packages and bundles providing them. This helps to find out where a package may come from.|
 |feature:list|Shows which features are installed and can be installed.|
 |feature:install webconsole|Install features (a list of bundles and other features). Using the above command we install the Karaf webconsole.\\ \\
-It can be reached at (http://localhost:8181/system/console) . Log in with karaf/karaf and take some time to see what it has to offer.|
+It can be reached at [http://localhost:8181/system/console] . Log in with karaf/karaf and take some time to see what it has to offer.|
 |diag|Show diagnostic information for bundles that could not be started|
 |log:tail|Show the log. Use ctrl-c to  go back to Console|
 |Ctrl-d|Exit the console. If this is the main console karaf will also be stopped.|
@@ -71,11 +70,9 @@ Get the source code from the [Karaf-Tutorial repo at github](https://github.com
 
 	git clone https://github.com/cschneider/Karaf-Tutorial.git
 
-or download the sample project from (https://github.com/cschneider/Karaf-Tutorial/zipball/master) and extract to a directory.
+## Import into Eclipse
 
-Import into Eclipse
-
-* Start Eclipse Neon or newer
+* Start Eclipse IDE
 * In Eclipse Package explorer: Import -> Existing maven project -> Browse to the extracted directory into the tasklist sub dir
 * Eclipse will show all maven projects it finds
 * Click through to import all projects with defaults
@@ -169,8 +166,7 @@ See also: [http://wiki.ops4j.org/display/paxweb/Whiteboard+Extender]
 
 ## Tasklist-features
 
-The last project only installs a feature descriptor to the maven repository so we can install it easily in Karaf. The descriptor defines a feature named tasklist and the bundles to be installed from\\
-the maven repository.
+The last project only installs a feature descriptor to the maven repository so we can install it easily in Karaf. The descriptor defines a feature named tasklist and the bundles to be installed from the maven repository.
 
 ```
 <feature name="example-tasklist-persistence" version="${pom.version}">
