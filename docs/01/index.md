@@ -16,7 +16,7 @@ All together these features make developing server based OSGi applications almos
 
 # Installation and first startup
 
-* Download Karaf 4.0.7 from the (Karaf web site)[http://karaf.apache.org/].
+* Download Karaf 4.2.6 from the [Karaf web site](http://karaf.apache.org/).
 * Extract and start with bin/karaf
 You should see the welcome screen:
  
@@ -47,7 +47,7 @@ karaf@root()>
 |exports|Shows exported packages and bundles providing them. This helps to find out where a package may come from.|
 |feature:list|Shows which features are installed and can be installed.|
 |feature:install webconsole|Install features (a list of bundles and other features). Using the above command we install the Karaf webconsole.\\ \\
-It can be reached at [http://localhost:8181/system/console] . Log in with karaf/karaf and take some time to see what it has to offer.|
+It can be reached at (http://localhost:8181/system/console) . Log in with karaf/karaf and take some time to see what it has to offer.|
 |diag|Show diagnostic information for bundles that could not be started|
 |log:tail|Show the log. Use ctrl-c to  go back to Console|
 |Ctrl-d|Exit the console. If this is the main console karaf will also be stopped.|
@@ -67,11 +67,11 @@ Karaf is very silent. To not miss error messages always keep a tail -f data/kara
 Without any useful application Karaf is a nice but useless container. So let´s create our first application. The good news is that creating an OSGi application is quite easy and\\
 maven can help a lot. The difference to a normal maven project is quite small. To write the application I recommend to use Eclipse 4 with the m2eclipse plugin which is installed by default on current versions.
 
-Get the source code from the (Karaf-Tutorial repo at github)[https://github.com/cschneider/Karaf-Tutorial/tree/master/tasklist].
+Get the source code from the [Karaf-Tutorial repo at github](https://github.com/cschneider/Karaf-Tutorial/tree/master/tasklist).
 
 	git clone https://github.com/cschneider/Karaf-Tutorial.git
 
-or download the sample project from [https://github.com/cschneider/Karaf-Tutorial/zipball/master] and extract to a directory.
+or download the sample project from (https://github.com/cschneider/Karaf-Tutorial/zipball/master) and extract to a directory.
 
 Import into Eclipse
 
@@ -81,7 +81,7 @@ Import into Eclipse
 * Click through to import all projects with defaults
 Eclipse will now import the projects and wire all dependencies using m2eclipse.
 
-The (tasklist example)[https://github.com/cschneider/Karaf-Tutorial/tree/master/tasklist] consists of these projects
+The [tasklist example](https://github.com/cschneider/Karaf-Tutorial/tree/master/tasklist) consists of these projects
 
 ||Module||Description||
 |tasklist-model|Service interface and Task class|
@@ -164,7 +164,7 @@ Automatically generated xml:
 </blueprint>
 ```
 
-See also: [http://wiki.ops4j.org/display/paxweb/Whiteboard+Extender|http://wiki.ops4j.org/display/paxweb/Whiteboard+Extender]
+See also: [http://wiki.ops4j.org/display/paxweb/Whiteboard+Extender]
 
 
 ## Tasklist-features
