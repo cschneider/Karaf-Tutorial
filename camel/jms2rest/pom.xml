@@ -20,7 +20,7 @@
 	<packaging>bundle</packaging>
 
 	<properties>
-		<camel.version>2.16.2</camel.version>
+		<camel.version>2.24.2</camel.version>
 		<cxf.version>3.1.5</cxf.version>
 		<log4j-version>1.2.16</log4j-version>
 		<slf4j-version>1.7.3</slf4j-version>
