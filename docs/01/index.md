@@ -206,7 +206,7 @@ ID | Servlet         | Servlet-Name   | State       | Alias     | Url
 -------------------------------------------------------------------------------
 56 | TaskListServlet | ServletModel-2 | Deployed    | /tasklist | [/tasklist/*]
 
-Should show the TaskListServlet. By default the example will start at [http://localhost:8181/tasklist|http://localhost:8181/tasklist] .
+Should show the TaskListServlet. By default the example will start at [http://localhost:8181/tasklist](http://localhost:8181/tasklist) .
 
 You can change the port by creating aa text file in "etc/org.ops4j.pax.web.cfg" with the content "org.osgi.service.http.port=8080". This will tell the HttpService to use the port 8080. Now the tasklist application should be available at [http://localhost:8080/tasklist|http://localhost:8080/tasklist]
 
