@@ -39,14 +39,14 @@ karaf@root()>
 
 # Some handy commands
 
-||Command||Description||
+|Command|Description|
+|---|---|
 |la|Shows all installed bundles|
 |list|Show user bundles|
 |service:list|Shows the active OSGi services. This list is quite long. Here it is quite handy that you can use unix pipes like "ls | grep admin"|
 |exports|Shows exported packages and bundles providing them. This helps to find out where a package may come from.|
 |feature:list|Shows which features are installed and can be installed.|
-|feature:install webconsole|Install features (a list of bundles and other features). Using the above command we install the Karaf webconsole.\\ \\
-It can be reached at [http://localhost:8181/system/console] . Log in with karaf/karaf and take some time to see what it has to offer.|
+|feature:install webconsole|Install features (a list of bundles and other features). Using the above command we install the Karaf webconsole.<br>It can be reached at [http://localhost:8181/system/console] . Log in with karaf/karaf and take some time to see what it has to offer.|
 |diag|Show diagnostic information for bundles that could not be started|
 |log:tail|Show the log. Use ctrl-c to  go back to Console|
 |Ctrl-d|Exit the console. If this is the main console karaf will also be stopped.|
@@ -80,7 +80,8 @@ Eclipse will now import the projects and wire all dependencies using m2eclipse.
 
 The [tasklist example](https://github.com/cschneider/Karaf-Tutorial/tree/master/tasklist) consists of these projects
 
-||Module||Description||
+|Module|Description|
+|---|---|
 |tasklist-model|Service interface and Task class|
 |tasklist-persistence|Simple persistence implementation that offers a TaskService|
 |tasklist-ui|Servlet that displays the tasklist using a TaskService|
@@ -205,7 +206,7 @@ ID | Servlet         | Servlet-Name   | State       | Alias     | Url
 -------------------------------------------------------------------------------
 56 | TaskListServlet | ServletModel-2 | Deployed    | /tasklist | [/tasklist/*]
 
-Should show the TaskListServlet. By default the example will start at [http://localhost:8181/tasklist|http://localhost:8181/tasklist] .
+Should show the TaskListServlet. By default the example will start at [http://localhost:8181/tasklist](http://localhost:8181/tasklist) .
 
 You can change the port by creating aa text file in "etc/org.ops4j.pax.web.cfg" with the content "org.osgi.service.http.port=8080". This will tell the HttpService to use the port 8080. Now the tasklist application should be available at [http://localhost:8080/tasklist|http://localhost:8080/tasklist]
 
