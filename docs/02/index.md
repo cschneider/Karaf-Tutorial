@@ -63,7 +63,7 @@ If you start fresh you will have to use the maven-bundle-plugin to make your pro
 </dependency>
 ```
 
-Now we will care about updating the MyApp class. The following little class does the trick. We implement the ManagedService interface to talk to the Config Admin Service. So we get called whenever the config changes. The first thing is to check for null as this can happen when the config is removed. We could a this point stop our MyApp but to keep it simple we just ignore those. The next step is to create the MyApp class. Normally you would do this in the Activator but then you would have to be able to work with an empty configuration which is not always desired. The last part is to simply call the setter with the value from the config and call refresh after all settings were made.
+Now we will care about updating the MyApp class. The following little class does the trick. We implement the ManagedService interface to talk to the Config Admin Service. So we get called whenever the config changes. The first thing is to check for null as this can happen when the config is removed. We could at this point stop our MyApp but to keep it simple we just ignore those. The next step is to create the MyApp class. Normally you would do this in the Activator but then you would have to be able to work with an empty configuration which is not always desired. The last part is to simply call the setter with the value from the config and call refresh after all settings were made.
 
 ```
 private final class ConfigUpdater implements ManagedService {
