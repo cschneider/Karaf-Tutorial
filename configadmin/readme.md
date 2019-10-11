@@ -1,4 +1,4 @@
-### Tutorial 2: Using the config admin service
+# Tutorial 2: Using the config admin service
 
 This tutorial will show how to use the config admin service in general as well as the special features Karaf provides for it.
 Please also read the tutorial article on my blog:
