@@ -9,11 +9,11 @@ Please also read the tutorial article on my blog:
 - app: A little application that uses the config admin service to read config and be notified of config changes
 - app-blueprint: The same as above but now using blueprint to abstract away from the details of the config admin service
 
-h2. Build
+## Build
 
 mvn clean install
 
-h2. Installation
+## Installation
 
 There is only an automated installation for the blueprint case.
 
