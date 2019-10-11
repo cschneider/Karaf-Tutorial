@@ -17,5 +17,5 @@ mvn clean install
 
 There is only an automated installation for the blueprint case.
 
-feature:repo-add mvn:net.lr.tutorial.configadmin/configadmin-features/1.0/xml
+feature:repo-add mvn:net.lr.tutorial.configadmin/configadmin-features/1.0/xml  
 feature:install  tutorial-configadmin
