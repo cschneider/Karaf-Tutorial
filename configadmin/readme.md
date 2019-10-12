@@ -13,6 +13,11 @@ Please also read the tutorial article on my blog:
 
 mvn clean install
 
+## Prerequiries
+Since Karaf 4.2.x the blueprint feature is not install automatically, you have to install it before.  
+
+feature:install aries-blueprint
+
 ## Installation
 
 There is only an automated installation for the blueprint case.
