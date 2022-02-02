@@ -2,7 +2,7 @@
 
 * [1 - Installation and First application](01)
 * [2 - Using the Configuration Admin Service](02)
-* [3 - Karaf Tutorial Part 3 - Improving configuration editing using the OSGI Metatype Service and the Felix WebconsoleMetatype](03)
+* [3 - Improving configuration editing using the OSGI Metatype Service and the Felix WebconsoleMetatype](03)
 * [4 - CXF Services in OSGi](04)
 * [5 - Apache Camel integrations in OSGi](05)
 * [6 - Database Access](06)
